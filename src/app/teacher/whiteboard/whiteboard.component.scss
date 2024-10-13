@@ -1,0 +1,120 @@
+/* Main Header Styling */
+.main-header {
+  width: 100%;
+  position: fixed;
+  top: 20px; // Correct unit (px) was missing.
+  z-index: 200;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Top Bar Styling */
+.top-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px 20px; // Reduced vertical padding
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 800px; // Adjust width as necessary
+  z-index: 150;
+  border: 2px solid #c2ba4e;
+}
+
+/* Frame Navigation within Top Bar */
+.frame-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;  // Adjusted for compactness
+}
+
+/* Adjusting button sizes and spacing for reduced height */
+.frame-navigation button {
+  padding: 2px 8px; // Reduced padding to decrease height
+  font-size: 16px; // Adjust font size if necessary
+}
+
+/* Icon size adjustments if they are too large */
+.frame-navigation i.material-icons {
+  font-size: 20px; // Reduced icon size for better fit in a smaller bar
+}
+
+/* Hover Effects */
+button:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+/* Ensure text and icons within the navigation are centered and have minimal padding */
+.frame-navigation span, .frame-navigation button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Toolbar Styling */
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; /* Improved spacing */
+  position: fixed;
+  left: 5px; /* Reduce the left margin to bring the toolbar closer to the whiteboard */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 22px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  width: 60px; /* Fixed width for the toolbar */
+  height: 300px; /* Adjust height to accommodate all items comfortably */
+  z-index: 95;
+  border: 2px solid #c2ba4e; // Stylish border to match the top bar
+}
+
+/* Button Styling */
+.tool-button, .color-picker {
+  background-color: transparent;
+  border: none;
+  width: 40px;
+  height: 40px;
+  margin: 5px 0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.tool-button:hover, .tool-button.active, .color-picker:hover {
+  background-color: #eeeeee;
+  transform: scale(1.1);
+}
+
+/* Whiteboard Container Adjustment */
+.whiteboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 85px; // Equal to the combined height of header and top bar clearance
+  margin-bottom: 90px; // Symmetrical gap from the bottom
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #c2ba4e;
+}

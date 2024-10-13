@@ -1,0 +1,46 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<!-- Assuming 'main-header' represents your website's main navigation header -->
+<div class="main-header">
+  <!-- Main header content goes here -->
+</div>
+
+<div class="content-container">
+  <div class="top-bar">
+    <button (click)="clearFrame()"><i class="material-icons">layers_clear</i></button>
+    <div class="frame-navigation">
+      <button (click)="previousFrame()"><i class="material-icons">chevron_left</i></button>
+      <span>{{ currentFrame }} / {{ totalFrames }}</span>
+      <button (click)="nextFrame()"><i class="material-icons">chevron_right</i></button>
+    </div>
+    <button (click)="share()"><i class="material-icons">share</i></button>
+    <button (click)="startGoogleMeet()"><i class="material-icons">video_call</i></button> <!-- Use a video call icon -->
+  </div>
+  
+
+  <div class="toolbar">
+    <button class="tool-button" (click)="setTool('pen')" [class.active]="currentTool === 'pen'">
+        <i class="material-icons">edit</i>
+    </button>
+    <button class="tool-button" (click)="setTool('eraser')" [class.active]="currentTool === 'eraser'">
+        <i class="material-icons">remove</i>
+    </button>
+    <input type="color" [(ngModel)]="penColor" class="color-picker" />
+    <button (click)="fileInput.click()" class="tool-button">
+        <i class="material-icons">photo_camera</i>
+    </button>
+    <input #fileInput type="file" accept="image/*" style="display: none;" (change)="uploadImage($event)" />
+    <button (click)="undo()" class="tool-button">
+        <i class="material-icons">undo</i>
+    </button>
+    <button (click)="redo()" class="tool-button">
+        <i class="material-icons">redo</i>
+    </button>
+</div>
+
+
+  <div class="whiteboard-container">
+    <canvas id="whiteboard" width="1500" height="800"></canvas>
+  </div>
+</div>

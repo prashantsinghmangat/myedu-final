@@ -1,0 +1,240 @@
+<ng-container
+  *ngTemplateOutlet="postContainer;context: {error: errorSig(),loading: loadingSig(),formSuccess: formSuccessSig()}" />
+
+<ng-template #postContainer let-error="error" let-loading="loading" let-formSuccess="formSuccess">
+  <section class="px-8 py-20 max-md:px-4">
+    <h2 class="text-4xl font-bold">Write a post</h2>
+    <p class="max-w-2xl py-4">
+      Write about what you have learned today. It can be
+      <strong>anything</strong>, from a new programming language, a new
+      framework. Or it can be a new life lesson, a new way of thinking, or a new
+      way of doing things. Only your imagination is the limit.
+    </p>
+
+    <div role="tablist" class="tabs tabs-lifted mt-4">
+      <input type="radio" name="postTabs" role="tab" class="tab" aria-label="Write" checked />
+      <div role="tabpanel" class="tab-content rounded-box border-base-300 bg-base-100 p-6 max-md:p-4">
+        <form [formGroup]="form">
+          <label class="form-control mb-4 w-full max-w-xs max-md:max-w-full">
+            <div class="label">
+              <span class="label-text">Title
+                <span class="text-gray-400">
+                  ({{ form.value.title?.length ?? 0 }} / 100)
+                </span>
+              </span>
+            </div>
+            <input maxlength="100" formControlName="title" type="text" placeholder="Type here"
+              class="input input-bordered w-full max-w-xs max-md:max-w-full" [ngClass]="{
+                'input-error':
+                  form.controls['title'].touched &&
+                  form.controls['title'].invalid
+              }" />
+            <label *ngIf="
+                form.controls['title'].touched && form.controls['title'].invalid
+              " class="label" for="title">
+              <span class="label-text-alt text-error">
+                {{
+                form.controls['title'].errors?.['required']
+                ? 'Title is required'
+                : form.controls['title'].errors?.['maxlength']
+                ? 'Title is too long. Max 50 characters'
+                : 'Title is too short. Min 5 characters'
+                }}
+              </span>
+            </label>
+          </label>
+
+          <label class="form-control mb-4 w-full max-w-xs max-md:max-w-full">
+            <div class="label">
+              <span class="label-text">Notes Class</span>
+            </div>
+            <select formControlName="notesClass" class="select select-bordered w-full max-w-xs max-md:max-w-full"
+              [ngClass]="{
+                      'input-error': form.controls['notesClass'].touched &&
+                      form.controls['notesClass'].invalid
+                    }">
+              <option value="" disabled>Select Notes Class</option>
+              <option *ngFor="let class of classes" [value]="class">{{class}}</option>
+            </select>
+            <label *ngIf="form.controls['notesClass'].touched && form.controls['notesClass'].invalid" class="label">
+              <span class="label-text-alt text-error">
+                Notes Class is required
+              </span>
+            </label>
+          </label>
+
+          <!-- Notes Subject Dropdown -->
+          <label class="form-control mb-4 w-full max-w-xs max-md:max-w-full">
+            <div class="label">
+              <span class="label-text">Notes Subject</span>
+            </div>
+            <select formControlName="notesSubject" class="select select-bordered w-full max-w-xs max-md:max-w-full"
+              [ngClass]="{
+                      'input-error': form.controls['notesSubject'].touched &&
+                      form.controls['notesSubject'].invalid
+                    }">
+              <option value="" disabled>Select Notes Subject</option>
+              <option *ngFor="let subject of subjects" [value]="subject">{{subject}}</option>
+            </select>
+            <label *ngIf="form.controls['notesSubject'].touched && form.controls['notesSubject'].invalid" class="label">
+              <span class="label-text-alt text-error">
+                Notes Subject is required
+              </span>
+            </label>
+          </label>
+
+          <!-- School Board Dropdown -->
+          <label class="form-control mb-4 w-full max-w-xs max-md:max-w-full">
+            <div class="label">
+              <span class="label-text">School Board</span>
+            </div>
+            <select formControlName="schoolBoard" class="select select-bordered w-full max-w-xs max-md:max-w-full"
+              [ngClass]="{
+                      'input-error': form.controls['schoolBoard'].touched &&
+                      form.controls['schoolBoard'].invalid
+                    }">
+              <option value="" disabled>Select School Board</option>
+              <option *ngFor="let board of boards" [value]="board">{{board}}</option>
+            </select>
+            <label *ngIf="form.controls['schoolBoard'].touched && form.controls['schoolBoard'].invalid" class="label">
+              <span class="label-text-alt text-error">
+                School Board is required
+              </span>
+            </label>
+          </label>
+
+          <!-- <label class="form-control mb-4 w-full max-w-xs max-md:max-w-full">
+            <div class="label">
+              <span class="label-text">Description
+                <span class="text-gray-400">
+                  ({{ form.value.description?.length ?? 0 }} / 250)
+                </span>
+              </span>
+              <span class="tooltip before:text-typography-primary" data-tip="Description is displayed on the feed. It should be short and
+                concise to attract readers. Do not put actual content here.">
+                <span
+                  class="flex h-5 w-5 items-center justify-center rounded-full bg-blue-200 p-1 text-sm font-bold text-sky-800">?</span>
+              </span>
+            </div>
+            <input maxlength="250" formControlName="description" type="text" placeholder="Type here"
+              class="input input-bordered w-full max-w-xs max-md:max-w-full" [ngClass]="{
+                'input-error':
+                  form.controls['description'].touched &&
+                  form.controls['description'].invalid
+              }" />
+            <label *ngIf="
+                form.controls['description'].touched &&
+                form.controls['description'].invalid
+              " class="label" for="description">
+              <span class="label-text-alt text-error">
+                {{
+                form.controls['description'].errors?.['required']
+                ? 'Description is required'
+                : form.controls['description'].errors?.['maxlength']
+                ? 'Description is too long. Max 250 characters'
+                : 'Description is too short. Min 10 characters'
+                }}
+              </span>
+            </label>
+          </label> -->
+          <div>
+            <h2>Simple Editor</h2>
+            <div class="editor" contenteditable="true" [innerHTML]="content" (input)="onInput($event)"></div>
+            <div class="toolbar">
+              <button (click)="applyBold()"><b>Bold</b></button> |
+              <button (click)="applyItalic()"><i>Italic</i></button> |
+              <button (click)="applyUnderline()"><u>Underline</u></button>
+            </div>
+            <!-- <h3>Preview</h3> -->
+            <!-- <div [innerHTML]="content"></div> -->
+
+            <!-- <div class="editor" contenteditable="true" [innerHTML]="editorControl.value" (input)="onInput($event)">
+            </div> -->
+
+          </div>
+
+          <!-- 
+          <label class="form-control">
+            <div class="label">
+              <span class="label-text">What you have learned
+                <span class="text-gray-400">
+                  ({{ form.value.content?.length ?? 0 }} / 5000)
+                </span></span>
+              <span class="tooltip tooltip-left before:text-typography-primary"
+                data-tip="Content supports Markdown. You can use it to format your post. Good post should have a markdown title.">
+                <span
+                  class="flex h-5 w-5 items-center justify-center rounded-full bg-blue-200 p-1 text-sm font-bold text-sky-800">?</span>
+              </span>
+            </div>
+            <textarea rows="6" maxlength="5000" formControlName="content"
+              class="textarea textarea-bordered max-h-[800px]" placeholder="Write about what you have learned today"
+              [ngClass]="{
+                'border-error':
+                  form.controls['content'].touched &&
+                  form.controls['content'].invalid
+              }"></textarea>
+            <label *ngIf="
+                form.controls['content'].touched &&
+                form.controls['content'].invalid
+              " class="label" for="content">
+              <span class="label-text-alt text-error">
+                {{
+                form.controls['content'].errors?.['required']
+                ? 'Content is required'
+                : form.controls['content'].errors?.['maxlength']
+                ? 'Content is too long. Max 5000 characters'
+                : 'Content is too short. Min 10 characters'
+                }}
+              </span>
+            </label>
+          </label> -->
+
+          <til-tags-input class="mt-4 block" [tagsIn]="form.controls['tags'].value" (tags)="handleTags($event)" />
+        </form>
+      </div>
+      <input type="radio" name="postTabs" role="tab" class="tab" aria-label="Preview content" />
+      <div role="tabpanel" class="tab-content rounded-box border-base-300 bg-base-100 p-6 max-md:p-4">
+        <article class="til-markdown prose">
+          <div class="editor" contenteditable="true" [innerHTML]="editorControl.value" (input)="onInput($event)">
+          </div>
+          @if (!form.value.content?.length) {
+          <p class="text-sm text-gray-400">
+            Nothing to preview yet. Write something!
+          </p>
+          } @else {
+          <markdown [data]="form.value.content" />
+          }
+        </article>
+      </div>
+    </div>
+    <button class="btn mt-4 min-w-20 bg-blue-200 font-bold text-sky-800 hover:bg-blue-100 disabled:bg-gray-200"
+      [disabled]="loading" (click)="submit()">
+      @if (loading) {
+      <span class="loading loading-spinner loading-xs"></span>
+      } @else {
+      Submit
+      }
+    </button>
+
+    @if (error) {
+    <div role="alert" class="alert alert-error">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span>
+        {{ error?.code || error?.message }}
+      </span>
+    </div>
+    }
+    @if (formSuccess) {
+    <div role="alert" class="alert alert-success">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span> Your post has been submitted successfully.</span>
+    </div>
+    }
+  </section>
+</ng-template>

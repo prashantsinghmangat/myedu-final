@@ -1,0 +1,140 @@
+<div class="profile-input-page">
+  <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)" novalidate>
+    <!-- Profile Section -->
+    <section class="profile-section">
+      <h2>Profile</h2>
+      <div class="field-row">
+        <div class="field-col">
+          <label for="name">Name</label>
+          <input type="text" id="name" [(ngModel)]="profile.name" name="name" required #name="ngModel" />
+          <div *ngIf="name.invalid && name.touched">Name is required</div>
+        </div>
+        <div class="field-col">
+          <label for="phone">Phone</label>
+          <input type="text" id="phone" [(ngModel)]="profile.phone" name="phone" required pattern="^[0-9]*$"
+            #phone="ngModel" />
+          <div *ngIf="phone.invalid && phone.touched">Phone is required and should contain only numbers</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-col">
+          <label for="designation">Current Designation</label>
+          <input type="text" id="designation" [(ngModel)]="profile.designation" name="designation" required
+            #designation="ngModel" />
+          <div *ngIf="designation.invalid && designation.touched">Designation is required</div>
+        </div>
+        <div class="field-col">
+          <label for="location">Current Location</label>
+          <input type="text" id="location" [(ngModel)]="profile.location" name="location" required
+            #location="ngModel" />
+          <div *ngIf="location.invalid && location.touched">Location is required</div>
+        </div>
+      </div>
+
+      <div class="input-file">
+        <label for="profile-pic" class="upload-label">Upload Profile Picture</label>
+        <div class="profile-upload-container">
+          <input type="file" id="profile-pic" name="profilePic" (change)="handleImageChange($event)" />
+          <div class="uploaded-image-container">
+            <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Profile Picture" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+      <h2>About</h2>
+      <div class="field-container">
+        <label for="short-bio">Short Bio</label>
+        <textarea id="short-bio" [(ngModel)]="profile.shortBio" name="shortBio" placeholder="A brief introduction..."
+          required #shortBio="ngModel"></textarea>
+        <div *ngIf="shortBio.invalid && shortBio.touched">Short Bio is required</div>
+      </div>
+      <div class="field-container">
+        <label for="about-me">About Me</label>
+        <textarea id="about-me" [(ngModel)]="profile.aboutMe" name="aboutMe"
+          placeholder="Tell us more about yourself..." required #aboutMe="ngModel"></textarea>
+        <div *ngIf="aboutMe.invalid && aboutMe.touched">About Me is required</div>
+      </div>
+      <div class="field-container">
+        <label for="skills">Skills</label>
+        <textarea id="skills" [(ngModel)]="profile.skills" name="skills" placeholder="List your professional skills..."
+          required #skills="ngModel"></textarea>
+        <div *ngIf="skills.invalid && skills.touched">Skills are required</div>
+      </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section class="work-experience-section">
+      <h2>Work Experience</h2>
+      <div *ngFor="let experience of workExperience; let i = index">
+        <div class="field-row">
+          <div class="field-col">
+            <label for="organisationName-{{ i }}">Organisation Name</label>
+            <input type="text" id="organisationName-{{ i }}" [(ngModel)]="experience.organisationName"
+              name="organisationName-{{ i }}" required #organisationName="ngModel" />
+            <div *ngIf="organisationName.invalid && organisationName.touched">Organisation name is required</div>
+          </div>
+          <div class="field-col">
+            <label for="designation-{{ i }}">Designation</label>
+            <input type="text" id="designation-{{ i }}" [(ngModel)]="experience.designation" name="designation-{{ i }}"
+              required #designation="ngModel" />
+            <div *ngIf="designation.invalid && designation.touched">Designation is required</div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-col">
+            <label for="type-{{ i }}">Type</label>
+            <select id="type-{{ i }}" [(ngModel)]="experience.type" name="type-{{ i }}" required #type="ngModel">
+              <option value="Self">Self</option>
+              <option value="Full-Time">Full-Time</option>
+              <option value="Part-Time">Part-Time</option>
+            </select>
+            <div *ngIf="type.invalid && type.touched">Type is required</div>
+          </div>
+          <div class="field-col">
+            <label for="start-time-{{ i }}">Start Time</label>
+            <input type="date" id="start-time-{{ i }}" [(ngModel)]="experience.startTime" name="start-time-{{ i }}"
+              required #startTime="ngModel" />
+            <div *ngIf="startTime.invalid && startTime.touched">Start time is required</div>
+          </div>
+          <div class="field-col">
+            <label for="end-time-{{ i }}">End Time</label>
+            <input type="date" id="end-time-{{ i }}" [(ngModel)]="experience.endTime" name="end-time-{{ i }}" required
+              #endTime="ngModel" />
+            <div *ngIf="endTime.invalid && endTime.touched">End time is required</div>
+          </div>
+        </div>
+        <button type="button" (click)="removeExperience(i)" class="remove-button">Remove Experience</button>
+      </div>
+      <button type="button" (click)="addExperience()" class="add-button">Add Experience</button>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section">
+      <h2>Education Qualification</h2>
+      <div *ngFor="let edu of education; let i = index">
+        <div class="field-row">
+          <div class="field-col">
+            <label for="instituteName-{{ i }}">Institute Name</label>
+            <input type="text" id="instituteName-{{ i }}" [(ngModel)]="edu.instituteName" name="instituteName-{{ i }}"
+              required #instituteName="ngModel" />
+            <div *ngIf="instituteName.invalid && instituteName.touched">Institute name is required</div>
+          </div>
+          <div class="field-col">
+            <label for="courseName-{{ i }}">Course Name</label>
+            <input type="text" id="courseName-{{ i }}" [(ngModel)]="edu.courseName" name="courseName-{{ i }}" required
+              #courseName="ngModel" />
+            <div *ngIf="courseName.invalid && courseName.touched">Course name is required</div>
+          </div>
+        </div>
+        <button type="button" (click)="removeEducation(i)" class="remove-button">Remove Education</button>
+      </div>
+      <button type="button" (click)="addEducation()" class="add-button">Add Education</button>
+    </section>
+
+    <button type="submit" class="submit-button">Submit</button>
+  </form>
+</div>

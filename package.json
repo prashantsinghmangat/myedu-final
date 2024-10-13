@@ -1,0 +1,91 @@
+{
+  "name": "til-frontend",
+  "version": "0.0.0",
+  "author": {
+    "email": "kasperi.pohtine@gmail.com",
+    "name": "Kasperi Pohtinen",
+    "url": "https://kasperipohtinen.fi"
+  },
+  "description": "Share your knowledge with the world",
+  "keywords": [
+    "angular",
+    "typescript",
+    "tailwindcss",
+    "til",
+    "daisyui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KasperiP/til-frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KasperiP/til-frontend/issues"
+  },
+  "homepage": "https://todayilearned.app",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.x"
+  },
+  "packageManager": "pnpm@8.14.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve --port 4201",
+    "dev": "ng serve --configuration development",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "ng lint",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.html\" \"src/**/*.scss\""
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^17.0.9",
+    "@angular/common": "^17.0.9",
+    "@angular/compiler": "^17.0.9",
+    "@angular/core": "^17.0.9",
+    "@angular/forms": "^17.0.9",
+    "@angular/platform-browser": "^17.0.9",
+    "@angular/platform-browser-dynamic": "^17.0.9",
+    "@angular/platform-server": "^17.0.9",
+    "@angular/router": "^17.0.9",
+    "@angular/ssr": "^17.0.10",
+    "@tailwindcss/typography": "^0.5.10",
+    "express": "^4.18.2",
+    "marked": "^9.1.6",
+    "ngx-editor": "^18.0.0",
+    "ngx-markdown": "^17.1.1",
+    "prismjs": "^1.29.0",
+    "rxjs": "~7.8.1",
+    "tslib": "^2.6.2",
+    "zone.js": "~0.14.3"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^17.0.10",
+    "@angular-eslint/builder": "17.2.0",
+    "@angular-eslint/eslint-plugin": "17.2.0",
+    "@angular-eslint/eslint-plugin-template": "17.2.0",
+    "@angular-eslint/schematics": "17.2.0",
+    "@angular-eslint/template-parser": "17.2.0",
+    "@angular/cli": "^17.0.10",
+    "@angular/compiler-cli": "^17.0.9",
+    "@types/express": "^4.17.21",
+    "@types/jasmine": "~5.1.4",
+    "@types/node": "^18.19.6",
+    "@typescript-eslint/eslint-plugin": "6.18.0",
+    "@typescript-eslint/parser": "6.18.0",
+    "autoprefixer": "^10.4.16",
+    "daisyui": "^4.6.0",
+    "eslint": "^8.56.0",
+    "jasmine-core": "~5.1.1",
+    "karma": "~6.4.2",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.1",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "postcss": "^8.4.33",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.1",
+    "typescript": "~5.2.2"
+  },
+  "type": "module"
+}

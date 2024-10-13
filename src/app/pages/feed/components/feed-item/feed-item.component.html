@@ -1,0 +1,53 @@
+<a class="cursor-pointer" (click)="selectedPost(post)" >
+  <div class="flex gap-2 rounded-lg border-1 border-divider bg-base-100 px-4 py-6 shadow-lg">
+    <div>
+      <div class="avatar">
+        <div class="w-12 rounded-full bg-gradient-to-tr from-blue-200 to-green-200">
+          <img alt="Avatar" onerror="this.className = 'hidden'" [src]="post.image" />
+        </div>
+      </div>
+    </div>
+    <div class="flex w-full flex-col">
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-4">
+          <div class="flex flex-col overflow-auto">
+            <h3 class="truncate font-bold">
+              {{ post.name }}
+            </h3>
+            <p class="truncate text-sm text-gray-500">
+              {{ post.createdAt | date: 'MMM d' }}
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h2 class="line-clamp-3 text-2xl font-bold" [title]="post.title">
+            {{ post.title }}
+          </h2>
+          <p class="text-sm">
+            {{ post.body }}
+          </p>
+        </div>
+      </div>
+      <div class="divider my-1.5 before:bg-divider after:bg-divider"></div>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <p class="text-sm">{{ post.likes }} likes</p>
+          <div class="flex flex-wrap gap-2">
+            @for (tag of post.tags; track i; let i = $index) {
+            <div class="badge" [ngClass]="
+                  i === 0
+                    ? 'bg-blue-200'
+                    : i === 1
+                      ? 'bg-pink-200'
+                      : 'bg-green-200'
+                ">
+              {{ tag }}
+            </div>
+            }
+          </div>
+        </div>
+        <div class="text-sm">{{ post.readTime }} min read</div>
+      </div>
+    </div>
+  </div>
+</a>

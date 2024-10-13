@@ -1,0 +1,101 @@
+<dialog #signupModal id="signupModal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h2 class="text-3xl font-bold">Sign Up</h2>
+    <p class="pb-8 pt-4">Create a new <strong>Today I Learned</strong>-account below.</p>
+
+    <!-- Signup Form -->
+    <div *ngIf="!otpDisplay">
+      <form #signupForm="ngForm" (ngSubmit)="onSignup()" class="flex flex-col gap-4 pb-6" novalidate>
+        <!-- Role Selection -->
+        <select [(ngModel)]="role" name="role" required class="select select-bordered w-full" #roleCtrl="ngModel">
+          <option value="" disabled selected>Select Role</option>
+          <option value="Teacher">Teacher</option>
+          <option value="Student">Student</option>
+        </select>
+        <div *ngIf="roleCtrl.invalid && roleCtrl.touched" class="text-red-500 text-sm">Role is required.</div>
+
+        <!-- Name -->
+        <input type="text" placeholder="Name" [(ngModel)]="name" name="name" required minlength="3"
+          class="input input-bordered w-full" #nameCtrl="ngModel" />
+        <div *ngIf="nameCtrl.invalid && nameCtrl.touched" class="text-red-500 text-sm">
+          <div *ngIf="nameCtrl.errors?.['required']">Name is required.</div>
+          <div *ngIf="nameCtrl.errors?.['minlength']">Name must be at least 3 characters.</div>
+        </div>
+
+        <!-- Email -->
+        <input type="email" placeholder="Email" [(ngModel)]="emailId" name="emailId" required email
+          class="input input-bordered w-full" #emailCtrl="ngModel" />
+        <div *ngIf="emailCtrl.invalid && emailCtrl.touched" class="text-red-500 text-sm">
+          <div *ngIf="emailCtrl.errors?.['required']">Email is required.</div>
+          <div *ngIf="emailCtrl.errors?.['email']">Enter a valid email.</div>
+        </div>
+
+        <!-- Phone Number -->
+        <input type="tel" placeholder="Phone Number" [(ngModel)]="phoneNumber" name="phoneNumber" required
+          class="input input-bordered w-full" #phoneCtrl="ngModel" />
+        <div *ngIf="phoneCtrl.invalid && phoneCtrl.touched" class="text-red-500 text-sm">
+          <div *ngIf="phoneCtrl.errors?.['required']">Phone number is required.</div>
+          <div *ngIf="phoneCtrl.errors?.['pattern']">Enter a valid phone number (e.g. +1234567890).</div>
+        </div>
+
+        <!-- Location -->
+        <input type="text" placeholder="Location" [(ngModel)]="location" name="location" required minlength="2"
+          class="input input-bordered w-full" #locationCtrl="ngModel" />
+        <div *ngIf="locationCtrl.invalid && locationCtrl.touched" class="text-red-500 text-sm">
+          <div *ngIf="locationCtrl.errors?.['required']">Location is required.</div>
+          <div *ngIf="locationCtrl.errors?.['minlength']">Location must be at least 2 characters.</div>
+        </div>
+
+        <!-- Password -->
+        <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required minlength="6"
+          class="input input-bordered w-full" #passwordCtrl="ngModel" />
+        <div *ngIf="passwordCtrl.invalid && passwordCtrl.touched" class="text-red-500 text-sm">
+          <div *ngIf="passwordCtrl.errors?.['required']">Password is required.</div>
+          <div *ngIf="passwordCtrl.errors?.['minlength']">Password must be at least 6 characters.</div>
+        </div>
+
+        <!-- Error Message Display (Only shown on API error) -->
+        <div *ngIf="errorMessage" class="text-red-500 text-sm">
+          <span>{{ errorMessage }}</span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-full" [disabled]="signupForm.invalid">Sign Up</button>
+      </form>
+    </div>
+
+    <div *ngIf="otpDisplay">
+      <form #otpForm="ngForm" (ngSubmit)="onOtpSignup()" class="flex flex-col gap-4 pb-6" novalidate>
+        <!-- OTP Label -->
+        <label for="otpField">Enter 6-digit OTP</label>
+
+        <!-- OTP Input Field -->
+        <input type="text" id="otpField" placeholder="Enter OTP" [(ngModel)]="otpField" name="otpField" required
+          minlength="6" maxlength="6" class="input input-bordered w-full" #otpCtrl="ngModel" />
+
+        <!-- Validation Error Messages -->
+        <div *ngIf="otpCtrl.invalid && otpCtrl.touched" class="text-red-500 text-sm">
+          <div *ngIf="otpCtrl.errors?.['required']">OTP is required.</div>
+          <div *ngIf="otpCtrl.errors?.['minlength'] || otpCtrl.errors?.['maxlength']">
+            OTP must be exactly 6 digits.
+          </div>
+        </div>
+
+        <span class="errorMessage">{{errorMessage}}</span>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-full" [disabled]="otpForm.invalid">Sign Up</button>
+      </form>
+    </div>
+
+
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn" (click)="onClose()">Close</button>
+      </form>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button (click)="onClose()">close</button>
+  </form>
+</dialog>

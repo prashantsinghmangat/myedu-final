@@ -1,0 +1,11 @@
+<til-error-modal
+  [show]="displayErrorModalSig()"
+  [error]="errorData().error"
+  [wantedProvider]="errorData().wantedProvider"
+  (closeModal)="closeErrorModal()"
+/>
+<til-hero />
+<til-learned-cards />
+<til-about />
+<til-latest-preview />
+<til-faq />

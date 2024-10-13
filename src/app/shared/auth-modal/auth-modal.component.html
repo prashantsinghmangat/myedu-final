@@ -1,0 +1,82 @@
+<dialog #authModal id="authModal" class="modal modal-bottom sm:modal-middle">
+<div class="modal-box">
+  <h2 class="text-3xl font-bold">Create an account or login</h2>
+  <p class="pb-8 pt-4">
+    Login below or create a new <strong>Today I Learned</strong>-account.
+  </p>
+
+  <!-- Login Form -->
+  <form (ngSubmit)="onLogin()" class="flex flex-col gap-4 pb-6">
+    <input type="text" placeholder="Username" [(ngModel)]="username" name="username" required
+      class="input input-bordered w-full" />
+    <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required
+      class="input input-bordered w-full" />
+    <button type="submit" class="btn btn-primary w-full">
+      Login
+    </button>
+  </form>
+
+  <!-- Existing Auth Buttons -->
+  <div class="flex flex-col gap-2">
+    <p class="pb-2">Or login using:</p>
+    @for (button of buttons; track $index) {
+    <button class="btn btn-outline relative flex w-full hover:bg-base-200" (click)="onAuth(button.type)">
+      <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-0 start-4 inline-flex" [attr.viewBox]="'0 0 24 24'"
+        [attr.width]="'32'" [attr.height]="'32'">
+        @for (path of button.svgPaths; track $index) {
+        <path [attr.d]="path.path" [attr.fill]="path.fill" />
+        }
+      </svg>
+      <p class="flex-1 font-bold">{{ button.text }}</p>
+    </button>
+    }
+  </div>
+
+  <div class="modal-action">
+    <form method="dialog">
+      <button class="btn" (click)="onClose()">Close</button>
+    </form>
+  </div>
+</div>
+<form method="dialog" class="modal-backdrop">
+  <button (click)="onClose()">close</button>
+</form>
+</dialog>
+
+<!-- <dialog #authModal id="authModal" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h2 class="text-3xl font-bold">Create an account or login</h2>
+    <p class="pb-8 pt-4">
+      Login below or create a new <strong>Today I Learned</strong>-account.
+    </p>
+    <div class="flex flex-col gap-2">
+      @for (button of buttons; track $index) {
+        <button
+          class="btn btn-outline relative flex w-full hover:bg-base-200"
+          (click)="onAuth(button.type)"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="absolute left-0 start-4 inline-flex"
+            [attr.viewBox]="'0 0 24 24'"
+            [attr.width]="'32'"
+            [attr.height]="'32'"
+          >
+            @for (path of button.svgPaths; track $index) {
+              <path [attr.d]="path.path" [attr.fill]="path.fill" />
+            }
+          </svg>
+          <p class="flex-1 font-bold">{{ button.text }}</p>
+        </button>
+      }
+    </div>
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn" (click)="onClose()">Close</button>
+      </form>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button (click)="onClose()">close</button>
+  </form>
+</dialog> -->

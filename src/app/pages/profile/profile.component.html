@@ -1,0 +1,203 @@
+<div class="container">
+  <div class="left-section">
+
+    <div class="profile-card">
+      <img
+        src="./../../../assets/images/profileimg.png"
+        alt="Theresa Flores" class="profile-image">
+      <div class="profile-info">
+        <h1>Theresa Flores</h1>
+        <p>Senior Teacher at Tiger School</p>
+        <div class="buttons">
+          <button class="btn book"  (click)="goToEditProfile()">Edit Profile</button>
+          <button class="btn share">Share</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bio-card">
+      <div class="bio-details">
+        <h2>About Me</h2>
+        <p>Hello, I'm Das Gunjan, and I am deeply passionate about music. As the proud founder of my very own Institute
+          of Music located in Delhi, I have had the privilege of immersing myself in the world of melodies and rhythms.
+          My journey in the world of music began at the renowned Delhi School of Music, where I honed my skills as a
+          guitarist and developed a profound appreciation for the art form.
+
+          I've had the pleasure of instructing individuals of all ages, from enthusiastic 5-year-old beginners to the
+          wisest of grandpas who have always dreamed of strumming a tune.</p>
+
+
+      </div>
+      <div class="skills">
+        <span class="skill">English grammar</span>
+        <span class="skill">Online education</span>
+        <span class="skill">Pre-school education</span>
+        <span class="skill">Foreign languages</span>
+      </div>
+    </div>
+    <div class="work-experience-section">
+      <h2>Work Experience</h2>
+
+      <div class="experience-card">
+        <div class="experience-details">
+          <h3 class="organization-name">Organization Name 1</h3>
+          <p class="designation">Designation 1</p>
+          <div class="date-info">
+            <span class="start-date">Start Date: January 2020</span>
+            <span class="end-date">End Date: December 2021</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="experience-card">
+        <div class="experience-details">
+          <h3 class="organization-name">Organization Name 2</h3>
+          <p class="designation">Designation 2</p>
+          <div class="date-info">
+            <span class="start-date">Start Date: February 2018</span>
+            <span class="end-date">End Date: June 2019</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+  <div class="right-section">
+
+    <div class="education-card">
+      <h2>Educational Background</h2>
+      <div class="education-entry">
+        <div class="university-info">
+          <div>
+            <h3>The University of Melbourne</h3>
+            <p>Master's degree, Foreign Languages</p>
+            <p>Sep 2007 - Aug 2012</p>
+          </div>
+        </div>
+        <a href="#" class="credential-link">Show credential</a>
+      </div>
+      <div class="education-entry">
+        <div class="university-info">
+          <div>
+            <h3>The University of Sydney</h3>
+            <p>Bachelor's degree, Bachelor of Architecture and Environments</p>
+            <p>May 2013 - Aug 2017</p>
+          </div>
+        </div>
+        <a href="#" class="credential-link">Show credential</a>
+      </div>
+    </div>
+
+
+    <!-----Course card ------>
+    <div class="course-section">
+      <div class="course-header">
+        <h2>Courses</h2>
+        <button class="create-course-btn">Create Course</button>
+      </div>
+      <!-- Example of a single course card -->
+      <div class="course-card">
+        <div class="course-details">
+          <div class="subject">
+            <h3>English</h3>
+            <p>IGSC</p>
+          </div>
+          <div class="frequency">
+            <p>3 classes / weekly</p>
+          </div>
+          <div class="mode">
+            <p>online | English</p>
+          </div>
+          <div class="cost">
+            <p>$5 Per Session</p>
+          </div>
+        </div>
+        <button class="join-btn">Join</button>
+      </div>
+      <!-- Add more course cards here -->
+      <div class="course-card">
+        <div class="course-details">
+          <div class="subject">
+            <h3>English</h3>
+            <p>IGSC</p>
+          </div>
+          <div class="frequency">
+            <p>3 classes / weekly</p>
+          </div>
+          <div class="mode">
+            <p>online | English</p>
+          </div>
+          <div class="cost">
+            <p>$5 Per Session</p>
+          </div>
+        </div>
+        <button class="join-btn">Join</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<ng-container *ngTemplateOutlet="profile; context: { user: user$ | async }" />
+
+<ng-template #profile let-user="user">
+
+  <section class="flex flex-col gap-4 px-8 py-20 max-md:px-4">
+    <h2 class="text-4xl font-bold">Profile</h2>
+    <button (click)="goToEditProfile()">Edit Profile</button>
+
+    <div class="rounded-lg border-1 border-divider px-4 py-6 shadow-lg">
+      <h2 class="mb-4 text-2xl font-bold">Details</h2>
+      <div class="flex flex-col gap-1">
+
+        <div class="flex items-center max-md:justify-between max-sm:flex-col max-sm:items-start">
+          <h3 class="w-1/4 max-md:w-auto">Role</h3>
+          @if (user) {
+          <p class="text-sm text-gray-500">{{ user.role }}</p>
+          } @else {
+          <div class="skeleton h-4 w-full max-w-sm bg-neutral"></div>
+          }
+        </div>
+
+        <div class="flex items-center max-md:justify-between max-sm:flex-col max-sm:items-start">
+          <h3 class="w-1/4 max-md:w-auto">Email</h3>
+          @if (user) {
+          <p class="text-sm text-gray-500">{{ user.email }}</p>
+          } @else {
+          <div class="skeleton h-4 w-full max-w-sm bg-neutral"></div>
+          }
+        </div>
+        <div class="flex items-center max-md:justify-between max-sm:flex-col max-sm:items-start">
+          <h3 class="w-1/4 max-md:w-auto">Username</h3>
+          @if (user) {
+          <p class="text-sm text-gray-500">{{ user.name }}</p>
+          } @else {
+          <div class="skeleton h-4 w-full max-w-sm bg-neutral"></div>
+          }
+        </div>
+        <div class="flex items-center max-md:justify-between max-sm:flex-col max-sm:items-start">
+          <h3 class="w-1/4 max-md:w-auto">Auth provider</h3>
+          @if (user) {
+          <p class="text-sm text-gray-500">{{ user.authType }}</p>
+          } @else {
+          <div class="skeleton h-4 w-full max-w-sm bg-neutral"></div>
+          }
+        </div>
+        <div class="flex items-center max-md:justify-between max-sm:flex-col max-sm:items-start">
+          <h3 class="w-1/4 max-md:w-auto">Registration time</h3>
+          @if (user) {
+          <p class="text-sm text-gray-500">
+            {{ user.createdAt | date: 'medium' }}
+          </p>
+          } @else {
+          <div class="skeleton h-4 w-full max-w-sm bg-neutral"></div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>

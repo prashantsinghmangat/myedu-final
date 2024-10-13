@@ -1,0 +1,8 @@
+/
+/new-post
+/profile
+/legal/privacy-policy
+/legal/terms-of-service
+/auth/oauth/github/callback
+/auth/oauth/linkedin/callback
+/auth/oauth/google/callback

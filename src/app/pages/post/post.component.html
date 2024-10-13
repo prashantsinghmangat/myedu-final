@@ -1,0 +1,26 @@
+<ng-container
+  *ngTemplateOutlet="post;context: {post: postSig(),loading: loadingSig(),isLoggedIn: isLoggedIn$ | async,user: user$ | async}" />
+
+<ng-template #post let-post="post" let-loading="loading" let-isLoggedIn="isLoggedIn" let-user="user">
+  <section class="flex w-full flex-col gap-8 px-4 py-20">
+    @if (!loading) {
+    <div class="flex flex-col gap-4">
+      <h1 class="text-4xl font-extrabold">{{ post?.title }}</h1>
+      <!-- <p class="text-2xl">{{ post?.body }}</p> -->
+      <p class="text-2xl" [innerHTML]="safeHtmlContent"></p>
+      <p class="text-2xl" [innerHTML]="post?.body"></p>
+    </div>
+    <div class="divider my-0 before:bg-divider after:bg-divider"></div>
+    <article class="til-markdown prose">
+      @if (post) {
+      <markdown [data]="post?.content" />
+      }
+    </article>
+    } @else {
+    <div class="mt-4 flex flex-col items-center justify-center gap-2">
+      <span class="loading loading-spinner loading-lg bg-typography-primary"></span>
+      <p class="text-sm font-semibold">Loading</p>
+    </div>
+    }
+  </section>
+</ng-template>

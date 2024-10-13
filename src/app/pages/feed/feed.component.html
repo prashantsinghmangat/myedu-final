@@ -1,0 +1,105 @@
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <a href="#">Perfect Notes</a>
+    </div>
+
+    <!-- Search Section for Notes -->
+    <div class="search-container">
+      <div class="search-bar">
+        <!-- <input type="text" placeholder="Search Notes e.g., 'Algebra'"> -->
+
+        <select id="board" (change)="onBoardChange($event)">
+          <option value="" disabled>Select Board</option>
+          <option *ngFor="let board of boards" [value]="board">{{ board }}</option>
+        </select>
+
+        <select id="class" (change)="onClassChange($event)">
+          <option value="" disabled>Select Class</option>
+          <option *ngFor="let cls of classes" [value]="cls">{{ cls }}</option>
+        </select>
+
+        <select id="subject" (change)="onSubjectChange($event)">
+          <option value="" disabled>Select Subject</option>
+          <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+        </select>
+
+        <button (click)="getAllNotes()">Search</button>
+      </div>
+    </div>
+
+    <!-- Notes Categories (Optional: if you want to keep a category filter) -->
+    <!-- <div class="scrollable-category-container">
+      <div class="category-buttons-wrapper">
+        <div class="category-buttons">
+          <button><i class="fas fa-book"></i> English</button>
+          <button><i class="fas fa-square-root-alt"></i> Maths</button>
+          <button><i class="fas fa-dna"></i> Biology</button>
+          <button><i class="fas fa-flask"></i> Chemistry</button>
+          <button><i class="fas fa-atom"></i> Physics</button>
+          <button><i class="fas fa-globe"></i> Social Science</button>
+          <button><i class="fas fa-chart-line"></i> Economy</button>
+          <button><i class="fas fa-landmark"></i> History</button>
+          <button><i class="fas fa-map"></i> Geography</button>
+          <button><i class="fas fa-gavel"></i> Polity</button>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</header>
+
+<!-- Notes Display -->
+<section class="notes-list">
+  <div class="container">
+    <h2>Explore Notes Across All Subjects and Boards!</h2>
+
+    <div *ngIf="!error" class="notes">
+      <!-- Dynamically generated note cards -->
+      <div *ngFor="let note of postList" class="note-card" (click)="openNoteDetails(note)">
+        <div class="note-image">
+          <img src="{{ note?.imageUrl }}" alt="{{ note.title }}">
+          <div class="overlay">
+            <h3>{{ note.title }}</h3>
+            <p class="snippet">{{ note.body }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="error" class="notes">
+      <!-- Dynamically generated note cards -->
+      <h3>Notes not found!</h3>
+    </div>
+  </div>
+</section>
+
+<!-- old code -->
+
+<ng-container *ngTemplateOutlet="posts;context: {posts: postList}" />
+
+<ng-template #posts let-posts="posts" let-loadingPosts="loadingPosts" let-loadingUserStats="loadingUserStats"
+  let-loadingGlobalStats="loadingGlobalStats" let-userStats="userStats" let-globalStats="globalStats">
+  <section class="flex flex-col gap-4 px-8 py-20 max-md:px-4">
+    <h2 class="text-4xl font-bold">Posts</h2>
+    <div class="flex gap-4">
+      <div class="flex w-full flex-col gap-4">
+        @for (post of posts; track post.postId) {
+        <article>
+          @defer (on viewport) {
+          <til-feed-item [post]="post" />
+          } @placeholder {
+          <til-feed-item [post]="post" />
+          }
+        </article>
+        }
+        @if (loadingPosts) {
+        <div class="mt-4 flex flex-col items-center justify-center gap-2">
+          <span class="loading loading-spinner loading-lg bg-typography-primary"></span>
+          <p class="text-sm font-semibold">Loading</p>
+        </div>
+        }
+      </div>
+      <til-feed-menu class="max-lg:hidden" [loadingUserStats]="loadingUserStats"
+        [loadingGlobalStats]="loadingGlobalStats" [userStats]="userStats" [globalStats]="globalStats" />
+    </div>
+  </section>
+</ng-template>
