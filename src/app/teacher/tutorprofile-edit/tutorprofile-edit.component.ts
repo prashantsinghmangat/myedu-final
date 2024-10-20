@@ -1,48 +1,77 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';  // NgForm added to handle form reference
+import { PostsService } from '../../core/services/posts.service';
+import { take, map, catchError, finalize, of } from 'rxjs';  // Imported RxJS operators
+import { ApiError } from '../../core/models/api.model'; // Assuming you have an ApiError class
 
 @Component({
   standalone: true,
   selector: 'tutorprofile-edit',
   templateUrl: './tutorprofile-edit.component.html',
   styleUrls: ['./tutorprofile-edit.component.scss'],
-  imports: [FormsModule, CommonModule]  // Include CommonModule here to use ngFor
+  imports: [FormsModule, CommonModule]  // Include FormsModule and CommonModule here
 })
 export class TutorProfileEditComponent {
+
+  @ViewChild('form') form!: NgForm; // Accessing the form reference using ViewChild
+
   profile = {
     name: '',
     phone: '',
     designation: '',
-    location: '', // Adding location property here
+    location: '',
     shortBio: '',
     aboutMe: '',
     skills: ''
   };
 
- 
   education = [
-    { 
-      instituteName: '', courseName: '', fieldOfStudy: '', 
-      startTime: '', endTime: '', grade: '', credentialUrl: '' 
+    {
+      instituteName: '',
+      courseName: '',
+      fieldOfStudy: '',
+      startTime: '',
+      endTime: '',
+      grade: '',
+      credentialUrl: ''
     }
   ];
 
   workExperience = [
-    { 
-      organisationName: '', 
-      designation: '', 
+    {
+      organisationName: '',
+      designation: '',
       type: 'Full-Time', // Default value set to 'Full-Time'
-      startTime: '', 
-      endTime: '' 
+      startTime: '',
+      endTime: ''
     }
   ];
-  
+
+  imageUrl: string | ArrayBuffer | null = null;
+  loadingSig = false;  // To track loading state
+  formSuccessSig = false;  // To track form submission success
+  errorSig: any = null;  // To track any errors
+
+  constructor(private readonly postsService: PostsService) { }
+
+  // Function to handle image input
+  handleImageChange(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imageUrl = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   addExperience() {
     this.workExperience.push({
       organisationName: '',
       designation: '',
-      type: 'Full-Time', // Default value set to 'Full-Time'
+      type: 'Full-Time',
       startTime: '',
       endTime: ''
     });
@@ -63,38 +92,71 @@ export class TutorProfileEditComponent {
       credentialUrl: ''
     });
   }
-  
+
   removeEducation(index: number) {
     this.education.splice(index, 1);
   }
 
-  imageUrl: string | ArrayBuffer | null = null;
+  // Submit function to gather form data and submit to the server
+  submitProfile(): void {
+    // const profileData = {
+    //   profile: this.profile,
+    //   workExperience: this.workExperience,
+    //   education: this.education,
+    //   profilePicUrl: this.imageUrl
+    // };
 
-  handleImageChange(event: any): void {
-    const file = event.target.files[0];
-    if (file) {
-        // Check the file size (e.g., 5MB max)
-        if (file.size > 5242880) { // 5 * 1024 * 1024
-            alert("File is too large. Maximum size allowed is 5MB.");
-            return;
-        }
+    const basicDetails = {
+      currentDesignation: this.profile?.designation,
+      shortBio: this.profile?.shortBio,
+      aboutMe: this.profile?.aboutMe,
+      skills: this.profile?.skills
+    };
 
-        const img = new Image();
-        img.src = window.URL.createObjectURL(file);
-        img.onload = () => {
-            const width = img.naturalWidth;
-            const height = img.naturalHeight;
-            window.URL.revokeObjectURL(img.src);
+    console.log('Form Submitted:', basicDetails);
+    console.log('Form Submitted:', this.education);
 
-          
-            // If all checks pass, read and display the image
-            const reader = new FileReader();
-            reader.onload = (e: any) => {
-                this.imageUrl = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        };
-    }
-}
+    this.loadingSig = true;
 
+    this.postsService.addTutorBasicDetails(basicDetails).subscribe((res: any) => {
+      console.log("res: ", res?.data);
+      this.form.reset();
+      this.postsService.addTutorEducationDetails(this.education).subscribe((res: any) => {
+        console.log("res: ", res?.data);
+      });
+    });
+
+    // this.postsService.addTutorBasicDetails(basicDetails)
+    //   .pipe(
+    //     take(1),
+    //     map(() => {
+    //       this.form.reset();  // Reset the form upon successful submission
+    //       this.formSuccessSig = true;
+    //     }),
+    //     catchError((e: ApiError) => {
+    //       this.errorSig = e;  // Capture the error
+    //       this.formSuccessSig = false;
+    //       return of();  // Return an observable so that the stream does not break
+    //     }),
+    //     finalize(() => this.loadingSig = false)  // Set loading to false when done
+    //   )
+    //   .subscribe();
+
+
+    // this.postsService.addTutorEducationDetails(this.education)
+    //   .pipe(
+    //     take(1),
+    //     map(() => {
+    //       this.formSuccessSig = true;
+    //     }),
+    //     catchError((e: ApiError) => {
+    //       this.errorSig = e;  // Capture the error
+    //       this.formSuccessSig = false;
+    //       return of();  // Return an observable so that the stream does not break
+    //     }),
+    //     finalize(() => this.loadingSig = false)  // Set loading to false when done
+    //   )
+    //   .subscribe();
+
+  }
 }

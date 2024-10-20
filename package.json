@@ -1,10 +1,10 @@
 {
-  "name": "til-frontend",
+  "name": "myedusync",
   "version": "0.0.0",
   "author": {
-    "email": "kasperi.pohtine@gmail.com",
-    "name": "Kasperi Pohtinen",
-    "url": "https://kasperipohtinen.fi"
+    "email": "myedysync@gmail.com",
+    "name": "My Edu Sync",
+    "url": "https://myedusync.com/"
   },
   "description": "Share your knowledge with the world",
   "keywords": [
@@ -16,12 +16,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/KasperiP/til-frontend.git"
+    "url": "https://github.com/prashantsinghmangat/myedu-final"
   },
   "bugs": {
-    "url": "https://github.com/KasperiP/til-frontend/issues"
+    "url": "https://github.com/prashantsinghmangat/myedu-final/issues"
   },
-  "homepage": "https://todayilearned.app",
+  "homepage": "https://myedusync.com",
   "license": "MIT",
   "engines": {
     "node": ">=20.x"
@@ -29,7 +29,7 @@
   "packageManager": "pnpm@8.14.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4201",
+    "start": "ng serve --port 4202",
     "dev": "ng serve --configuration development",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",

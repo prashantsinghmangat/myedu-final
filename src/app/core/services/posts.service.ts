@@ -44,6 +44,25 @@ export class PostsService {
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
   }
 
+  addTutorBasicDetails(body: any) {
+    let url = `${environment.myEduBaseUrl}/addTutorBasicDetails`
+    return this.http.post(url, body)
+  }
+
+  // addTutorBasicDetails(body: any) {
+  //   return this.http
+  //     .post<void>(`${environment.myEduBaseUrl}/addTutorBasicDetails`, body)
+  //     .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
+  // }
+
+
+  addTutorEducationDetails(body: any) {
+    return this.http
+      .post<void>(`${environment.myEduBaseUrl}/addTutorEducationDetails`, body)
+      .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
+  }
+
+
   getPosts(limit: number) {
     return this.http
       .get<ApiPreviewPosts>(
