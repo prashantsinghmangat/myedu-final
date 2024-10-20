@@ -1,13 +1,14 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { PostsService } from '../../core/services/posts.service';
 
 @Component({
   standalone: true,
   selector: 'create-course',
   templateUrl: './create-course.component.html',
   styleUrls: ['./create-course.component.scss'],
-  imports: [FormsModule, CommonModule]  // Include CommonModule here to use ngFor
+  imports: [FormsModule, CommonModule]  // Include FormsModule here to use ngModel
 })
 export class CreateCourseComponent {
   // Model to store the course data
@@ -24,13 +25,33 @@ export class CreateCourseComponent {
     mode: 'Online',  // Default value set to 'Online'
   };
 
+  constructor(private readonly postsService: PostsService) { }
+
   // Method to handle form submission
   onSubmit() {
     if (this.isFormValid()) {
       console.log("Course created successfully:", this.course);
-      // Add logic to handle course creation (e.g., send data to the server or save locally)
       alert("Course created successfully!");
-      this.clearForm();  // Clear the form after submission if necessary
+      this.clearForm();  // Clear the form after submission
+
+      const requestPayload = {
+        subject: this.course?.subject,
+        board: this.course?.board,
+        className: this.course?.class,
+        weeklySessions: this.course?.weeklySession,
+        costPerSessions: this.course?.costPerSession,
+        currency: this.course?.currency,
+        aboutThisCourse: this.course?.aboutThisCourse,
+        language: this.course?.language,
+        mode: this.course?.mode,
+
+        courseThumbnail: this.course?.subject,
+      }
+
+      this.postsService.createCourse(requestPayload).subscribe((res: any) => {
+        console.log("res: ", res?.data);
+      });
+
     } else {
       alert("Please fill out all fields correctly.");
     }
@@ -40,9 +61,9 @@ export class CreateCourseComponent {
   isFormValid() {
     // Check for valid inputs in the course fields
     return !!this.course.subject && !!this.course.board && !!this.course.class &&
-           !!this.course.weeklySession && !!this.course.costPerSession &&
-           !!this.course.currency && !!this.course.aboutThisCourse &&
-           !!this.course.teacherProfile && !!this.course.language && !!this.course.mode;
+      !!this.course.weeklySession && !!this.course.costPerSession &&
+      !!this.course.currency && !!this.course.aboutThisCourse &&
+      !!this.course.teacherProfile && !!this.course.language && !!this.course.mode;
   }
 
   // Method to clear the form after successful submission

@@ -1,4 +1,115 @@
 <div class="create-course-container">
+    <form #courseForm="ngForm" class="create-course-form" (ngSubmit)="onSubmit()" novalidate>
+
+        <h2>Create a New Course</h2>
+
+        <!-- Subject Field -->
+        <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" class="input-field" [(ngModel)]="course.subject" name="subject"
+                placeholder="Enter the subject" required minlength="3" #subject="ngModel">
+            <div *ngIf="subject.invalid && subject.touched" class="error-msg">
+                Subject is required (minimum 3 characters).
+            </div>
+        </div>
+
+        <!-- Board Field -->
+        <div class="form-group">
+            <label for="board">Board</label>
+            <input type="text" id="board" class="input-field" [(ngModel)]="course.board" name="board"
+                placeholder="Enter the board" required minlength="3" #board="ngModel">
+            <div *ngIf="board.invalid && board.touched" class="error-msg">
+                Board is required (minimum 3 characters).
+            </div>
+        </div>
+
+        <!-- Class Field -->
+        <div class="form-group">
+            <label for="class">Class</label>
+            <input type="text" id="class" class="input-field" [(ngModel)]="course.class" name="class"
+                placeholder="Enter the class" required pattern="^[0-9]{1,2}$" #class="ngModel">
+            <div *ngIf="class.invalid && class.touched" class="error-msg">
+                Class is required (must be a number between 1 and 99).
+            </div>
+        </div>
+
+        <!-- Weekly Sessions Field -->
+        <div class="form-group">
+            <label for="weeklySession">Weekly Sessions</label>
+            <input type="number" id="weeklySession" class="input-field" [(ngModel)]="course.weeklySession"
+                name="weeklySession" placeholder="Enter weekly sessions" required min="1" #weeklySession="ngModel">
+            <div *ngIf="weeklySession.invalid && weeklySession.touched" class="error-msg">
+                Weekly sessions must be at least 1.
+            </div>
+        </div>
+
+        <!-- Cost Per Session Field -->
+        <div class="form-group">
+            <label for="costPerSession">Cost Per Session</label>
+            <input type="number" id="costPerSession" class="input-field" [(ngModel)]="course.costPerSession"
+                name="costPerSession" placeholder="Enter cost per session" required min="1" #costPerSession="ngModel">
+            <div *ngIf="costPerSession.invalid && costPerSession.touched" class="error-msg">
+                Cost per session must be at least 1.
+            </div>
+        </div>
+
+        <!-- Currency Field -->
+        <div class="form-group">
+            <label for="currency">Currency</label>
+            <input type="text" id="currency" class="input-field" [(ngModel)]="course.currency" name="currency"
+                placeholder="Enter the currency" required minlength="3" #currency="ngModel">
+            <div *ngIf="currency.invalid && currency.touched" class="error-msg">
+                Currency is required (minimum 3 characters).
+            </div>
+        </div>
+
+        <!-- About This Course Field -->
+        <div class="form-group">
+            <label for="aboutThisCourse">About This Course</label>
+            <textarea id="aboutThisCourse" class="input-field textarea-field" [(ngModel)]="course.aboutThisCourse"
+                name="aboutThisCourse" placeholder="Describe the course" required minlength="10"
+                #aboutThisCourse="ngModel"></textarea>
+            <div *ngIf="aboutThisCourse.invalid && aboutThisCourse.touched" class="error-msg">
+                Please provide a description of at least 10 characters.
+            </div>
+        </div>
+
+        <!-- Teacher Profile Field -->
+        <div class="form-group">
+            <label for="teacherProfile">Teacher Profile</label>
+            <input type="text" id="teacherProfile" class="input-field" [(ngModel)]="course.teacherProfile"
+                name="teacherProfile" placeholder="Enter the teacher profile" required minlength="3"
+                #teacherProfile="ngModel">
+            <div *ngIf="teacherProfile.invalid && teacherProfile.touched" class="error-msg">
+                Teacher profile is required (minimum 3 characters).
+            </div>
+        </div>
+
+        <!-- Language Field -->
+        <div class="form-group">
+            <label for="language">Language</label>
+            <input type="text" id="language" class="input-field" [(ngModel)]="course.language" name="language"
+                placeholder="Enter the language" required minlength="2" #language="ngModel">
+            <div *ngIf="language.invalid && language.touched" class="error-msg">
+                Language is required (minimum 2 characters).
+            </div>
+        </div>
+
+        <!-- Mode Field -->
+        <div class="form-group">
+            <label for="mode">Mode</label>
+            <select id="mode" class="input-field" [(ngModel)]="course.mode" name="mode" required #mode="ngModel">
+                <option value="Online">Online</option>
+                <option value="Offline">Offline</option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-button" [disabled]="courseForm.invalid">Create Course</button>
+    </form>
+</div>
+
+<!-- <div class="create-course-container">
   <form class="create-course-form" (ngSubmit)="onSubmit()">
       <h2>Create a New Course</h2>
 
@@ -57,4 +168,4 @@
 
       <button type="submit" class="submit-button">Create Course</button>
   </form>
-</div>
+</div> -->

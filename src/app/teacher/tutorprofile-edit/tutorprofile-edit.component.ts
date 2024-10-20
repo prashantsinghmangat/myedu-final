@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
+import { Component,ViewChild } from '@angular/core';
+import {  CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';  // NgForm added to handle form reference
 import { PostsService } from '../../core/services/posts.service';
 import { take, map, catchError, finalize, of } from 'rxjs';  // Imported RxJS operators
