@@ -46,4 +46,9 @@ export class ProfileComponent {
     this.router.navigateByUrl('/tutorprofile-edit');
   }
 
+  goToCreateCourse()
+  {
+    this.router.navigateByUrl('/create-course');
+  }
+
 }

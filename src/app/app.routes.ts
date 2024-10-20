@@ -11,7 +11,7 @@ export const routes: Routes = [
     title: 'Authenticating...',
   },
   {
-    path: 'profile', loadComponent: () => import('./pages/profile/profile.component').then((m) => m.ProfileComponent,), canActivate: [authGuard],
+    path: 'profile', loadComponent: () => import('./teacher/profile/profile.component').then((m) => m.ProfileComponent,), canActivate: [authGuard],
     title: 'Profile',
   },
   {
@@ -30,7 +30,14 @@ export const routes: Routes = [
     path: 'teacher-list', loadComponent: () => import('./teacher/teacher-list/teacher-list.component').then((m) => m.TeacherListComponent), title: 'Our-Teachers',
   },
   {
-    path: 'tutorprofile-edit', loadComponent: () => import('./teacher/tutorprofile-edit/tutorprofile-edit.component').then((m) => m.TutorProfileEditComponent), title: 'TutorProfileedit',
+    path: 'tutorprofile-edit',
+     loadComponent: () => import('./teacher/tutorprofile-edit/tutorprofile-edit.component').then((m) => m.TutorProfileEditComponent), 
+     title: 'TutorProfileedit',
+  },
+  {
+    path: 'create-course',
+     loadComponent: () => import('./teacher/create-course/create-course.component').then((m) => m.CreateCourseComponent), 
+     title: 'create-course',
   },
   {
     path: 'whiteboard', loadComponent: () => import('./teacher/whiteboard/whiteboard.component').then((m) => m.WhiteboardComponent), title: 'AboutUs',

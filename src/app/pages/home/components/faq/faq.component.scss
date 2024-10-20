@@ -1,0 +1,79 @@
+/* General styling for the FAQ section */
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    max-width: 800px;
+    margin: 0 auto; /* Center the section on the page */
+    background-color: #f8fafc;
+    border-radius: 10px;
+    margin-bottom: 100px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #333;
+      font-weight: 700;
+    }
+  
+    .collapse {
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.3s ease-in-out;
+      border: 1px solid #e0e0e0;
+      margin-bottom: 10px;
+  
+      &-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        background-color: #ffffff;
+        color: #333;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #f3f4f6;
+        }
+  
+        /* Styling for the "+" or "-" icon */
+        &::after {
+          content: '+';
+          font-size: 1.2rem;
+          transition: transform 0.3s ease;
+        }
+      }
+  
+      /* Change "+" to "-" when the item is expanded */
+      input:checked ~ .collapse-title::after {
+        content: '-';
+      }
+  
+      &-content {
+        padding: 1rem;
+        background-color: #f9fafb;
+        color: #555;
+        font-size: 1rem;
+        line-height: 1.6;
+        border-top: 1px solid #e0e0e0;
+  
+        p {
+          margin-bottom: 0.5rem;
+          color: #444;
+  
+          i {
+            color: #6b7280;
+          }
+        }
+      }
+    }
+  }
+  

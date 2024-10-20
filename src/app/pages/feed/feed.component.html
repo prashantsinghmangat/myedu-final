@@ -58,19 +58,26 @@
       <div *ngFor="let note of postList" class="note-card" (click)="openNoteDetails(note)">
         <div class="note-image">
           <img src="{{ note?.imageUrl }}" alt="{{ note.title }}">
-          <div class="overlay">
-            <h3>{{ note.title }}</h3>
-            <p class="snippet">{{ note.body }}</p>
-          </div>
+        </div>
+        <div class="note-content">
+          <h3>{{ note.title }}</h3>
+          <p [ngClass]="{'snippet': true, 'truncated': expandedNoteId !== note._id}">
+            {{ note.body }}
+          </p>
+          <p *ngIf="expandedNoteId === note._id">
+            <!-- Full body content when expanded -->
+            {{ note.fullBody || note.body }} <!-- Adjust if you have a specific full body property -->
+          </p>
         </div>
       </div>
     </div>
+    
     <div *ngIf="error" class="notes">
-      <!-- Dynamically generated note cards -->
       <h3>Notes not found!</h3>
     </div>
   </div>
 </section>
+
 
 <!-- old code -->
 

@@ -52,10 +52,15 @@ export class FeedComponent implements OnInit {
   selectedBoard: Board | null = null;
   selectedClass: number | null = null;
   selectedSubject: string | null = null;
+  
+  // Property to track the expanded note ID
+  expandedNoteId: string | null = null;
 
   constructor(
-    private readonly postsService: PostsService, private router: Router,
-    private readonly userService: UserService, private cdr: ChangeDetectorRef
+    private readonly postsService: PostsService, 
+    private router: Router,
+    private readonly userService: UserService, 
+    private cdr: ChangeDetectorRef
   ) { }
 
   // ngOnInit lifecycle hook
@@ -97,14 +102,19 @@ export class FeedComponent implements OnInit {
         return of(error);
       }),
     ).subscribe();
-    this.cdr.detectChanges();// Trigger change detection manually
+    this.cdr.detectChanges(); // Trigger change detection manually
   }
 
-  openNoteDetails(note: any): void {
-    sessionStorage.removeItem('postData');
-    this.postsService.setPostRoute(note); // Store the entire post object in the service
-    this.router.navigate(['/post', note._id]); // Navigate to the target route
-    // Implement navigation logic using Angular Router or another method
+  openNoteDetails(note: ApiPreviewPost): void {
+    if (this.expandedNoteId === note._id) {
+        // If the clicked note is already expanded, collapse it
+        this.expandedNoteId = null;
+    } else {
+        // Expand the clicked note
+        this.expandedNoteId = note._id;
+    }
+    // Navigate to the note detail page
+    this.router.navigate(['/post', note._id]);
   }
 
   onBoardChange(event: Event): void {
@@ -131,7 +141,6 @@ export class FeedComponent implements OnInit {
     // this.getAllNotes();
   }
 
-
   private createDataStructure(): DataStructure {
     return {
       classes: [8, 9, 10, 11, 12],
@@ -144,5 +153,4 @@ export class FeedComponent implements OnInit {
       },
     };
   }
-
 }

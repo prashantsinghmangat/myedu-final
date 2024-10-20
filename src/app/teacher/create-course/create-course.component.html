@@ -1,0 +1,60 @@
+<div class="create-course-container">
+  <form class="create-course-form" (ngSubmit)="onSubmit()">
+      <h2>Create a New Course</h2>
+
+      <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" class="input-field" [(ngModel)]="course.subject" name="subject" placeholder="Enter the subject" required>
+      </div>
+
+      <div class="form-group">
+          <label for="board">Board</label>
+          <input type="text" id="board" class="input-field" [(ngModel)]="course.board" name="board" placeholder="Enter the board" required>
+      </div>
+
+      <div class="form-group">
+          <label for="class">Class</label>
+          <input type="text" id="class" class="input-field" [(ngModel)]="course.class" name="class" placeholder="Enter the class" required>
+      </div>
+
+      <div class="form-group">
+          <label for="weeklySession">Weekly Sessions</label>
+          <input type="number" id="weeklySession" class="input-field" [(ngModel)]="course.weeklySession" name="weeklySession" placeholder="Enter weekly sessions" required>
+      </div>
+
+      <div class="form-group">
+          <label for="costPerSession">Cost Per Session</label>
+          <input type="number" id="costPerSession" class="input-field" [(ngModel)]="course.costPerSession" name="costPerSession" placeholder="Enter cost per session" required>
+      </div>
+
+      <div class="form-group">
+          <label for="currency">Currency</label>
+          <input type="text" id="currency" class="input-field" [(ngModel)]="course.currency" name="currency" placeholder="Enter the currency" required>
+      </div>
+
+      <div class="form-group">
+          <label for="aboutThisCourse">About This Course</label>
+          <textarea id="aboutThisCourse" class="input-field textarea-field" [(ngModel)]="course.aboutThisCourse" name="aboutThisCourse" placeholder="Describe the course" required></textarea>
+      </div>
+
+      <div class="form-group">
+          <label for="teacherProfile">Teacher Profile</label>
+          <input type="text" id="teacherProfile" class="input-field" [(ngModel)]="course.teacherProfile" name="teacherProfile" placeholder="Enter the teacher profile" required>
+      </div>
+
+      <div class="form-group">
+          <label for="language">Language</label>
+          <input type="text" id="language" class="input-field" [(ngModel)]="course.language" name="language" placeholder="Enter the language" required>
+      </div>
+
+      <div class="form-group">
+          <label for="mode">Mode</label>
+          <select id="mode" class="input-field" [(ngModel)]="course.mode" name="mode" required>
+              <option value="Online">Online</option>
+              <option value="Offline">Offline</option>
+          </select>
+      </div>
+
+      <button type="submit" class="submit-button">Create Course</button>
+  </form>
+</div>

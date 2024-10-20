@@ -157,8 +157,9 @@ body {
       border: 1px solid #e0e0e0;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      width: 300px;
-      overflow: hidden;
+      width: 300px; // Fixed width
+      height: 400px; // Fixed height for consistent card size
+      overflow: hidden; // Prevent overflow
       position: relative;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
 
@@ -174,7 +175,7 @@ body {
 
       .note-image {
         width: 100%;
-        height: 150px;
+        height: 150px; // Adjust as needed
         overflow: hidden;
         position: relative;
 
@@ -183,28 +184,30 @@ body {
           height: 100%;
           object-fit: cover;
         }
+      }
 
-        .overlay {
-          position: absolute;
-          bottom: 0;
-          background: rgba(255, 255, 255, 0.8);
-          width: 100%;
-          padding: 10px 15px;
-          text-align: left;
+      .note-content {
+        padding: 15px; // Existing padding
+        text-align: left;
 
-          h3, .snippet {
-            margin: 0;
-            color: #333;
-            font-weight: bold;
+        .snippet {
+          font-size: 1rem;
+          color: #555;
+          margin: 0;
+          line-height: 1.5; // Ensure good spacing
+
+          &.truncated {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4; // Limit to 4 lines
+            overflow: hidden; // Hide overflow
+            height: 5.5em; // Adjust based on line height for consistency
           }
+        }
 
-          h3 {
-            font-size: 1.5rem;
-          }
-
-          .snippet {
-            font-size: 1rem;
-          }
+        .date {
+          font-size: 0.9rem;
+          color: #999;
         }
       }
     }
@@ -218,10 +221,13 @@ body {
       align-items: center;
 
       .note-card {
-        width: 90%;
+        width: 90%; // Full width on smaller screens
+        height: auto; // Allow height to adjust on smaller screens
       }
     }
   }
+
+
 
   .search-bar {
     flex-direction: column;
