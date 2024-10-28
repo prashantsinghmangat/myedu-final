@@ -6,18 +6,40 @@
         <a href="#">Perfect Teacher</a>
       </div>
 
-      <!-- Search Section with Rounded Background -->
+      <!-- Search Section with Dropdowns for Subject, Board, and Grade -->
       <div class="search-container">
         <div class="search-bar">
-          <input type="text" placeholder="Try 'Maths Tuition'">
-          <input type="text" placeholder="Course location">
+          <select class="search-dropdown" id="subject-dropdown" aria-label="Subject">
+            <option value="" disabled selected>Choose Subject</option>
+            <option value="maths">Maths</option>
+            <option value="english">English</option>
+            <option value="physics">Physics</option>
+            <option value="chemistry">Chemistry</option>
+            <!-- Add more subjects here -->
+          </select>
+
+          <select class="search-dropdown" id="board-dropdown" aria-label="Board">
+            <option value="" disabled selected>Choose Board</option>
+            <option value="cbse">CBSE</option>
+            <option value="icse">ICSE</option>
+            <option value="state-board">State Board</option>
+            <!-- Add more boards here -->
+          </select>
+
+          <select class="search-dropdown" id="grade-dropdown" aria-label="Grade">
+            <option value="" disabled selected>Choose Grade</option>
+            <option value="grade-10">Grade 10</option>
+            <option value="grade-11">Grade 11</option>
+            <option value="grade-12">Grade 12</option>
+            <!-- Add more grades here -->
+          </select>
+
           <button>Search</button>
         </div>
       </div>
 
       <!-- Category Menu with Scrollable Icons and Arrows at the Corners -->
       <div class="scrollable-category-container">
-        <button class="arrow left-arrow">←</button>
         <div class="category-buttons-wrapper">
           <div class="category-buttons">
             <button><i class="fas fa-book"></i> English</button>
@@ -32,7 +54,6 @@
             <button><i class="fas fa-gavel"></i> Polity</button>
           </div>
         </div>
-        <button class="arrow right-arrow">→</button>
       </div>
     </div>
   </header>
@@ -69,13 +90,8 @@
                   </div>
               </div>
           </div>
-          
 
             <!-- More tutor cards can go here -->
-
-           
-
-         
         </div>
     </div>
 </section>

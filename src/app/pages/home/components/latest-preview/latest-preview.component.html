@@ -1,59 +1,47 @@
-<section class="overflow-hidden px-8 py-20 max-md:px-4">
-  <h2 class="text-4xl font-bold">Learned lately</h2>
-  <div class="til-preview-grid mt-8 grid gap-4">
-    @for (item of tilItems; track i; let i = $index) {
-      <a
-        class="indicator gap-4 transition-all duration-300 ease-in-out hover:-translate-y-1.5"
-      >
-        @if (!i) {
-          <span class="badge indicator-item indicator-center bg-blue-200"
-            >new</span
-          >
-        }
-        <div class="flex w-96 cursor-pointer break-inside-avoid flex-col p-6">
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center gap-4">
-              <div class="avatar">
-                <div class="w-12 rounded-full">
-                  <img
-                    alt="Avatar"
-                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                  />
-                </div>
-              </div>
-              <div class="flex flex-col overflow-auto">
-                <h3 class="truncate font-bold">
-                  {{ item.title }}
-                </h3>
-                <p class="truncate text-sm text-gray-500">
-                  by {{ item.author }}
-                </p>
-              </div>
-            </div>
-            <p class="text-sm">
-              {{
-                item.description.length > 100
-                  ? item.description.substring(0, 100) + '...'
-                  : item.description
-              }}
-            </p>
-          </div>
-          <div class="divider my-1"></div>
-          <div class="flex flex-col gap-2">
-            <p class="text-sm opacity-60">{{ item.likes }} likes</p>
-            <div class="flex flex-wrap gap-2">
-              @for (tag of item.tags.slice(0, 3); track $index) {
-                <div class="badge">
-                  {{ tag }}
-                </div>
-              }
-            </div>
-          </div>
-        </div>
-      </a>
-    }
+ <!--lateest Post -->
+ <div class="section-header">
+  <h2>Fresh Notes for Learning</h2>
+  <p>Our newest educational notes are here to provide clarity, enhance learning, and support your exam preparation with relevant content.</p>
+</div>
+
+ <div class="card-container">
+  <div class="card">
+    <div class="category">Computer Science</div>
+    <h3 class="title">What Are Agile and Scrum? A Simple Guide for Beginners</h3>
+    <div class="image-container">
+      <img src="https://knowness.com/wp-content/uploads/2024/10/lala-azizli-tfNyTfJpKvc-unsplash-1536x1024.webp" alt="Agile and Scrum" />
+    </div>
+    <p class="description">
+      You’ve probably seen the terms Agile and Scrum in almost every tech job description out there. But what do they actually mean? If you're...
+    </p>
+    <div class="date">October 6, 2024</div>
   </div>
-</section>
+
+  <div class="card">
+    <div class="category">Computer Science</div>
+    <h3 class="title">The Power of Rubber Ducky Debugging and the Cardboard Developer</h3>
+    <div class="image-container">
+      <img src="rubber-duck-debugging.jpg" alt="Rubber Ducky Debugging" />
+    </div>
+    <p class="description">
+      Debugging is one of the most challenging tasks in software development. Often, developers encounter unforeseen problems that leave them stumped...
+    </p>
+    <div class="date">September 27, 2024</div>
+  </div>
+
+  <div class="card">
+    <div class="category">Announcement</div>
+    <h3 class="title">Knowness Raises £100,000 Pre-Seed Investment to Revolutionise Education</h3>
+    <div class="image-container">
+      <img src="team-photo.jpg" alt="Knowness Team" />
+    </div>
+    <p class="description">
+      We are thrilled to announce that Knowness has successfully raised a £100,000 pre-seed investment, valuing our company at approximately £2.5 million...
+    </p>
+    <div class="date">September 25, 2024</div>
+  </div>
+</div>
+
 
     <!--Review section -->
     <div class="testimonial-section">

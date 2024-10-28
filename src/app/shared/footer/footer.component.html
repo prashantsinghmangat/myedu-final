@@ -1,86 +1,79 @@
-<ng-container
-  *ngTemplateOutlet="
-    footer;
-    context: {
-      isLoggedIn: isLoggedIn$ | async
-    }
-  "
-></ng-container>
+<ng-container *ngTemplateOutlet="footer; context: { isLoggedIn: isLoggedIn$ | async }"></ng-container>
 
 <ng-template #footer let-isLoggedIn="isLoggedIn">
-  <footer class="footer bg-gray-100 p-10 px-6 text-gray-700 max-md:px-8">
-    <aside class="flex items-start gap-4">
-      <div class="flex-shrink-0">
-        <a routerLink="/" class="text-xl font-bold flex items-center">
-          <div class="inline-block rounded-full bg-blue-600 p-3">
-            <img
-              src="/assets/logo.png"
-              alt="MyEduSync Logo"
-              class="h-10 w-10"
-            />
-          </div>
-          <span class="ml-2 text-gray-800">MyEduSync</span>
-        </a>
+  <footer class="bg-gray-100 py-10 px-6 text-gray-700">
+    <div class="container mx-auto">
+      <div class="flex flex-wrap justify-between">
+        <!-- Logo and Description -->
+
+        <!-- Resources -->
+        <div class="w-full sm:w-1/4 mb-6">
+          <h3 class="font-semibold text-gray-800 mb-2">Resources</h3>
+          <ul>
+            <li><a class="hover:text-blue-600" routerLink="/learning-hub">Learning Hub</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/help-support">Help & Support</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/scholarship">Scholarship</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/past-papers">Past Papers</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/solution-banks">Solution Banks</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div class="w-full sm:w-1/4 mb-6">
+          <h3 class="font-semibold text-gray-800 mb-2">Company</h3>
+          <ul>
+            <li><a class="hover:text-blue-600" routerLink="/about">About Us</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/content-quality">Content Quality</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/jobs">Jobs</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/legal/terms-of-service">Terms</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/legal/privacy-policy">Privacy</a></li>
+          </ul>
+        </div>
+
+        <!-- Subjects -->
+        <div class="w-full sm:w-1/4 mb-6">
+          <h3 class="font-semibold text-gray-800 mb-2">Subjects</h3>
+          <ul>
+            <li><a class="hover:text-blue-600" routerLink="/subjects/biology">Biology</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/subjects/chemistry">Chemistry</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/subjects/physics">Physics</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/subjects/math">Maths</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/subjects/geography">Geography</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/subjects/english-literature">English Literature</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/subjects/psychology">Psychology</a></li>
+            <li><a class="hover:text-blue-600" routerLink="/subjects">All Subjects</a></li>
+          </ul>
+        </div>
       </div>
-      <p class="text-sm text-gray-600 max-w-xs mt-2">
-        MyEduSync connects students with expert tutors worldwide, offering high-quality courses, study materials, and learning resources.
-      </p>
-    </aside>
 
-    <div class="flex gap-8 mt-6">
-      <nav>
-        <header class="font-semibold text-gray-800 mb-2">Explore</header>
-        <ul>
-          <li><a class="hover:text-blue-600" routerLink="/">Home</a></li>
-          <li><a class="hover:text-blue-600" routerLink="/courses">Courses</a></li>
-          <li><a class="hover:text-blue-600" routerLink="/tutors">Tutors</a></li>
-          <li><a class="hover:text-blue-600" routerLink="/materials">Study Materials</a></li>
-        </ul>
-      </nav>
+      <!-- Social Media -->
+      <div class="flex flex-col items-center mt-8">
+        <nav class="flex gap-4">
+          <a href="https://twitter.com/myedusync" aria-label="Twitter">
+            <img src="https://img.icons8.com/ios-filled/50/000000/twitter.png" alt="Twitter" class="h-8 w-8 hover:opacity-80" />
+          </a>
+          <a href="https://facebook.com/myedusync" aria-label="Facebook">
+            <img src="https://img.icons8.com/ios-filled/50/000000/facebook--v1.png" alt="Facebook" class="h-8 w-8 hover:opacity-80" />
+          </a>
+          <a href="https://instagram.com/myedusync" aria-label="Instagram">
+            <img src="https://img.icons8.com/ios-filled/50/000000/instagram-new.png" alt="Instagram" class="h-8 w-8 hover:opacity-80" />
+          </a>
+          <a href="https://linkedin.com/company/myedusync" aria-label="LinkedIn">
+            <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn" class="h-8 w-8 hover:opacity-80" />
+          </a>
+          <a href="https://youtube.com/myedusync" aria-label="YouTube">
+            <img src="https://img.icons8.com/ios-filled/50/000000/youtube-play.png" alt="YouTube" class="h-8 w-8 hover:opacity-80" />
+          </a>
+        </nav>
+      </div>
 
-      <nav>
-        <header class="font-semibold text-gray-800 mb-2">Get Started</header>
-        <ul>
-          <li><a class="hover:text-blue-600" routerLink="/signup">Sign Up</a></li>
-          <li><a class="hover:text-blue-600" routerLink="/login">Login</a></li>
-          @if (isLoggedIn) {
-            <li><a class="hover:text-blue-600" routerLink="/dashboard">Dashboard</a></li>
-            <li><a class="hover:text-blue-600" routerLink="/profile">Profile</a></li>
-          }
-        </ul>
-      </nav>
+      <!-- Divider -->
+      <div class="border-t border-gray-300 mt-4"></div>
 
-      <nav>
-        <header class="font-semibold text-gray-800 mb-2">Legal</header>
-        <ul>
-          <li><a class="hover:text-blue-600" routerLink="/legal/terms-of-service">Terms of Service</a></li>
-          <li><a class="hover:text-blue-600" routerLink="/legal/privacy-policy">Privacy policy</a></li>
-        </ul>
-      </nav>
+      <!-- Copyright -->
+      <div class="flex justify-center mt-4">
+        <p>{{ currentYear }} MyEduSync. All rights reserved.</p>
+      </div>
     </div>
-  </footer>
-
-  <footer
-    class="footer flex items-center justify-between border-t border-gray-300 bg-gray-100 px-10 py-4 text-gray-600"
-  >
-    <aside class="flex items-center">
-      <p>&#169; {{ currentYear }} MyEduSync. All rights reserved.</p>
-    </aside>
-    <nav class="flex gap-4">
-      <a href="https://twitter.com/myedusync" aria-label="Twitter">
-        <img
-          src="/assets/twitter-icon.svg"
-          alt="Twitter"
-          class="h-8 w-8 hover:opacity-80"
-        />
-      </a>
-      <a href="https://facebook.com/myedusync" aria-label="Facebook">
-        <img
-          src="/assets/facebook-icon.svg"
-          alt="Facebook"
-          class="h-8 w-8 hover:opacity-80"
-        />
-      </a>
-    </nav>
   </footer>
 </ng-template>

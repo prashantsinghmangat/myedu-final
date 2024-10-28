@@ -1,402 +1,166 @@
-.profile-input-page {
-    form {
-        margin-top: 100px;
-        width: 95%;
-        max-width: 1200px;
-        padding: 40px;
-        background: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        font-family: 'Arial', sans-serif;
+// Variables for consistent theming
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+$input-bg: #ffffff;
+$input-border-color: #ced4da;
+$input-focus-border-color: $primary-color;
+$button-bg: $primary-color;
+$button-color: #ffffff;
+$border-radius: 5px;
+$spacing: 16px;
 
-        section {
-            margin-bottom: 40px;
-
-            h2 {
-                font-size: 2.2rem;
-                color: #0056b3;
-                margin-bottom: 20px;
-                padding-bottom: 10px;
-                border-bottom: 3px solid #ccc;
-            }
-
-            .profile-upload-container {
-                display: flex;
-                align-items: center;
-                justify-content: space-between; // Ensures that the button and image frame are spaced out
-                margin-top: 20px; // Adds some spacing from the label
-            
-                input[type="file"] {
-                    flex: 1; // Allows the input to take necessary space
-                    margin-right: 20px; // Spacing between the input and image container
-                    cursor: pointer;
-                    border: 2px dashed #ccc;
-                    background: #fafafa;
-                    padding: 12px;
-                    border-radius: 5px;
-                    text-align: center;
-            
-                    &:hover, &:focus {
-                        border-color: #007bff;
-                    }
-                }
-            
-                .uploaded-image-container {
-                    flex: 2; // Gives more space to the image container
-                    width: 400px;
-                    height: 200px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border: 1px solid #ccc;
-                    background-color: #f8f8f8;
-                    overflow: hidden;
-            
-                    img {
-                        width: 100%;  // Full width of the container
-                        height: 200px;  // Fixed height for all images
-                        object-fit: cover;  // Ensures the image covers the area without distorting aspect ratio
-                        border-radius: 8px;  // Rounded corners if desired
-                        margin-bottom: 15px;
-                    }
-                }
-            }
-            
-            .upload-label {
-                display: block;
-                margin-bottom: 10px;
-                color: #333;
-                font-size: 1.1rem;
-                font-weight: bold;
-            }
-            
-
-            .field-container {
-                background: #f8f8f8;
-                padding: 20px;
-                margin-bottom: 20px;
-                border-radius: 8px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-
-                label {
-                    display: block;
-                    margin-bottom: 10px;
-                    color: #333;
-                    font-size: 1.1rem;
-                    font-weight: bold;
-                }
-
-                .uploaded-image {
-                    margin-top: 10px;  // Adds space between the input and the image
-                    width: 100px;      // Set a fixed width or max-width
-                    height: auto;      // Maintain aspect ratio
-                    border-radius: 5px; // Optional: style as needed
-                  }
-                  
-
-                textarea {
-                    width: 100%;
-                    padding: 12px;
-                    height: 120px;
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
-                    box-sizing: border-box;
-                    resize: none;
-
-                    &:hover, &:focus {
-                        outline: none;
-                        box-shadow: 0 0 0 2px #007bff;
-                    }
-                }
-            }
-
-            .field-row {
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 20px;
-
-                .field-col {
-                    flex: 1;
-                    padding-right: 20px;
-
-                    &:last-child {
-                        padding-right: 0;
-                    }
-
-                    label {
-                        display: block;
-                        margin-bottom: 10px;
-                    }
-
-                    input[type="text"],
-                    input[type="date"],
-                    input[type="file"] {
-                        width: 100%;
-                        padding: 12px;
-                        border: 2px solid #ccc;
-                        border-radius: 5px;
-                        box-sizing: border-box;
-
-                        &:hover, &:focus {
-                            border-color: #007bff;
-                        }
-                    }
-
-                    input[type="file"] {
-                        border: 2px dashed #ccc;
-                        background: #fafafa;
-                    }
-                }
-            }
-
-            .remove-button, .add-button {
-                padding: 12px 20px;
-                border-radius: 5px;
-                font-size: 1rem;
-                transition: all 0.3s;
-
-                &:hover {
-                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                }
-            }
-
-            .add-button {
-                background-color: #4CAF50;
-
-                &:hover {
-                    background-color: #388E3C;
-                }
-            }
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 15px 0;
-            font-size: 1.2rem;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
-
-            &:hover {
-                background-color: #0056b3;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            }
-        }
-    }
+// Global Styling
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-// education card
-.education-section {
-    background: #ffffff; // Unified background color
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-
-    h2 {
-        font-size: 2rem;
-        color: #004085; // Matching header color
-        margin-bottom: 20px;
-        padding-bottom: 5px;
-        border-bottom: 2px solid #007bff; // Consistent styling for section headers
-    }
-
-    .education-block {
-        padding: 20px;
-        background: #f8f8f8; // Light grey background for internal blocks
-        border-radius: 8px;
-        margin-bottom: 20px;
-
-        .field-row {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap; // Responsive wrapping
-
-            .field-col {
-                flex: 1; // Equal width columns
-                margin-right: 20px;
-                margin-bottom: 20px; // Consistent margin for spacing
-
-                &:last-child {
-                    margin-right: 0; // No right margin on the last element
-                }
-
-                label {
-                    display: block;
-                    margin-bottom: 8px;
-                    font-size: 1.2rem; // Slightly larger label font
-                    color: #333;
-                    font-weight: 600; // Bold font weight for labels
-                }
-
-                input[type="text"],
-                input[type="date"],
-                input[type="file"] {
-                    width: 100%;
-                    padding: 12px;
-                    border: 2px solid #ced4da; // Border for inputs
-                    border-radius: 5px; // Rounded borders for inputs
-                    background: #ffffff;
-
-                    &:hover, &:focus {
-                        border-color: #80bdff; // Highlight color on focus
-                        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25); // Outer glow effect
-                        outline: none;
-                    }
-                }
-
-                img {
-                    margin-top: 10px;
-                    width: 100px;
-                    height: 100px;
-                    object-fit: cover; // Ensures the image fits well
-                    border-radius: 5px; // Rounded corners for images
-                    border: 1px solid #ccc;
-                }
-            }
-        }
-
-        .remove-button, .add-button {
-            font-size: 1.1rem;
-            padding: 10px 20px;
-            border-radius: 10px;
-            border: none;
-            margin-top: 5px;
-            margin-right: 0; // Ensure no right margin affects alignment
-
-            transition: all 0.2s ease-in-out;
-
-            &:hover {
-                transform: translateY(-2px); // Lift effect on hover
-                box-shadow: 0 4px 8px rgba(0,0,0,0.2); // Shadow for depth
-            }
-        }
-
-        .remove-button {
-            background-color: #dc3545; // Consistent button color for remove
-            color: white;
-
-            &:hover {
-                background-color: #c82333;
-            }
-        }
-
-        .add-button {
-            background-color: #28a745; // Consistent button color for add
-            color: white;
-
-            &:hover {
-                background-color: #218838;
-            }
-        }
-    }
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: $background-color;
+  color: $secondary-color;
 }
 
-// work experience code
-.work-experience-section {
-    padding: 20px;
-    background: #f8f8f8;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-
-    h2 {
-        font-size: 2rem;
-        color: #004085; // A darker shade for better contrast
-        margin-bottom: 15px;
-        padding-bottom: 5px;
-        border-bottom: 2px solid #007bff;
-    }
-
-    .field-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-
-        .field-col {
-            flex: 1;
-            padding-right: 15px;
-
-            &:last-child {
-                padding-right: 0;
-            }
-
-            label {
-                font-size: 1.2rem;
-                color: #333;
-                margin-bottom: 8px;
-                font-weight: 600;
-            }
-
-            input[type="text"],
-            input[type="date"],
-            select {
-                width: 100%;
-                padding: 12px;
-                border: 2px solid #ced4da;
-                border-radius: 5px;
-                background: #ffffff;
-
-                &:hover, &:focus {
-                    border-color: #80bdff;
-                    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
-                    outline: none;
-                }
-            }
-
-            select {
-                cursor: pointer;
-                appearance: none; // Improves the appearance on iOS
-            }
-        }
-    }
-
-    .remove-button, .add-button {
-        font-size: 1.1rem;
-        padding: 10px 20px;
-        border-radius: 5px;
-        border: none;
-        margin-top: 10px;
-        transition: all 0.2s ease-in-out;
-
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-    }
-
-    .remove-button {
-        background-color: #dc3545;
-        color: #ffffff;
-
-        &:hover {
-            background-color: #c82333;
-        }
-    }
-
-    .add-button {
-        background-color: #28a745;
-        color: #ffffff;
-
-        &:hover {
-            background-color: #218838;
-        }
-    }
+h2 {
+  font-size: 1.5rem;
+  color: $primary-color;
+  margin-bottom: $spacing;
 }
 
-@media (max-width: 768px) {
-    .profile-input-page {
-        form {
-            padding: 20px;
-            .profile-upload-container, .field-row {
-                flex-direction: column;
-
-                .uploaded-image-container, input[type="file"], .field-col {
-                    width: 100%; // Full width for mobile
-                    margin-right: 0;
-                }
-            }
-        }
-    }
+.form-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 40px auto;
+  background: $input-bg;
+  padding: 20px;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
+
+// Sections
+section {
+  margin-bottom: 40px;
+}
+
+.field-row {
+  display: flex;
+  gap: $spacing;
+  margin-bottom: $spacing;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.field-col {
+  flex: 1;
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+input[type="text"], 
+input[type="date"], 
+input[type="file"], 
+textarea, 
+select {
+  width: 100%;
+  padding: 10px;
+  background-color: $input-bg;
+  border: 1px solid $input-border-color;
+  border-radius: $border-radius;
+  transition: border-color 0.3s ease;
+  font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: $input-focus-border-color;
+    box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+  }
+}
+
+// Styling for File Upload
+.input-file {
+  margin-top: $spacing;
+
+  .upload-label {
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .profile-upload-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .uploaded-image-container img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 2px solid $input-border-color;
+  }
+}
+
+// Buttons
+button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: $button-bg;
+  color: $button-color;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    background-color: darken($button-bg, 5%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &.add-button {
+    background-color: lighten($primary-color, 10%);
+    margin-top: $spacing;
+  }
+
+  &.remove-button {
+    background-color: #dc3545;
+    color: #fff;
+    margin-top: $spacing;
+
+    &:hover {
+      background-color: darken(#dc3545, 5%);
+    }
+  }
+}
+
+// Specific styling for each section
+.profile-section, .about-section, .work-experience-section, .education-section {
+  padding: 20px;
+  border: 1px solid #dee2e6;
+  border-radius: $border-radius;
+  background-color: $input-bg;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-button {
+  width: 100%;
+  text-align: center;
+  background-color: $primary-color;
+  padding: 14px;
+  font-size: 1.1rem;
+}
+

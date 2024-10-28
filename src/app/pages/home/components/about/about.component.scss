@@ -6,21 +6,6 @@
   padding: 10px;
   margin-top: 5px;
 
-  h1 {
-    margin-bottom: 10px;
-    font-size: 3.2rem;
-    font-family: 'Arial', sans-serif;
-  
-
-    @media (max-width: 768px) {
-      font-size: 2rem;
-    }
-
-    @media (max-width: 480px) {
-      font-size: 1.8rem;
-    }
-  }
-
   /* Horizontal Scrollable Container for Cards */
   .teachers-card-container {
     display: flex;
@@ -30,7 +15,7 @@
     width: 100%;
     -ms-overflow-style: none;  // Remove scrollbar for IE
     scrollbar-width: none;     // Remove scrollbar for Firefox
-    padding: 40px;
+    padding: 30px;
 
     &::-webkit-scrollbar {
       display: none;  // Remove scrollbar for Chrome/Safari
@@ -155,4 +140,19 @@
       }
     }
   }
+}
+
+
+.section-header {
+  text-align: center;
+  padding-left: 40px;
+  margin-bottom: 15px; // Space between the header and the cards
+
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  
 }
