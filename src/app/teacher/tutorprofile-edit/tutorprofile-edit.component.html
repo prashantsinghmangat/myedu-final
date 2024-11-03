@@ -1,289 +1,128 @@
-<div class="profile-input-page">
-  <form (ngSubmit)="submitProfile()">
-    <!-- Profile Section -->
-    <section class="profile-section">
-      <h2>Profile</h2>
-      <div class="field-row">
-        <div class="field-col">
-          <label for="name">Name</label>
-          <input type="text" id="name" [(ngModel)]="profile.name" name="name">
-        </div>
-        <div class="field-col">
-          <label for="phone">Phone</label>
-          <input type="text" id="phone" [(ngModel)]="profile.phone" name="phone">
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field-col">
-          <label for="designation">Current Designation</label>
-          <input type="text" id="designation" [(ngModel)]="profile.designation" name="designation">
-        </div>
-        <div class="field-col">
-          <label for="location">Current Location</label>
-          <input type="text" id="location" [(ngModel)]="profile.location" name="location">
-        </div>
-      </div>
-      <div class="input-file">
-        <label for="profile-pic" class="upload-label">Upload Profile Picture</label>
-        <div class="profile-upload-container">
-          <input type="file" id="profile-pic" name="profilePic" (change)="handleImageChange($event)">
-          <div class="uploaded-image-container">
-            <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Profile Picture">
-          </div>
-        </div>
-      </div>
-    </section>
+<form (ngSubmit)="onSubmitprofile(profileForm)" #profileForm="ngForm" class="profile-form">
+  <h2>Profile Information</h2>
 
-    <!-- About Section -->
-    <section class="about-section">
-      <h2>About</h2>
-      <div class="field-container">
-        <label for="short-bio">Short Bio</label>
-        <textarea id="short-bio" [(ngModel)]="profile.shortBio" name="shortBio"
-          placeholder="A brief introduction..."></textarea>
+  <!-- Profile Picture Upload Field -->
+  <div class="form-group">
+    <label for="profilePic">Profile Picture</label>
+    <div class="upload-container">
+      <input
+        type="file"
+        id="profilePic"
+        name="profilePic"
+        (change)="onFileChange($event)"
+        class="file-input"
+        accept="image/*"
+        required
+      />
+      <div *ngIf="profileImage" class="image-preview">
+        <img [src]="profileImage" alt="Profile Preview" />
       </div>
-      <div class="field-container">
-        <label for="about-me">About Me</label>
-        <textarea id="about-me" [(ngModel)]="profile.aboutMe" name="aboutMe"
-          placeholder="Tell us more about yourself..."></textarea>
-      </div>
-      <div class="field-container">
-        <label for="skills">Skills</label>
-        <textarea id="skills" [(ngModel)]="profile.skills" name="skills"
-          placeholder="List your professional skills..."></textarea>
-      </div>
-    </section>
+      <div class="upload-text">Upload your profile picture</div>
+    </div>
+  </div>
 
-    <!-- Work Experience Section -->
-    <section class="work-experience-section">
-      <h2>Work Experience</h2>
-      <div *ngFor="let experience of workExperience; let i = index">
-        <div class="field-row">
-          <div class="field-col">
-            <label for="organisationName-{{i}}">Organisation Name</label>
-            <input type="text" id="organisationName-{{i}}" [(ngModel)]="experience.organisationName"
-              name="organisationName-{{i}}">
-          </div>
-          <div class="field-col">
-            <label for="designation-{{i}}">Designation</label>
-            <input type="text" id="designation-{{i}}" [(ngModel)]="experience.designation" name="designation-{{i}}">
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field-col">
-            <label for="type-{{i}}">Type</label>
-            <select id="type-{{i}}" [(ngModel)]="experience.type" name="type-{{i}}">
-              <option value="Self">Self</option>
-              <option value="Full-Time">Full-Time</option>
-              <option value="Part-Time">Part-Time</option>
-            </select>
-          </div>
-          <div class="field-col">
-            <label for="start-time-{{i}}">Start Time</label>
-            <input type="date" id="start-time-{{i}}" [(ngModel)]="experience.startTime" name="start-time-{{i}}">
-          </div>
-          <div class="field-col">
-            <label for="end-time-{{i}}">End Time</label>
-            <input type="date" id="end-time-{{i}}" [(ngModel)]="experience.endTime" name="end-time-{{i}}">
-          </div>
-        </div>
-        <button type="button" (click)="removeExperience(i)" class="remove-button">Remove Experience</button>
-      </div>
-      <button type="button" (click)="addExperience()" class="add-button">Add Experience</button>
-    </section>
+  <!-- WhatsApp Number Field -->
+  <div class="form-group">
+    <label for="whatsappNumber">WhatsApp Number</label>
+    <div class="input-container">
+      <input
+        type="tel"
+        id="whatsappNumber"
+        name="whatsappNumber"
+        ngModel
+        class="form-control"
+        placeholder="e.g., +91 9876543210"
+        required
+      />
+      <i class="fas fa-phone"></i>
+    </div>
+  </div>
 
-    <!-- Education Qualification Section -->
-    <section class="education-section">
-      <h2>Education Qualification</h2>
-      <div *ngFor="let edu of education; let i = index" class="education-block">
-        <div class="field-row">
-          <div class="field-col">
-            <label for="instituteName-{{i}}">Institute Name</label>
-            <input type="text" id="instituteName-{{i}}" [(ngModel)]="edu.instituteName" name="instituteName-{{i}}">
-          </div>
-          <div class="field-col">
-            <label for="courseName-{{i}}">Course Name</label>
-            <input type="text" id="courseName-{{i}}" [(ngModel)]="edu.courseName" name="courseName-{{i}}">
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field-col">
-            <label for="fieldOfStudy-{{i}}">Field of Study</label>
-            <input type="text" id="fieldOfStudy-{{i}}" [(ngModel)]="edu.fieldOfStudy" name="fieldOfStudy-{{i}}">
-          </div>
-          <div class="field-col">
-            <label for="grade-{{i}}">Grade</label>
-            <input type="text" id="grade-{{i}}" [(ngModel)]="edu.grade" name="grade-{{i}}">
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field-col">
-            <label for="edu-start-time-{{i}}">Start Time</label>
-            <input type="date" id="edu-start-time-{{i}}" [(ngModel)]="edu.startTime" name="edu-start-time-{{i}}">
-          </div>
-          <div class="field-col">
-            <label for="edu-end-time-{{i}}">End Time</label>
-            <input type="date" id="edu-end-time-{{i}}" [(ngModel)]="edu.endTime" name="edu-end-time-{{i}}">
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field-col">
-            <label for="credentialUrl-{{i}}">Credential Image</label>
-            <input type="file" id="credentialUrl-{{i}}" (change)="handleImageChange($event)" name="credentialUrl-{{i}}">
-            <div *ngIf="imageUrl">
-              <img [src]="imageUrl" alt="Credential Image Preview" width="100" height="100">
-            </div>
-          </div>
-        </div>
-        <button type="button" (click)="removeEducation(i)" class="remove-button">Remove Education</button>
-      </div>
-      <button type="button" (click)="addEducation()" class="add-button">Add Education</button>
-    </section>
+  <!-- Current Designation Field -->
+  <div class="form-group">
+    <label for="currentDesignation">Current Designation</label>
+    <div class="input-container">
+      <input
+        type="text"
+        id="currentDesignation"
+        name="currentDesignation"
+        ngModel
+        class="form-control"
+        placeholder="e.g., Software Engineer"
+        required
+      />
+      <i class="fas fa-briefcase"></i>
+    </div>
+  </div>
 
-    <button type="submit" class="submit-button">Submit</button>
-  </form>
-</div>
+  <!-- Short Bio Field -->
+  <div class="form-group">
+    <label for="shortBio">Short Bio</label>
+    <div class="input-container">
+      <textarea
+        id="shortBio"
+        name="shortBio"
+        ngModel
+        class="form-control"
+        placeholder="Write a short bio"
+        rows="3"
+        required
+      ></textarea>
+      <i class="fas fa-info-circle"></i>
+    </div>
+  </div>
 
+  <!-- About Me Field -->
+  <div class="form-group">
+    <label for="aboutMe">About Me</label>
+    <div class="input-container">
+      <textarea
+        id="aboutMe"
+        name="aboutMe"
+        ngModel
+        class="form-control"
+        placeholder="Tell us about yourself"
+        rows="4"
+        required
+      ></textarea>
+      <i class="fas fa-user"></i>
+    </div>
+  </div>
 
-<!-- <div class="profile-input-page">
-  <form>
-      <section class="profile-section">
-          <h2>Profile</h2>
-          <div class="field-row">
-              <div class="field-col">
-                  <label for="name">Name</label>
-                  <input type="text" id="name" [(ngModel)]="profile.name" name="name">
-              </div>
-              <div class="field-col">
-                  <label for="phone">Phone</label>
-                  <input type="text" id="phone" [(ngModel)]="profile.phone" name="phone">
-              </div>
-          </div>
-          <div class="field-row">
-              <div class="field-col">
-                  <label for="designation">Current Designation</label>
-                  <input type="text" id="designation" [(ngModel)]="profile.designation" name="designation">
-              </div>
-              <div class="field-col">
-                  <label for="location">Current Location</label>
-                  <input type="text" id="location" [(ngModel)]="profile.location" name="location">
-              </div>
-          </div>
-          <div class="input-file">
-              <label for="profile-pic" class="upload-label">Upload Profile Picture</label>
-              <div class="profile-upload-container">
-                  <input type="file" id="profile-pic" name="profilePic" (change)="handleImageChange($event)">
-                  <div class="uploaded-image-container">
-                      <img *ngIf="imageUrl" [src]="imageUrl" alt="Selected Profile Picture">
-                  </div>
-              </div>
-          </div>
-          
-      </section>
+  <!-- Skills Field -->
+  <div class="form-group">
+    <label for="skills">Skills (comma-separated)</label>
+    <div class="input-container">
+      <input
+        type="text"
+        id="skills"
+        name="skills"
+        ngModel
+        class="form-control"
+        placeholder="e.g., JavaScript, Angular, Node.js"
+        required
+      />
+      <i class="fas fa-tools"></i>
+    </div>
+  </div>
 
-      <section class="about-section">
-          <h2>About</h2>
-          <div class="field-container">
-              <label for="short-bio">Short Bio</label>
-              <textarea id="short-bio" [(ngModel)]="profile.shortBio" name="shortBio" placeholder="A brief introduction..."></textarea>
-          </div>
-          <div class="field-container">
-              <label for="about-me">About Me</label>
-              <textarea id="about-me" [(ngModel)]="profile.aboutMe" name="aboutMe" placeholder="Tell us more about yourself..."></textarea>
-          </div>
-          <div class="field-container">
-              <label for="skills">Skills</label>
-              <textarea id="skills" [(ngModel)]="profile.skills" name="skills" placeholder="List your professional skills..."></textarea>
-          </div>
-      </section>
+  <!-- Address Field -->
+  <div class="form-group">
+    <label for="address">Address</label>
+    <div class="input-container">
+      <input
+        type="text"
+        id="address"
+        name="address"
+        ngModel
+        class="form-control"
+        placeholder="Your address"
+        required
+      />
+      <i class="fas fa-map-marker-alt"></i>
+    </div>
+  </div>
 
-      <section class="work-experience-section">
-          <h2>Work Experience</h2>
-          <div *ngFor="let experience of workExperience; let i = index">
-            <div class="field-row">
-              <div class="field-col">
-                <label for="organisationName-{{i}}">Organisation Name</label>
-                <input type="text" id="organisationName-{{i}}" [(ngModel)]="experience.organisationName" name="organisationName-{{i}}">
-              </div>
-              <div class="field-col">
-                <label for="designation-{{i}}">Designation</label>
-                <input type="text" id="designation-{{i}}" [(ngModel)]="experience.designation" name="designation-{{i}}">
-              </div>
-            </div>
-            <div class="field-row">
-              <div class="field-col">
-                <label for="type-{{i}}">Type</label>
-                <select id="type-{{i}}" [(ngModel)]="experience.type" name="type-{{i}}">
-                  <option value="Self">Self</option>
-                  <option value="Full-Time">Full-Time</option>
-                  <option value="Part-Time">Part-Time</option>
-                </select>
-              </div>
-              <div class="field-col">
-                <label for="start-time-{{i}}">Start Time</label>
-                <input type="date" id="start-time-{{i}}" [(ngModel)]="experience.startTime" name="start-time-{{i}}">
-              </div>
-              <div class="field-col">
-                <label for="end-time-{{i}}">End Time</label>
-                <input type="date" id="end-time-{{i}}" [(ngModel)]="experience.endTime" name="end-time-{{i}}">
-              </div>
-            </div>
-            <button type="button" (click)="removeExperience(i)" class="remove-button">Remove Experience</button>
-          </div>
-          <button type="button" (click)="addExperience()" class="add-button">Add Experience</button>
-        </section>
-        
-
-      <section class="education-section">
-        <h2>Education Qualification</h2>
-        <div *ngFor="let edu of education; let i = index" class="education-block">
-          <div class="field-row">
-            <div class="field-col">
-              <label for="instituteName-{{i}}">Institute Name</label>
-              <input type="text" id="instituteName-{{i}}" [(ngModel)]="edu.instituteName" name="instituteName-{{i}}">
-            </div>
-            <div class="field-col">
-              <label for="courseName-{{i}}">Course Name</label>
-              <input type="text" id="courseName-{{i}}" [(ngModel)]="edu.courseName" name="courseName-{{i}}">
-            </div>
-          </div>
-          <div class="field-row">
-            <div class="field-col">
-              <label for="fieldOfStudy-{{i}}">Field of Study</label>
-              <input type="text" id="fieldOfStudy-{{i}}" [(ngModel)]="edu.fieldOfStudy" name="fieldOfStudy-{{i}}">
-            </div>
-            <div class="field-col">
-              <label for="grade-{{i}}">Grade</label>
-              <input type="text" id="grade-{{i}}" [(ngModel)]="edu.grade" name="grade-{{i}}">
-            </div>
-          </div>
-          <div class="field-row">
-            <div class="field-col">
-              <label for="edu-start-time-{{i}}">Start Time</label>
-              <input type="date" id="edu-start-time-{{i}}" [(ngModel)]="edu.startTime" name="edu-start-time-{{i}}">
-            </div>
-            <div class="field-col">
-              <label for="edu-end-time-{{i}}">End Time</label>
-              <input type="date" id="edu-end-time-{{i}}" [(ngModel)]="edu.endTime" name="edu-end-time-{{i}}">
-            </div>
-          </div>
-          <div class="field-row">
-            <div class="field-col">
-              <label for="credentialUrl-{{i}}">Credential Image</label>
-              <input type="file" id="credentialUrl-{{i}}" (change)="handleImageChange($event)" name="credentialUrl-{{i}}">
-              <div *ngIf="imageUrl">
-                <img [src]="imageUrl" alt="Credential Image Preview" width="100" height="100">
-              </div>
-            </div>
-          </div>
-          <div class="button-row"> 
-            <button type="button" (click)="removeEducation(i)" class="remove-button">Remove Education</button>
-          </div>
-        <div class="button-row">
-          <button type="button" (click)="addEducation()" class="add-button">Add Education</button>
-        </div>
-      </div>
-      </section>
-      <button type="submit" class="submit-button">Submit</button>
-  </form>
-</div> -->
+  <!-- Submit Button -->
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

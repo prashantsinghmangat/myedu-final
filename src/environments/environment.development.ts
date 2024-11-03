@@ -10,5 +10,5 @@ export const environment = {
   linkedinRedirectUri: 'http://localhost:4200/auth/oauth/linkedin/callback',
   googleAnalyticsTrackingCode: 'G-SW145JPX3Y',
 
-  myEduBaseUrl: 'http://88.222.242.197'
+  myEduBaseUrl: 'http://api.myedusync.com'
 };

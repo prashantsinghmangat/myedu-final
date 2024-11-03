@@ -1,0 +1,93 @@
+<form (ngSubmit)="onSubmit(workExpForm)" #workExpForm="ngForm" class="work-exp-form">
+  <h2>Add Work Experience</h2>
+
+  <!-- Designation Field -->
+  <div class="form-group">
+    <label for="designation">Designation</label>
+    <input
+      type="text"
+      id="designation"
+      name="designation"
+      ngModel
+      required
+      class="form-control"
+      placeholder="e.g., Software Engineer"
+    />
+  </div>
+
+  <!-- Employment Type Field -->
+  <div class="form-group">
+    <label for="type">Employment Type</label>
+    <select
+      id="type"
+      name="type"
+      ngModel
+      required
+      class="form-control"
+    >
+      <option value="" disabled selected>Select Employment Type</option>
+      <option value="Self">Self</option>
+      <option value="Full-Time">Full-Time</option>
+      <option value="Part-Time">Part-Time</option>
+    </select>
+  </div>
+
+  <!-- Organisation Name Field -->
+  <div class="form-group">
+    <label for="organisationName">Organisation Name</label>
+    <input
+      type="text"
+      id="organisationName"
+      name="organisationName"
+      ngModel
+      required
+      class="form-control"
+      placeholder="e.g., ABC Corp"
+    />
+  </div>
+
+  <!-- Start Date Field -->
+  <div class="form-group">
+    <label for="startTime">Start Date</label>
+    <input
+      type="date"
+      id="startTime"
+      name="startTime"
+      ngModel
+      required
+      class="form-control"
+    />
+  </div>
+
+  <!-- End Date Field -->
+  <div class="form-group">
+    <label for="endTime">End Date</label>
+    <input
+      type="date"
+      id="endTime"
+      name="endTime"
+      ngModel
+      class="form-control"
+      placeholder="Leave blank if currently working"
+    />
+  </div>
+
+  <!-- Joining Letter Link Field -->
+  <div class="form-group">
+    <label for="joiningLetterLink">Joining Letter Link</label>
+    <input
+      type="url"
+      id="joiningLetterLink"
+      name="joiningLetterLink"
+      ngModel
+      required
+      class="form-control"
+      placeholder="Paste the link to your joining letter"
+    />
+  </div>
+
+
+
+  <!-- Submit Button -->
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

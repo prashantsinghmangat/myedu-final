@@ -39,6 +39,18 @@ export const routes: Routes = [
      loadComponent: () => import('./teacher/create-course/create-course.component').then((m) => m.CreateCourseComponent), 
      title: 'create-course',
   },
+
+  {
+    path: 'add-education',
+     loadComponent: () => import('./teacher/add-education/add-education.component').then((m) => m.AddEducationComponent), 
+     title: 'add-education',
+  },
+
+  {
+    path: 'add-experience',
+     loadComponent: () => import('./teacher/add-experience/add-experience.component').then((m) => m.AddWorkExperienceComponent), 
+     title: 'add-experience',
+  },
   {
     path: 'whiteboard', loadComponent: () => import('./teacher/whiteboard/whiteboard.component').then((m) => m.WhiteboardComponent), title: 'AboutUs',
   },

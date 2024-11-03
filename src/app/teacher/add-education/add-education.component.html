@@ -1,0 +1,91 @@
+
+
+  <form (ngSubmit)="submitForm(profileForm)" #profileForm="ngForm" class="profile-form">
+    <h2>Add Education Details</h2>
+  
+    <div class="form-group">
+      <label for="instituteName">Institute Name</label>
+      <input
+        type="text"
+        id="instituteName"
+        name="instituteName"
+        ngModel
+        required
+        class="form-control"
+      />
+    </div>
+  
+    <div class="form-group">
+      <label for="courseName">Course Name</label>
+      <input
+        type="text"
+        id="courseName"
+        name="courseName"
+        ngModel
+        required
+        class="form-control"
+      />
+    </div>
+  
+    <div class="form-group">
+      <label for="fieldOfStudy">Field of Study</label>
+      <input
+        type="text"
+        id="fieldOfStudy"
+        name="fieldOfStudy"
+        ngModel
+        required
+        class="form-control"
+      />
+    </div>
+  
+    <div class="form-group">
+      <label for="startTime">Start Time</label>
+      <input
+        type="date"
+        id="startTime"
+        name="startTime"
+        ngModel
+        required
+        class="form-control"
+      />
+    </div>
+  
+    <div class="form-group">
+      <label for="endTime">End Time</label>
+      <input
+        type="date"
+        id="endTime"
+        name="endTime"
+        ngModel
+        required
+        class="form-control"
+      />
+    </div>
+  
+    <div class="form-group">
+      <label for="grade">Grade</label>
+      <input
+        type="text"
+        id="grade"
+        name="grade"
+        ngModel
+        required
+        class="form-control"
+      />
+    </div>
+  
+    <div class="form-group">
+      <label for="credentialUrl">Credential URL</label>
+      <input
+        type="url"
+        id="credentialUrl"
+        name="credentialUrl"
+        ngModel
+        class="form-control"
+      />
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  

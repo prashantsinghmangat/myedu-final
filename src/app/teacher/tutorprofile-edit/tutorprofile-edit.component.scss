@@ -1,166 +1,97 @@
-// Variables for consistent theming
-$primary-color: #007bff;
-$secondary-color: #6c757d;
-$background-color: #f8f9fa;
-$input-bg: #ffffff;
-$input-border-color: #ced4da;
-$input-focus-border-color: $primary-color;
-$button-bg: $primary-color;
-$button-color: #ffffff;
-$border-radius: 5px;
-$spacing: 16px;
-
-// Global Styling
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: $background-color;
-  color: $secondary-color;
-}
-
-h2 {
-  font-size: 1.5rem;
-  color: $primary-color;
-  margin-bottom: $spacing;
-}
-
-.form-container {
-  width: 90%;
-  max-width: 800px;
-  margin: 40px auto;
-  background: $input-bg;
+.profile-form {
+  max-width: 600px;
+  margin: auto;
   padding: 20px;
-  border-radius: $border-radius;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
+  background-color: #ffffff; // White background for a clean look
+  border-radius: 10px; // Rounded corners
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); // Soft shadow for depth
+  transition: all 0.3s ease; // Smooth transition for hover effects
 
-// Sections
-section {
-  margin-bottom: 40px;
-}
-
-.field-row {
-  display: flex;
-  gap: $spacing;
-  margin-bottom: $spacing;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-}
-
-.field-col {
-  flex: 1;
-}
-
-label {
-  display: block;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-input[type="text"], 
-input[type="date"], 
-input[type="file"], 
-textarea, 
-select {
-  width: 100%;
-  padding: 10px;
-  background-color: $input-bg;
-  border: 1px solid $input-border-color;
-  border-radius: $border-radius;
-  transition: border-color 0.3s ease;
-  font-size: 1rem;
-
-  &:focus {
-    outline: none;
-    border-color: $input-focus-border-color;
-    box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
-  }
-}
-
-// Styling for File Upload
-.input-file {
-  margin-top: $spacing;
-
-  .upload-label {
-    font-weight: 500;
-    cursor: pointer;
+  h2 {
+    text-align: center;
+    color: #333; // Darker text for better readability
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif; // Classic font
   }
 
-  .profile-upload-container {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      font-weight: 600; // Bold labels for emphasis
+      margin-bottom: 5px;
+      color: #555; // Slightly lighter text color
+      font-family: 'Arial', sans-serif; // Classic font
+    }
+
+    .upload-container {
+      position: relative;
+      border: 2px dashed #007bff; // Dashed border for the upload area
+      border-radius: 5px; // Slightly rounded corners
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+
+      .file-input {
+        display: none; // Hide the default file input
+      }
+
+      .image-preview {
+        margin: 10px 0;
+        img {
+          max-width: 100%;
+          height: auto;
+          border-radius: 5px; // Rounded corners for the image preview
+        }
+      }
+
+      .upload-text {
+        color: #007bff; // Text color for the upload instruction
+        font-weight: 500; // Medium weight for the text
+      }
+    }
+
+    .input-container {
+      position: relative;
+
+      .form-control {
+        width: 100%;
+        padding: 12px 40px 12px 12px; // Added padding for icons
+        border: 1px solid #ccc; // Light border
+        border-radius: 5px; // Slightly rounded corners
+        font-size: 16px;
+        transition: border-color 0.3s; // Smooth transition on focus
+
+        &:focus {
+          outline: none;
+          border-color: #007bff; // Change border color on focus
+        }
+      }
+
+      i {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        color: #007bff; // Icon color
+        font-size: 16px; // Icon size
+      }
+    }
   }
 
-  .uploaded-image-container img {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border: 2px solid $input-border-color;
-  }
-}
-
-// Buttons
-button {
-  display: inline-block;
-  padding: 12px 24px;
-  background-color: $button-bg;
-  color: $button-color;
-  border: none;
-  border-radius: $border-radius;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    background-color: darken($button-bg, 5%);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  &.add-button {
-    background-color: lighten($primary-color, 10%);
-    margin-top: $spacing;
-  }
-
-  &.remove-button {
-    background-color: #dc3545;
+  .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
     color: #fff;
-    margin-top: $spacing;
+    background-color: #007bff; // Primary button color
+    border: none;
+    border-radius: 5px; // Slightly rounded corners
+    cursor: pointer;
+    transition: background-color 0.3s; // Smooth transition for hover
 
     &:hover {
-      background-color: darken(#dc3545, 5%);
+      background-color: #0056b3; // Darker shade on hover
     }
   }
 }
-
-// Specific styling for each section
-.profile-section, .about-section, .work-experience-section, .education-section {
-  padding: 20px;
-  border: 1px solid #dee2e6;
-  border-radius: $border-radius;
-  background-color: $input-bg;
-}
-
-textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.submit-button {
-  width: 100%;
-  text-align: center;
-  background-color: $primary-color;
-  padding: 14px;
-  font-size: 1.1rem;
-}
-

@@ -198,7 +198,74 @@ p {
   }
 }
 
+// work card
+
+
+.work-card {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+
+  .work-header {
+    display: flex;
+    justify-content: space-between; /* Spaces out the heading and button */
+    align-items: center; /* Centers them vertically */
+    
+    h2 {
+      margin: 0; /* Removes margin to keep heading aligned */
+    }
+  }
+
+  h2 {
+    margin-bottom: 20px; /* Keep existing margin for other uses */
+  }
+
+  .add-work-btn {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken(#0056b3, 10%);
+    }
+  }
+}
+
+.work-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.work-info {
+  display: flex;
+  align-items: center;
+}
+
+.credential-link {
+  color: #0056b3;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+
+
 // education qualification card
+
 .education-card {
   background: #fff;
   padding: 20px;
@@ -207,8 +274,32 @@ p {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
 
+  .education-header {
+    display: flex;
+    justify-content: space-between; /* Spaces out the heading and button */
+    align-items: center; /* Centers them vertically */
+    
+    h2 {
+      margin: 0; /* Removes margin to keep heading aligned */
+    }
+  }
+
   h2 {
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Keep existing margin for other uses */
+  }
+
+  .add-education-btn {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken(#0056b3, 10%);
+    }
   }
 }
 
@@ -234,6 +325,7 @@ p {
     text-decoration: underline;
   }
 }
+
 
 // course card
 .course-section {

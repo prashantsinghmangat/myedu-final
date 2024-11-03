@@ -3,7 +3,7 @@
 
     <div class="profile-card">
       <img
-        src="./../../../assets/images/profileimg.png"
+        src="https://media.istockphoto.com/id/1064576582/photo/theres-no-denying-her-charm.jpg?s=612x612&w=0&k=20&c=ip0tdS5RdbsI39p2NStUOFYCvtrfjHo-TS5ruLZNJ6I="
         alt="Theresa Flores" class="profile-image">
       <div class="profile-info">
         <h1>Theresa Flores</h1>
@@ -35,39 +35,46 @@
         <span class="skill">Foreign languages</span>
       </div>
     </div>
-    <div class="work-experience-section">
-      <h2>Work Experience</h2>
-
-      <div class="experience-card">
-        <div class="experience-details">
-          <h3 class="organization-name">Organization Name 1</h3>
-          <p class="designation">Designation 1</p>
-          <div class="date-info">
-            <span class="start-date">Start Date: January 2020</span>
-            <span class="end-date">End Date: December 2021</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="experience-card">
-        <div class="experience-details">
-          <h3 class="organization-name">Organization Name 2</h3>
-          <p class="designation">Designation 2</p>
-          <div class="date-info">
-            <span class="start-date">Start Date: February 2018</span>
-            <span class="end-date">End Date: June 2019</span>
-          </div>
-        </div>
-      </div>
-    </div>
+   
 
 
 
   </div>
   <div class="right-section">
 
+    <div class="work-card">
+      <div class="work-header">
+        <h2>Work Experience</h2>
+        <button class="add-work-btn" (click)="goToAddWork()">Add Experience</button>
+    </div>
+      <div class="work-entry">
+        <div class="work-info">
+          <div>
+            <h3>The University of Melbourne</h3>
+            <p>Maths Professor</p>
+            <p>Sep 2007 - Aug 2012</p>
+          </div>
+        </div>
+        <a href="#" class="credential-link">Show credential</a>
+      </div>
+      <div class="work-entry">
+        <div class="work-info">
+          <div>
+            <h3>The University of Sydney</h3>
+            <p>Maths Professor</p>
+            <p>May 2013 - Aug 2017</p>
+          </div>
+        </div>
+        <a href="#" class="credential-link">Show credential</a>
+      </div>
+    </div>
+
+        <!-----education card ------>
     <div class="education-card">
-      <h2>Educational Background</h2>
+      <div class="education-header">
+        <h2>Educational Background</h2>
+        <button class="add-education-btn" (click)="goToAddEducation()">Add Education</button>
+    </div>
       <div class="education-entry">
         <div class="university-info">
           <div>
@@ -143,62 +150,3 @@
 
 
 
-<ng-container *ngTemplateOutlet="profile; context: { user: user$ | async }" />
-
-<ng-template #profile let-user="user">
-
-  <section class="flex flex-col gap-4 px-8 py-20 max-md:px-4">
-    <h2 class="text-4xl font-bold">Profile</h2>
-    <button (click)="goToEditProfile()">Edit Profile</button>
-
-    <div class="rounded-lg border-1 border-divider px-4 py-6 shadow-lg">
-      <h2 class="mb-4 text-2xl font-bold">Details</h2>
-      <div class="flex flex-col gap-1">
-
-        <div class="flex items-center max-md:justify-between max-sm:flex-col max-sm:items-start">
-          <h3 class="w-1/4 max-md:w-auto">Role</h3>
-          @if (user) {
-          <p class="text-sm text-gray-500">{{ user.role }}</p>
-          } @else {
-          <div class="skeleton h-4 w-full max-w-sm bg-neutral"></div>
-          }
-        </div>
-
-        <div class="flex items-center max-md:justify-between max-sm:flex-col max-sm:items-start">
-          <h3 class="w-1/4 max-md:w-auto">Email</h3>
-          @if (user) {
-          <p class="text-sm text-gray-500">{{ user.email }}</p>
-          } @else {
-          <div class="skeleton h-4 w-full max-w-sm bg-neutral"></div>
-          }
-        </div>
-        <div class="flex items-center max-md:justify-between max-sm:flex-col max-sm:items-start">
-          <h3 class="w-1/4 max-md:w-auto">Username</h3>
-          @if (user) {
-          <p class="text-sm text-gray-500">{{ user.name }}</p>
-          } @else {
-          <div class="skeleton h-4 w-full max-w-sm bg-neutral"></div>
-          }
-        </div>
-        <div class="flex items-center max-md:justify-between max-sm:flex-col max-sm:items-start">
-          <h3 class="w-1/4 max-md:w-auto">Auth provider</h3>
-          @if (user) {
-          <p class="text-sm text-gray-500">{{ user.authType }}</p>
-          } @else {
-          <div class="skeleton h-4 w-full max-w-sm bg-neutral"></div>
-          }
-        </div>
-        <div class="flex items-center max-md:justify-between max-sm:flex-col max-sm:items-start">
-          <h3 class="w-1/4 max-md:w-auto">Registration time</h3>
-          @if (user) {
-          <p class="text-sm text-gray-500">
-            {{ user.createdAt | date: 'medium' }}
-          </p>
-          } @else {
-          <div class="skeleton h-4 w-full max-w-sm bg-neutral"></div>
-          }
-        </div>
-      </div>
-    </div>
-  </section>
-</ng-template>

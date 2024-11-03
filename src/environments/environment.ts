@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://api.learnedtoday.app',
+  baseUrl: 'http://api.myedusync.com',
   googleClientId:
     '546562099406-n7ureg9ebpr7kcc7lgpspcai3741mufj.apps.googleusercontent.com',
   googleRedirectUri: 'https://learnedtoday.app/auth/oauth/google/callback',
@@ -10,5 +10,5 @@ export const environment = {
   linkedinRedirectUri: 'https://learnedtoday.app/auth/oauth/linkedin/callback',
   googleAnalyticsTrackingCode: 'G-SW145JPX3Y',
 
-  myEduBaseUrl: 'http://88.222.242.197'
+  myEduBaseUrl: 'http://api.myedusync.com'
 };
