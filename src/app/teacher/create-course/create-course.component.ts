@@ -31,9 +31,6 @@ export class CreateCourseComponent {
   onSubmit() {
     if (this.isFormValid()) {
       console.log("Course created successfully:", this.course);
-      alert("Course created successfully!");
-      this.clearForm();  // Clear the form after submission
-
       const requestPayload = {
         subject: this.course?.subject,
         board: this.course?.board,
@@ -49,9 +46,12 @@ export class CreateCourseComponent {
       }
 
       this.postsService.createCourse(requestPayload).subscribe((res: any) => {
-        console.log("res: ", res?.data);
+        if (res.isSuccess === true) {
+          console.log("res: ", res?.data);
+          alert("Course created successfully!");
+          this.clearForm();  // Clear the form after submission
+        }
       });
-
     } else {
       alert("Please fill out all fields correctly.");
     }

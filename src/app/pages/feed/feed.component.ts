@@ -105,7 +105,7 @@ export class FeedComponent implements OnInit {
     this.cdr.detectChanges(); // Trigger change detection manually
   }
 
-  openNoteDetails(note: ApiPreviewPost): void {
+  openNoteDetails(note: any): void {
     if (this.expandedNoteId === note._id) {
         // If the clicked note is already expanded, collapse it
         this.expandedNoteId = null;
@@ -145,11 +145,11 @@ export class FeedComponent implements OnInit {
     return {
       classes: [8, 9, 10, 11, 12],
       subjects: {
-        8: ['Hindi', 'English', 'Maths', 'Science'],
-        9: ['Hindi', 'English', 'Maths', 'Science'],
-        10: ['Hindi', 'English', 'Maths', 'Science'],
-        11: ['Physics', 'Chemistry', 'Maths', 'Biology', 'Science'],
-        12: ['Physics', 'Chemistry', 'Maths', 'Biology'],
+        8: ['Hindi', 'English', 'Mathematics', 'Science'],
+        9: ['Hindi', 'English', 'Mathematics', 'Science'],
+        10: ['Hindi', 'English', 'Mathematics', 'Science'],
+        11: ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'Science'],
+        12: ['Physics', 'Chemistry', 'Mathematics', 'Biology'],
       },
     };
   }
