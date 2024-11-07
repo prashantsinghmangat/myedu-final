@@ -1,19 +1,22 @@
 import { isPlatformBrowser } from '@angular/common';
-import { HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandlerFn, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { PLATFORM_ID, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { CookieService } from '../services/cookie.service';
 import { UserService } from '../../core/services/user.service';
 
 export function credentialsInterceptor(
   req: HttpRequest<unknown>,
-  next: HttpHandlerFn,
+  next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> {
 
   // Inject necessary services
   const platformId = inject(PLATFORM_ID);
   const cookieService = inject(CookieService);
   const userService = inject(UserService);
+  const router = inject(Router); // Inject Router
 
   const isBrowser = isPlatformBrowser(platformId);
   let modifiedReq: HttpRequest<unknown>;
@@ -46,8 +49,23 @@ export function credentialsInterceptor(
     });
   }
 
-  // Pass the modified request to the next handler
-  return next(modifiedReq);
+  // Pass the modified request to the next handler and handle 401 errors
+  return next(modifiedReq).pipe(
+    catchError((error: HttpErrorResponse) => {
+      if (error.status === 401) {
+        // If 401 Unauthorized, log out the user
+        userService.clearUser();
+        localStorage.removeItem('user');
+
+        // Use router to navigate and then reload
+        router.navigate(['/']).then(() => {
+          window.location.reload();
+        });
+      }
+      // Re-throw the error so it can be handled by other interceptors or components
+      return throwError(error);
+    })
+  );
 }
 
 // import { isPlatformBrowser } from '@angular/common';
