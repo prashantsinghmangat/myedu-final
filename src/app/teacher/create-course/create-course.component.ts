@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PostsService } from '../../core/services/posts.service';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -25,7 +26,7 @@ export class CreateCourseComponent {
     mode: 'Online',  // Default value set to 'Online'
   };
 
-  constructor(private readonly postsService: PostsService) { }
+  constructor(private readonly postsService: PostsService, private router: Router) { }
 
   // Method to handle form submission
   onSubmit() {
@@ -49,6 +50,7 @@ export class CreateCourseComponent {
         if (res.isSuccess === true) {
           console.log("res: ", res?.data);
           alert("Course created successfully!");
+          this.router.navigate(['/profile']);
           this.clearForm();  // Clear the form after submission
         }
       });

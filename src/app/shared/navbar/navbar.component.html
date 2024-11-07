@@ -51,9 +51,9 @@
             <li>
               <a class="font-semibold" routerLink="/about-us" (click)="closeMenu()">About Us</a>
             </li>
-            <li>
+            <!-- <li>
               <a class="font-semibold" routerLink="/tutorprofile-edit">Edit</a>
-            </li>
+            </li> -->
             <li>
               <a class="font-semibold" routerLink="/new-post" (click)="closeMenu()">
                 Write a post</a>
@@ -70,9 +70,9 @@
               <a class="font-semibold" routerLink="/feed" (click)="closeMenu()">Notes</a>
             </li>
 
-            <li>
+            <!-- <li>
               <a class="font-semibold" routerLink="/tutorprofile-edit">Edit</a>
-            </li>
+            </li> -->
 
 
             <li>
@@ -96,7 +96,7 @@
         <a class="hidden cursor-pointer font-semibold md:block" *ngIf="user?.role === 'Teacher'"
           routerLink="/whiteboard">Whiteboard</a>
 
-        <a class="hidden cursor-pointer font-semibold md:block" routerLink="/tutorprofile-edit">Edit</a>
+        <!-- <a class="hidden cursor-pointer font-semibold md:block" routerLink="/tutorprofile-edit">Edit</a> -->
 
         <a class="hidden cursor-pointer font-semibold md:block" routerLink="/about-us">About Us</a>
         <a class="hidden cursor-pointer font-semibold md:block" routerLink="/teacher-list">Tutor List</a>
@@ -115,28 +115,13 @@
           <ul tabindex="0" class="menu dropdown-content z-[1] w-64 gap-1 rounded-box bg-base-100 p-2 shadow">
             <a class="btn-ghost flex items-center gap-2 rounded-lg px-4 py-1" routerLink="/profile"
               (click)="closeMenu()">
-              <div class="avatar">
+              <!-- <div class="avatar">
                 <div class="w-11 rounded-full">
                   <img src="./../../../assets/icons/profile-user.svg" [alt]="user.name + '\'s avatar'" />
                 </div>
-              </div>
+              </div> -->
               <div>
                 <div class="font-semibold">Profile</div>
-                <div class="text-left text-xs text-opacity-50">
-                  {{ user.name }}
-                </div>
-              </div>
-            </a>
-
-            <a class="btn-ghost flex items-center gap-2 rounded-lg px-4 py-1" routerLink="/tutorprofile-edit"
-              (click)="closeMenu()">
-              <div class="avatar">
-                <div class="w-11 rounded-full">
-                  <img src="./../../../assets/icons/edit-profile.svg" [alt]="user.name + '\'s avatar'" />
-                </div>
-              </div>
-              <div routerLink="/tutorprofile-edit">
-                <div class="font-semibold">Edit Profile</div>
                 <div class="text-left text-xs text-opacity-50">
                   {{ user.name }}
                 </div>

@@ -3,13 +3,13 @@
 
     <div class="profile-card">
       <img
-        src="https://media.istockphoto.com/id/1064576582/photo/theres-no-denying-her-charm.jpg?s=612x612&w=0&k=20&c=ip0tdS5RdbsI39p2NStUOFYCvtrfjHo-TS5ruLZNJ6I="
+        src="https://img.freepik.com/free-vector/user-circles-set_78370-4704.jpg?t=st=1730996476~exp=1731000076~hmac=7127915ae14d127ccb1c6d363001e8391c0e51e41752926e93f8efd1be911e92&w=740"
         alt="Theresa Flores" class="profile-image">
       <div class="profile-info">
-        <h1>Theresa Flores</h1>
-        <p>Senior Teacher at Tiger School</p>
+        <h1>{{profiledata?.name }}</h1>
+        <p>{{profiledata?.currentDesignation}}</p>
         <div class="buttons">
-          <button class="btn book"  (click)="goToEditProfile()">Edit Profile</button>
+          <button class="btn book" (click)="goToEditProfile()">Edit Profile</button>
           <button class="btn share">Share</button>
         </div>
       </div>
@@ -18,24 +18,18 @@
     <div class="bio-card">
       <div class="bio-details">
         <h2>About Me</h2>
-        <p>Hello, I'm Das Gunjan, and I am deeply passionate about music. As the proud founder of my very own Institute
-          of Music located in Delhi, I have had the privilege of immersing myself in the world of melodies and rhythms.
-          My journey in the world of music began at the renowned Delhi School of Music, where I honed my skills as a
-          guitarist and developed a profound appreciation for the art form.
-
-          I've had the pleasure of instructing individuals of all ages, from enthusiastic 5-year-old beginners to the
-          wisest of grandpas who have always dreamed of strumming a tune.</p>
+        <p>{{profiledata?.aboutMe}}</p>
 
 
       </div>
       <div class="skills">
-        <span class="skill">English grammar</span>
-        <span class="skill">Online education</span>
+        <span class="skill">{{profiledata?.skills}}</span>
+        <!-- <span class="skill">Online education</span>
         <span class="skill">Pre-school education</span>
-        <span class="skill">Foreign languages</span>
+        <span class="skill">Foreign languages</span> -->
       </div>
     </div>
-   
+
 
 
 
@@ -46,54 +40,35 @@
       <div class="work-header">
         <h2>Work Experience</h2>
         <button class="add-work-btn" (click)="goToAddWork()">Add Experience</button>
-    </div>
-      <div class="work-entry">
-        <div class="work-info">
-          <div>
-            <h3>The University of Melbourne</h3>
-            <p>Maths Professor</p>
-            <p>Sep 2007 - Aug 2012</p>
-          </div>
-        </div>
-        <a href="#" class="credential-link">Show credential</a>
       </div>
-      <div class="work-entry">
+      <div *ngFor="let expdata of experiencedata" class="work-entry">
         <div class="work-info">
           <div>
-            <h3>The University of Sydney</h3>
-            <p>Maths Professor</p>
-            <p>May 2013 - Aug 2017</p>
+            <h3>{{expdata?.designation}}</h3>
+            <p>{{expdata?.organisationName}}</p>
+            <p>{{expdata?.startTime}} - {{expdata?.endTime}}</p>
           </div>
         </div>
-        <a href="#" class="credential-link">Show credential</a>
+        <a href={{expdata?.credentialUrl}} class="credential-link">Show credential</a>
       </div>
     </div>
 
-        <!-----education card ------>
+    <!-----education card ------>
     <div class="education-card">
       <div class="education-header">
         <h2>Educational Background</h2>
         <button class="add-education-btn" (click)="goToAddEducation()">Add Education</button>
-    </div>
-      <div class="education-entry">
-        <div class="university-info">
-          <div>
-            <h3>The University of Melbourne</h3>
-            <p>Master's degree, Foreign Languages</p>
-            <p>Sep 2007 - Aug 2012</p>
-          </div>
-        </div>
-        <a href="#" class="credential-link">Show credential</a>
       </div>
-      <div class="education-entry">
+      <div *ngFor="let edudata of educationdata" class="education-entry">
         <div class="university-info">
           <div>
-            <h3>The University of Sydney</h3>
-            <p>Bachelor's degree, Bachelor of Architecture and Environments</p>
-            <p>May 2013 - Aug 2017</p>
+            <h3>{{edudata?.instituteName}}</h3>
+            <p>{{edudata?.courseName}} - {{edudata?.fieldOfStudy}}</p>
+            <p><b>{{edudata?.startTime}}</b> - {{edudata?.endTime}}</p>
+            <p><b>Grade</b> - {{edudata?.grade}} </p>
           </div>
         </div>
-        <a href="#" class="credential-link">Show credential</a>
+        <a href={{edudata?.credentialUrl}} class="credential-link">Show credential</a>
       </div>
     </div>
 
@@ -102,43 +77,24 @@
     <div class="course-section">
       <div class="course-header">
         <h2>Courses</h2>
-        <button class="create-course-btn"  (click)="goToCreateCourse()">Create Course</button>
-    
+        <button class="create-course-btn" (click)="goToCreateCourse()">Create Course</button>
+
       </div>
       <!-- Example of a single course card -->
-      <div class="course-card">
+      <div *ngFor="let course of coursedata" class="course-card">
         <div class="course-details">
           <div class="subject">
-            <h3>English</h3>
-            <p>IGSC</p>
+            <h3>{{course?.subject}}</h3>
+            <p>{{course?.board}}</p>
           </div>
           <div class="frequency">
-            <p>3 classes / weekly</p>
+            <p>{{course?.weeklySessions}} classes / weekly</p>
           </div>
           <div class="mode">
-            <p>online | English</p>
+            <p> {{course?.mode}} | {{ course?.English}}</p>
           </div>
           <div class="cost">
-            <p>$5 Per Session</p>
-          </div>
-        </div>
-        <button class="join-btn">Join</button>
-      </div>
-      <!-- Add more course cards here -->
-      <div class="course-card">
-        <div class="course-details">
-          <div class="subject">
-            <h3>English</h3>
-            <p>IGSC</p>
-          </div>
-          <div class="frequency">
-            <p>3 classes / weekly</p>
-          </div>
-          <div class="mode">
-            <p>online | English</p>
-          </div>
-          <div class="cost">
-            <p>$5 Per Session</p>
+            <p>{{ course?.currency}} {{course?.costPerSessions}} Per Session</p>
           </div>
         </div>
         <button class="join-btn">Join</button>
@@ -146,7 +102,3 @@
     </div>
   </div>
 </div>
-
-
-
-

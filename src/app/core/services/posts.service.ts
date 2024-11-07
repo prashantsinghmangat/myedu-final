@@ -10,6 +10,8 @@ import {
 } from '../models/api.model';
 import { ErrorHandlerService } from './error-handler.service';
 
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -32,22 +34,11 @@ export class PostsService {
     return this.selectedPost;
   }
 
-  // createPost(body: { content: string; title: string }) {
-  //   return this.http
-  //     .post<void>(`${environment.baseUrl}/api/posts/create`, body)
-  //     .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
-  // }
-
   createPost(body: any) {
     return this.http
       .post<void>(`${environment.myEduBaseUrl}/addNotesDetails`, body)
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
   }
-
-  // addTutorBasicDetails(body: any) {
-  //   let url = `${environment.myEduBaseUrl}/addTutorBasicDetails`
-  //   return this.http.post(url, body)
-  // }
 
   createCourse(body: any) {
     return this.http
@@ -61,10 +52,36 @@ export class PostsService {
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
   }
 
+  addTutorEducationDetails(workExperience: any): Observable<any> {
+    return this.http.post('http://api.myedusync.com/addTutorsEducationDetails', workExperience);
+  }
 
-  addTutorEducationDetails(body: any) {
+  addTutorsExperienceDetails(workExperience: any): Observable<any> {
+    return this.http.post('http://api.myedusync.com/addTutorsExperienceDetails', workExperience);
+  }
+
+  allCourseList() {
+    return this.http.get<any>(`${environment.myEduBaseUrl}/courses`)
+      .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
+  }
+
+  allTutorEducationList() {
     return this.http
-      .post<void>(`${environment.myEduBaseUrl}/addTutorEducationDetails`, body)
+      .get<any>(`${environment.myEduBaseUrl}/allTutorEducationList`)
+      .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
+  }
+
+  allTutorExperienceList() {
+    return this.http
+      .get<any>(`${environment.myEduBaseUrl}/allTutorExperienceList`)
+      .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
+  }
+
+  getProfileTutor() {
+    return this.http
+      .get<any>(
+        `${environment.myEduBaseUrl}/getTutorProfile`,
+      )
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
   }
 
