@@ -46,6 +46,9 @@ export const routes: Routes = [
      title: 'add-education',
   },
 
+
+
+
   {
     path: 'add-experience',
      loadComponent: () => import('./teacher/add-experience/add-experience.component').then((m) => m.AddWorkExperienceComponent), 

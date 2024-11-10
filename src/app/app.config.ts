@@ -4,9 +4,10 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { provideClientHydration } from '@angular/platform-browser';
+import { provideClientHydration} from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
+
 import {
   MARKED_OPTIONS,
   MarkedOptions,
@@ -55,3 +56,5 @@ export const appConfig: ApplicationConfig = {
     }),
   ],
 };
+
+

@@ -1,22 +1,31 @@
 :host {
   flex: 1;
 }
-
 .container {
   display: flex;
   margin: 0 auto;
   width: 100%;
   background: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 10px; /* Adjust this value to control the space between the columns */
 }
 
-.left-section,
-.right-section {
-  padding: 20px;
+.left-section {
+  flex: 0 0 40%; /* Flex-grow: 0, Flex-shrink: 0, Width: 40% */
+  padding: 15px;
+  margin-top: 30px;
   display: flex;
-  margin-top: 65px;
   flex-direction: column;
 }
+
+.right-section {
+  flex: 0 0 60%; /* Flex-grow: 0, Flex-shrink: 0, Width: 60% */
+  padding: 15px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
 
 .courses-card {
   background: #fff;
@@ -144,6 +153,7 @@ p {
 .work-experience-section {
   margin: 20px 0;
   padding: 20px;
+  width: 100%;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -157,6 +167,7 @@ p {
   .experience-card {
     background-color: #ffffff;
     padding: 15px;
+    width: 100%;
     border-radius: 8px;
     border: 1px solid #ddd;
     margin-bottom: 10px;
