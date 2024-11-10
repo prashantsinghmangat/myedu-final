@@ -1,4 +1,4 @@
-<body>
+
   <!-- Header -->
   <header class="header">
     <div class="container">
@@ -15,7 +15,6 @@
             <option value="english">English</option>
             <option value="physics">Physics</option>
             <option value="chemistry">Chemistry</option>
-            <!-- Add more subjects here -->
           </select>
 
           <select class="search-dropdown" id="board-dropdown" aria-label="Board">
@@ -23,7 +22,6 @@
             <option value="cbse">CBSE</option>
             <option value="icse">ICSE</option>
             <option value="state-board">State Board</option>
-            <!-- Add more boards here -->
           </select>
 
           <select class="search-dropdown" id="grade-dropdown" aria-label="Grade">
@@ -31,10 +29,9 @@
             <option value="grade-10">Grade 10</option>
             <option value="grade-11">Grade 11</option>
             <option value="grade-12">Grade 12</option>
-            <!-- Add more grades here -->
           </select>
 
-          <button>Search</button>
+          <button (click)="searchTutors()">Search</button>
         </div>
       </div>
 
@@ -42,16 +39,22 @@
       <div class="scrollable-category-container">
         <div class="category-buttons-wrapper">
           <div class="category-buttons">
-            <button><i class="fas fa-book"></i> English</button>
-            <button><i class="fas fa-square-root-alt"></i> Maths</button>
-            <button><i class="fas fa-dna"></i> Biology</button>
-            <button><i class="fas fa-flask"></i> Chemistry</button>
-            <button><i class="fas fa-atom"></i> Physics</button>
-            <button><i class="fas fa-globe"></i> Social Science</button>
-            <button><i class="fas fa-chart-line"></i> Economy</button>
-            <button><i class="fas fa-landmark"></i> History</button>
-            <button><i class="fas fa-map"></i> Geography</button>
-            <button><i class="fas fa-gavel"></i> Polity</button>
+            <button><i class="fas fa-book" aria-hidden="true"></i> <span class="sr-only">English</span> English</button>
+            <button><i class="fas fa-square-root-alt" aria-hidden="true"></i> <span class="sr-only">Maths</span>
+              Maths</button>
+            <button><i class="fas fa-dna" aria-hidden="true"></i> <span class="sr-only">Biology</span> Biology</button>
+            <button><i class="fas fa-flask" aria-hidden="true"></i> <span class="sr-only">Chemistry</span>
+              Chemistry</button>
+            <button><i class="fas fa-atom" aria-hidden="true"></i> <span class="sr-only">Physics</span> Physics</button>
+            <button><i class="fas fa-globe" aria-hidden="true"></i> <span class="sr-only">Social Science</span> Social
+              Science</button>
+            <button><i class="fas fa-chart-line" aria-hidden="true"></i> <span class="sr-only">Economy</span>
+              Economy</button>
+            <button><i class="fas fa-landmark" aria-hidden="true"></i> <span class="sr-only">History</span>
+              History</button>
+            <button><i class="fas fa-map" aria-hidden="true"></i> <span class="sr-only">Geography</span>
+              Geography</button>
+            <button><i class="fas fa-gavel" aria-hidden="true"></i> <span class="sr-only">Polity</span> Polity</button>
           </div>
         </div>
       </div>
@@ -61,39 +64,40 @@
   <!-- Tutor Profiles -->
   <section class="tutor-list">
     <div class="container">
-        <h2>29 million teachers to choose your home tutor from!</h2>
+      <h2>29 million teachers to choose your home tutor from!</h2>
+
+      <ng-container *ngIf="courseslist && courseslist.length > 0; else noTutors">
         <div class="tutors">
-            <!-- Example Tutor Card 1 -->
-            <div class="tutor-card">
-              <div class="tutor-image">
-                  <img src="https://img.freepik.com/premium-photo/businesswoman-woman-happy-pretty-attractive-professional-adult-female-portrait-business-lady-person-young-success-beauty-office-successful-corporate-confident-caucasian-cheerful_163305-237346.jpg" alt="Tutor Manisha" aria-label="Tutor Manisha">
-                  <div class="overlay">
-                      <h3>Manisha</h3>
-                      <p class="location">Bengaluru (online)</p>
-                  </div>
+          <div class="tutor-card" *ngFor="let coursesd of courseslist">
+            <div class="tutor-image">
+              <!-- <img [src]="coursesd?.imageUrl || 'default-image-path.jpg'" alt="Tutor {{coursesd?.teachername}}"
+                aria-label="Tutor {{coursesd?.teachername}}"> -->
+              <div class="overlay">
+                <h3>{{coursesd?.teachername}}</h3>
+                <p class="location">{{coursesd?.mode}}</p>
               </div>
-              <div class="tutor-info">
-                  <div class="details">
-                      <span class="subject">Maths | IGSC</span>
-                  </div>
-                 
-                  <p class="bio">
-                      "Experienced tutor specializing in Maths and Physics."
-                  </p>
-                  <div class="rating">
-                      <span class="star">★</span> 
-                      <span>4.9</span> 
-                      <span class="reviews">(25 reviews)</span>
-                  </div>
-                  <div class="price">
-                      $5 Per Session <span class="first-class">1st free class</span>
-                  </div>
+            </div>
+            <div class="tutor-info">
+              <div class="details">
+                <span class="subject">{{coursesd?.className}} | {{coursesd?.subject}} | {{coursesd?.board}}</span>
               </div>
+              <p class="bio">{{coursesd?.aboutThisCourse}}</p>
+              <div class="rating">
+                <span class="star">★</span>
+                <span>{{coursesd?.rating || '4.9'}}</span>
+                <span class="reviews">({{coursesd?.reviewCount || '25'}} reviews)</span>
+              </div>
+              <div class="price">
+                {{coursesd?.currency || 'USD'}} {{coursesd?.costPerSessions}} Per Session
+                <span class="first-class">1st free class</span>
+              </div>
+            </div>
           </div>
-
-            <!-- More tutor cards can go here -->
         </div>
-    </div>
-</section>
+      </ng-container>
 
-</body>
+      <ng-template #noTutors>
+        <p>No tutors available at the moment.</p>
+      </ng-template>
+    </div>
+  </section>
