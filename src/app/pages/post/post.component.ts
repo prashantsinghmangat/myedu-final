@@ -63,26 +63,6 @@ export class PostComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-
-  // private loadPost = () => {
-  //   const id = this.route.snapshot.paramMap.get('id') as string;
-  //   this.postsService
-  //     .getPost(id)
-  //     .pipe(
-  //       tap((post) => {
-  //         if ('isError' in post) return;
-  //         this.postSig.set(post);
-  //         this.title.setTitle(
-  //           `${post.title} | by ${post.name} | Today I Learned`,
-  //         );
-  //         this.loadingSig.set(false);
-  //         // this.updateMetaTags(post);
-  //       }),
-  //       catchError(() => this.router.navigate(['/'])),
-  //     )
-  //     .subscribe();
-  // };
-
   // private updateMetaTags(post: ApiPost) {
   //   const ogUrl = new URL('https://og.learnedtoday.app/api/og');
   //   ogUrl.searchParams.append('title', post.title);

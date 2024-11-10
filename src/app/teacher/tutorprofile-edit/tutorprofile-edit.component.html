@@ -5,15 +5,8 @@
   <div class="form-group">
     <label for="profilePic">Profile Picture</label>
     <div class="upload-container">
-      <input
-        type="file"
-        id="profilePic"
-        name="profilePic"
-        (change)="onFileChange($event)"
-        class="file-input"
-        accept="image/*"
-        required
-      />
+      <input type="file" id="profilePic" name="profilePic" (change)="onFileChange($event)" class="file-input"
+        accept="image/*" ngModel />
       <div *ngIf="profileImage" class="image-preview">
         <img [src]="profileImage" alt="Profile Preview" />
       </div>
@@ -25,15 +18,8 @@
   <div class="form-group">
     <label for="whatsappNumber">WhatsApp Number</label>
     <div class="input-container">
-      <input
-        type="tel"
-        id="whatsappNumber"
-        name="whatsappNumber"
-        ngModel
-        class="form-control"
-        placeholder="e.g., +91 9876543210"
-        required
-      />
+      <input type="tel" id="whatsappNumber" name="whatsappNumber" ngModel class="form-control"
+        placeholder="e.g., +91 9876543210" required />
       <i class="fas fa-phone"></i>
     </div>
   </div>
@@ -42,15 +28,8 @@
   <div class="form-group">
     <label for="currentDesignation">Current Designation</label>
     <div class="input-container">
-      <input
-        type="text"
-        id="currentDesignation"
-        name="currentDesignation"
-        ngModel
-        class="form-control"
-        placeholder="e.g., Software Engineer"
-        required
-      />
+      <input type="text" id="currentDesignation" name="currentDesignation" ngModel class="form-control"
+        placeholder="e.g., Software Engineer" required />
       <i class="fas fa-briefcase"></i>
     </div>
   </div>
@@ -59,15 +38,8 @@
   <div class="form-group">
     <label for="shortBio">Short Bio</label>
     <div class="input-container">
-      <textarea
-        id="shortBio"
-        name="shortBio"
-        ngModel
-        class="form-control"
-        placeholder="Write a short bio"
-        rows="3"
-        required
-      ></textarea>
+      <textarea id="shortBio" name="shortBio" ngModel class="form-control" placeholder="Write a short bio" rows="3"
+        required></textarea>
       <i class="fas fa-info-circle"></i>
     </div>
   </div>
@@ -76,15 +48,8 @@
   <div class="form-group">
     <label for="aboutMe">About Me</label>
     <div class="input-container">
-      <textarea
-        id="aboutMe"
-        name="aboutMe"
-        ngModel
-        class="form-control"
-        placeholder="Tell us about yourself"
-        rows="4"
-        required
-      ></textarea>
+      <textarea id="aboutMe" name="aboutMe" ngModel class="form-control" placeholder="Tell us about yourself" rows="4"
+        required></textarea>
       <i class="fas fa-user"></i>
     </div>
   </div>
@@ -93,15 +58,8 @@
   <div class="form-group">
     <label for="skills">Skills (comma-separated)</label>
     <div class="input-container">
-      <input
-        type="text"
-        id="skills"
-        name="skills"
-        ngModel
-        class="form-control"
-        placeholder="e.g., JavaScript, Angular, Node.js"
-        required
-      />
+      <input type="text" id="skills" name="skills" ngModel class="form-control"
+        placeholder="e.g., JavaScript, Angular, Node.js" required />
       <i class="fas fa-tools"></i>
     </div>
   </div>
@@ -110,15 +68,7 @@
   <div class="form-group">
     <label for="address">Address</label>
     <div class="input-container">
-      <input
-        type="text"
-        id="address"
-        name="address"
-        ngModel
-        class="form-control"
-        placeholder="Your address"
-        required
-      />
+      <input type="text" id="address" name="address" ngModel class="form-control" placeholder="Your address" required />
       <i class="fas fa-map-marker-alt"></i>
     </div>
   </div>
