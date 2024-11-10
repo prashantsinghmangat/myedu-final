@@ -65,6 +65,11 @@ export class PostsService {
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
   }
 
+  getAllCourseList() {
+    return this.http.get<any>(`${environment.myEduBaseUrl}/courses`)
+      .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
+  }
+
   allTutorEducationList() {
     return this.http
       .get<any>(`${environment.myEduBaseUrl}/allTutorEducationList`)
