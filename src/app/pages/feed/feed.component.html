@@ -51,32 +51,33 @@
 <!-- Notes Display -->
 <section class="notes-list">
   <div class="container">
-    <h2>Explore Notes Across All Subjects and Boards!</h2>
+    <div class="section-header">
+      <h2>Fresh Notes for Learning</h2>
+    </div>
 
-    <div *ngIf="!error" class="notes">
-      <!-- Dynamically generated note cards -->
-      <div *ngFor="let note of postList" class="note-card" (click)="openNoteDetails(note)">
-        <div class="note-image">
-          <img src="{{ note?.imageUrl }}" alt="{{ note.title }}">
+    <div *ngIf="!error" class="card-container">
+      <div *ngFor="let note of postList" class="card" (click)="openNoteDetails(note)">
+        <div class="category">{{ note.notesSubject }}</div>
+        <h3 class="title">{{ note.title }}</h3>
+      
+        <div class="image-container">
+          <img [src]="getSafeImageUrl(note.featuredImage)" alt="Featured Image">
         </div>
-        <div class="note-content">
-          <h3>{{ note.title }}</h3>
-          <p [ngClass]="{'snippet': true, 'truncated': expandedNoteId !== note._id}">
-            {{ note.body }}
-          </p>
-          <p *ngIf="expandedNoteId === note._id">
-            <!-- Full body content when expanded -->
-            {{ note.fullBody || note.body }} <!-- Adjust if you have a specific full body property -->
-          </p>
-        </div>
+
+        <p class="description">
+          {{ getPlainText(note.body) }}
+        <!--   {{ note.body }} Assuming you have a pipe to truncate text -->
+        </p>
+        <div class="date">{{ note.createdAt | date:'mediumDate' }}</div>
       </div>
     </div>
-    
+
     <div *ngIf="error" class="notes">
       <h3>Notes not found!</h3>
     </div>
   </div>
 </section>
+
 
 
 <!-- old code -->

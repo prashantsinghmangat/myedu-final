@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PostsService } from '../../core/services/posts.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { catchError, of, tap } from 'rxjs';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'about-us',
@@ -16,12 +17,19 @@ import { catchError, of, tap } from 'rxjs';
 export class TeacherListComponent implements OnInit {
   courseslist: any[] = [];
 
-  constructor(private cdr: ChangeDetectorRef, private readonly postsService: PostsService) { }
+  constructor(private cdr: ChangeDetectorRef, 
+    private readonly postsService: PostsService,
+    private sanitizer: DomSanitizer 
+  ) { }
 
   ngOnInit(): void {
     this.getCourses();
   }
 
+  
+  getSafeImageUrl(url: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
   getCourses(): void {
     this.postsService.getAllCourseList().pipe(
       tap((response: any) => {

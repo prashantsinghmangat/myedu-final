@@ -136,99 +136,8 @@ body {
   }
 }
 
-.notes-list {
-  padding: 50px 0;
-  text-align: center;
-
-  h2 {
-    font-size: 2.5rem;
-    margin-bottom: 50px;
-    color: #333;
-  }
-
-  .notes {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 30px;
-
-    .note-card {
-      background-color: #fff;
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      width: 300px; // Fixed width
-      height: 400px; // Fixed height for consistent card size
-      overflow: hidden; // Prevent overflow
-      position: relative;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-      &:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-
-        .overlay {
-          background: rgba(0, 0, 0, 0.7);
-          color: #fff;
-        }
-      }
-
-      .note-image {
-        width: 100%;
-        height: 150px; // Adjust as needed
-        overflow: hidden;
-        position: relative;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-
-      .note-content {
-        padding: 15px; // Existing padding
-        text-align: left;
-
-        .snippet {
-          font-size: 1rem;
-          color: #555;
-          margin: 0;
-          line-height: 1.5; // Ensure good spacing
-
-          &.truncated {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 4; // Limit to 4 lines
-            overflow: hidden; // Hide overflow
-            height: 5.5em; // Adjust based on line height for consistency
-          }
-        }
-
-        .date {
-          font-size: 0.9rem;
-          color: #999;
-        }
-      }
-    }
-  }
-}
-
 @media screen and (max-width: 768px) {
-  .notes-list {
-    .notes {
-      flex-direction: column;
-      align-items: center;
-
-      .note-card {
-        width: 90%; // Full width on smaller screens
-        height: auto; // Allow height to adjust on smaller screens
-      }
-    }
-  }
-
-
-
+ 
   .search-bar {
     flex-direction: column;
 
@@ -248,6 +157,149 @@ body {
     button {
       width: 100%;
       margin-bottom: 10px;
+    }
+  }
+}
+// Notes design 
+
+// Header 
+
+.section-header {
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 10px; // Space between the header and the cards
+
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  p {
+    font-size: 16px;
+    color: #666;
+    margin-top: 10px; // Small gap between the heading and paragraph
+    max-width: 600px; // Limit the paragraph width for better readability
+    margin-left: auto;
+    margin-right: auto; // Center the text block
+  }
+}
+
+
+
+// Latest  post scss
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 30px;
+  overflow-x: auto;
+  -ms-overflow-style: none; // Hides scrollbar on Internet Explorer and Edge
+  scrollbar-width: none; // Hides scrollbar on Firefox
+
+  &::-webkit-scrollbar {
+    display: none; // Hides scrollbar on WebKit browsers (Chrome, Safari)
+  }
+
+
+
+
+  @media (max-width: 768px) {
+    flex-wrap: nowrap; // Prevents cards from stacking on smaller screens
+    padding: 20px;
+    gap: 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 15px;
+    gap: 10px;
+  }
+}
+
+.card {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 15px;
+  width: 35%;
+  min-width: 250px; // Minimum width to keep cards readable on smaller screens
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, border-color 0.2s;
+  flex-shrink: 0; // Prevents cards from shrinking in a flex container
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: #ccc;
+  }
+
+  .category {
+    color: green;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .image-container {
+    margin-bottom: 15px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+
+    img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+
+  .description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .date {
+    font-size: 14px;
+    color: #999;
+  }
+
+  // Media queries for card content adjustments
+  @media (max-width: 768px) {
+    width: 45%;
+    .title {
+      font-size: 18px;
+    }
+    .description {
+      font-size: 15px;
+    }
+    .image-container img {
+      height: 150px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    width: 60%;
+    .title {
+      font-size: 16px;
+    }
+    .description {
+      font-size: 14px;
+    }
+    .image-container img {
+      height: 130px;
     }
   }
 }

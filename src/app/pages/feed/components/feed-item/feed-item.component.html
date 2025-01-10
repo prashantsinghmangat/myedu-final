@@ -1,4 +1,4 @@
-<a class="cursor-pointer" (click)="selectedPost(post)" >
+<a class="cursor-pointer" (click)="selectedPost(post)">
   <div class="flex gap-2 rounded-lg border-1 border-divider bg-base-100 px-4 py-6 shadow-lg">
     <div>
       <div class="avatar">
@@ -23,8 +23,8 @@
           <h2 class="line-clamp-3 text-2xl font-bold" [title]="post.title">
             {{ post.title }}
           </h2>
-          <p class="text-sm">
-            {{ post.body }}
+          <p class="text-body text-sm">
+            {{ getPlainText(post.body) }}
           </p>
         </div>
       </div>
@@ -34,15 +34,15 @@
           <p class="text-sm">{{ post.likes }} likes</p>
           <div class="flex flex-wrap gap-2">
             @for (tag of post.tags; track i; let i = $index) {
-            <div class="badge" [ngClass]="
-                  i === 0
-                    ? 'bg-blue-200'
-                    : i === 1
-                      ? 'bg-pink-200'
-                      : 'bg-green-200'
-                ">
-              {{ tag }}
-            </div>
+              <div class="badge" [ngClass]="
+                    i === 0
+                      ? 'bg-blue-200'
+                      : i === 1
+                        ? 'bg-pink-200'
+                        : 'bg-green-200'
+                  ">
+                {{ tag }}
+              </div>
             }
           </div>
         </div>

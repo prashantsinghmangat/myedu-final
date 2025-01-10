@@ -13,6 +13,7 @@ import { FeedMenuComponent } from './components/feed-menu/feed-menu.component';
 import { RouterModule, Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 type Board = 'SelectBoard' | 'CBSE' | 'ICSE' | 'UPBoard';
 
@@ -38,6 +39,9 @@ export class FeedComponent implements OnInit {
   private hasMore = true;
   private readonly limit = 10;
 
+
+  
+
   data: Record<Board, DataStructure> = {
     SelectBoard: this.createDataStructure(),
     CBSE: this.createDataStructure(),
@@ -60,8 +64,19 @@ export class FeedComponent implements OnInit {
     private readonly postsService: PostsService, 
     private router: Router,
     private readonly userService: UserService, 
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private sanitizer: DomSanitizer // Inject the DomSanitizer service
   ) { }
+
+  getSafeImageUrl(url: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
+  getPlainText(content: string): string {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = content;
+    return tempDiv.textContent || tempDiv.innerText || '';
+  }
 
   // ngOnInit lifecycle hook
   ngOnInit(): void {
@@ -149,7 +164,7 @@ export class FeedComponent implements OnInit {
         9: ['Hindi', 'English', 'Mathematics', 'Science'],
         10: ['Hindi', 'English', 'Mathematics', 'Science'],
         11: ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'Science'],
-        12: ['Physics', 'Chemistry', 'Mathematics', 'Biology'],
+        12: ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'Computer Science'],
       },
     };
   }

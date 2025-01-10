@@ -61,43 +61,38 @@
     </div>
   </header>
 
-  <!-- Tutor Profiles -->
-  <section class="tutor-list">
-    <div class="container">
-      <h2>29 million teachers to choose your home tutor from!</h2>
-
-      <ng-container *ngIf="courseslist && courseslist.length > 0; else noTutors">
-        <div class="tutors">
-          <div class="tutor-card" *ngFor="let coursesd of courseslist">
-            <div class="tutor-image">
-              <!-- <img [src]="coursesd?.imageUrl || 'default-image-path.jpg'" alt="Tutor {{coursesd?.teachername}}"
-                aria-label="Tutor {{coursesd?.teachername}}"> -->
-              <div class="overlay">
-                <h3>{{coursesd?.teachername}}</h3>
-                <p class="location">{{coursesd?.mode}}</p>
+  <section class="teachers-container">
+    <div class="section-header">
+      <h2>Our Star Teachers</h2>
+    </div>
+  
+    <ng-container *ngIf="courseslist && courseslist.length > 0; else noTutors">
+      <div class="teachers-card-container">
+        <!-- Teacher Card 1 -->
+        <div class="teacher-card" *ngFor="let coursesd of courseslist">
+          <div class="teacher-image">
+            <img [src]="getSafeImageUrl(coursesd?.courseThumbnail)" alt="Featured Image">
+          </div>
+          <div class="teacher-info">
+            <h3 class="teacher-name">{{ coursesd?.className }} | {{ coursesd?.subject }}</h3>
+            <p class="teacher-location">{{ coursesd?.mode }} | {{ coursesd?.language }}</p>
+            <div class="top-info">
+              <p class="subject">{{ coursesd?.board }}</p>
+              <div class="rating-and-reviews">
+                <span class="rating">★★★★★</span>
+                <span class="reviews">(169 reviews)</span>
               </div>
             </div>
-            <div class="tutor-info">
-              <div class="details">
-                <span class="subject">{{coursesd?.className}} | {{coursesd?.subject}} | {{coursesd?.board}}</span>
-              </div>
-              <p class="bio">{{coursesd?.aboutThisCourse}}</p>
-              <div class="rating">
-                <span class="star">★</span>
-                <span>{{coursesd?.rating || '4.9'}}</span>
-                <span class="reviews">({{coursesd?.reviewCount || '25'}} reviews)</span>
-              </div>
-              <div class="price">
-                {{coursesd?.currency || 'USD'}} {{coursesd?.costPerSessions}} Per Session
-                <span class="first-class">1st free class</span>
-              </div>
-            </div>
+            <p class="details">{{ coursesd?.aboutThisCourse }}</p>
+            <p class="price">{{ coursesd?.currency }} {{ coursesd?.costPerSessions }} · 1st free class</p>
           </div>
         </div>
-      </ng-container>
-
-      <ng-template #noTutors>
+      </div>
+    </ng-container>
+  
+    <ng-template #noTutors>
+      <div>
         <p>No tutors available at the moment.</p>
-      </ng-template>
-    </div>
+      </div>
+    </ng-template>
   </section>

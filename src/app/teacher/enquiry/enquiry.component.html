@@ -1,0 +1,81 @@
+<div class="enquiry-form-container">
+  <header class="form-header">
+    <h2>Course Enquiry Form</h2>
+    <p>Please fill out the details below, and we will get back to you shortly!</p>
+  </header>
+  <form [formGroup]="enquiryForm" (ngSubmit)="onSubmit()" aria-label="Course Enquiry Form">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        id="name"
+        formControlName="name"
+        type="text"
+        placeholder="Enter your name"
+        aria-required="true"
+        aria-label="Name"
+        class="input-field"
+      />
+      <div class="error-message" *ngIf="enquiryForm.get('name')?.invalid && enquiryForm.get('name')?.touched">
+        {{ getErrorMessage('name') }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="class">Class</label>
+      <select id="class" formControlName="class" aria-label="Class" class="input-field">
+        <option value="" disabled>Select your class</option>
+        <option *ngFor="let classOption of classOptions" [value]="classOption">{{ classOption }}</option>
+      </select>
+      <div class="error-message" *ngIf="enquiryForm.get('class')?.invalid && enquiryForm.get('class')?.touched">
+        {{ getErrorMessage('class') }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <div class="phone-input">
+        <input
+          id="countryCode"
+          formControlName="countryCode"
+          type="text"
+          placeholder="Enter country code '+91'"
+          class="input-field country-code"
+          aria-label="Country Code"
+        />
+        <input
+          id="phone"
+          formControlName="phone"
+          type="tel"
+          placeholder="Enter your phone number"
+          class="input-field phone-number"
+          aria-label="Phone Number"
+        />
+      </div>
+      <div class="error-message" *ngIf="enquiryForm.get('phone')?.invalid && enquiryForm.get('phone')?.touched">
+        {{ getErrorMessage('phone') }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input
+        id="email"
+        formControlName="email"
+        type="email"
+        placeholder="Enter your email"
+        aria-required="true"
+        aria-label="Email"
+        class="input-field"
+      />
+      <div class="error-message" *ngIf="enquiryForm.get('email')?.invalid && enquiryForm.get('email')?.touched">
+        {{ getErrorMessage('email') }}
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="enquiryForm.invalid" class="submit-btn" aria-label="Submit">
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

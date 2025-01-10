@@ -7,21 +7,26 @@
   width: 100%;
   background: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  gap: 10px; /* Adjust this value to control the space between the columns */
+  gap: 10px;
+
+  // Responsive Design
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
+  }
 }
 
 .left-section {
-  flex: 0 0 40%; /* Flex-grow: 0, Flex-shrink: 0, Width: 40% */
-  padding: 15px;
-  margin-top: 30px;
+  flex: 0 0 30%; /* Flex-grow: 0, Flex-shrink: 0, Width: 40% */
+  padding: 5px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
 
 .right-section {
-  flex: 0 0 60%; /* Flex-grow: 0, Flex-shrink: 0, Width: 60% */
+  flex: 0 0 70%; /* Flex-grow: 0, Flex-shrink: 0, Width: 60% */
   padding: 15px;
-  margin-top: 30px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
 }
@@ -46,14 +51,14 @@
 // teacher profile 
 .profile-card {
   background: #fff;
-  padding: 20px;
+  padding: 15px;
   margin-bottom: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: left;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
   max-width: 400px;
   overflow: hidden;
 }

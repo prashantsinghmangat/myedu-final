@@ -6,36 +6,46 @@
         <!-- Subject Field -->
         <div class="form-group">
             <label for="subject">Subject</label>
-            <input type="text" id="subject" class="input-field" [(ngModel)]="course.subject" name="subject"
-                placeholder="Enter the subject" required minlength="3" #subject="ngModel">
+            <select id="subject" class="input-field" [(ngModel)]="course.subject" name="subject" required #subject="ngModel">
+                <option value="" disabled selected>Select a subject</option>
+                <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+            </select>
             <div *ngIf="subject.invalid && subject.touched" class="error-msg">
-                Subject is required (minimum 3 characters).
+                Subject is required.
             </div>
         </div>
+        
 
         <!-- Board Field -->
         <div class="form-group">
             <label for="board">Board</label>
-            <input type="text" id="board" class="input-field" [(ngModel)]="course.board" name="board"
-                placeholder="Enter the board" required minlength="3" #board="ngModel">
+            <select id="board" class="input-field" [(ngModel)]="course.board" name="board" required #board="ngModel">
+              <option value="" disabled selected>Select a board</option>
+              <option *ngFor="let board of schoolBoardsShortform" [value]="board">{{ board }}</option>
+            </select>
             <div *ngIf="board.invalid && board.touched" class="error-msg">
-                Board is required (minimum 3 characters).
+              Board is required.
             </div>
-        </div>
+          </div>
+          
 
         <!-- Class Field -->
         <div class="form-group">
-            <label for="class">Class</label>
-            <input type="text" id="class" class="input-field" [(ngModel)]="course.class" name="class"
-                placeholder="Enter the class" required pattern="^[0-9]{1,2}$" #class="ngModel">
+            <label for="class">Select Class</label>
+            <select id="class" class="input-field" [(ngModel)]="course.class" name="class" required #class="ngModel">
+                <option value="" disabled selected>Select a class</option>
+                <option *ngFor="let classValue of classOptions" [value]="classValue">
+                    {{ classValue }}
+                </option>
+            </select>
             <div *ngIf="class.invalid && class.touched" class="error-msg">
-                Class is required (must be a number between 1 and 99).
+                Class is required.
             </div>
         </div>
 
         <!-- Weekly Sessions Field -->
         <div class="form-group">
-            <label for="weeklySession">Weekly Sessions</label>
+            <label for="weeklySession">How many Sessions you will provide in a Week ?</label>
             <input type="number" id="weeklySession" class="input-field" [(ngModel)]="course.weeklySession"
                 name="weeklySession" placeholder="Enter weekly sessions" required min="1" #weeklySession="ngModel">
             <div *ngIf="weeklySession.invalid && weeklySession.touched" class="error-msg">
@@ -45,7 +55,7 @@
 
         <!-- Cost Per Session Field -->
         <div class="form-group">
-            <label for="costPerSession">Cost Per Session</label>
+            <label for="costPerSession">Cost Per Session (Enter Numberic value)</label>
             <input type="number" id="costPerSession" class="input-field" [(ngModel)]="course.costPerSession"
                 name="costPerSession" placeholder="Enter cost per session" required min="1" #costPerSession="ngModel">
             <div *ngIf="costPerSession.invalid && costPerSession.touched" class="error-msg">
@@ -53,15 +63,20 @@
             </div>
         </div>
 
-        <!-- Currency Field -->
-        <div class="form-group">
-            <label for="currency">Currency</label>
-            <input type="text" id="currency" class="input-field" [(ngModel)]="course.currency" name="currency"
-                placeholder="Enter the currency" required minlength="3" #currency="ngModel">
-            <div *ngIf="currency.invalid && currency.touched" class="error-msg">
-                Currency is required (minimum 3 characters).
-            </div>
-        </div>
+      <!-- Currency Dropdown Field -->
+<div class="form-group">
+    <label for="currency">Currency</label>
+    <select id="currency" class="input-field" [(ngModel)]="course.currency" name="currency" required #currency="ngModel">
+        <option value="" disabled selected>Select a currency</option>
+        <option value="INR">₹ (INR)</option>
+        <option value="USD">$ (USD)</option>
+        <option value="EUR">€ (EUR)</option>
+    </select>
+    <div *ngIf="currency.invalid && currency.touched" class="error-msg">
+        Currency is required.
+    </div>
+</div>
+
 
         <!-- About This Course Field -->
         <div class="form-group">
@@ -70,20 +85,24 @@
                 name="aboutThisCourse" placeholder="Describe the course" required minlength="10"
                 #aboutThisCourse="ngModel"></textarea>
             <div *ngIf="aboutThisCourse.invalid && aboutThisCourse.touched" class="error-msg">
-                Please provide a description of at least 10 characters.
+                Please provide a description of at least 100 characters.
             </div>
         </div>
 
         <!-- Teacher Profile Field -->
         <div class="form-group">
-            <label for="teacherProfile">Teacher Profile</label>
-            <input type="text" id="teacherProfile" class="input-field" [(ngModel)]="course.teacherProfile"
-                name="teacherProfile" placeholder="Enter the teacher profile" required minlength="3"
-                #teacherProfile="ngModel">
-            <div *ngIf="teacherProfile.invalid && teacherProfile.touched" class="error-msg">
-                Teacher profile is required (minimum 3 characters).
+            <label for="courseThumbnail">Course Image Link</label>
+            <input type="text" id="courseThumbnail" class="input-field" [(ngModel)]="course.courseThumbnail"
+                name="courseThumbnail" placeholder="Paste the image link here" required minlength="3"
+                #courseThumbnail="ngModel">
+            <div *ngIf="courseThumbnail.invalid && courseThumbnail.touched" class="error-msg">
+                Upload the image to your drive and share the link here. The link must be at least 3 characters long.
             </div>
         </div>
+        
+        
+     
+        
 
         <!-- Language Field -->
         <div class="form-group">

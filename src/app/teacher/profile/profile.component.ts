@@ -136,7 +136,7 @@ export class ProfileComponent implements OnInit {
   }
 
   goToAddWork() {
-    this.router.navigateByUrl('/notes-editor');
+    this.router.navigateByUrl('/enquiry');
   }
 }
 

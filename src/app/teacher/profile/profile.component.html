@@ -10,12 +10,19 @@
         <p>{{profiledata?.currentDesignation}}</p>
         <div class="buttons">
           <button class="btn book" (click)="goToEditProfile()">Edit Profile</button>
-          <button class="btn share">Share</button>
         </div>
       </div>
     </div>
 
     <div class="bio-card">
+
+      <div class="short_bio">
+        <h2>Short Bio</h2>
+        <p>{{profiledata?.shortBio}}</p>
+
+
+      </div>
+
       <div class="bio-details">
         <h2>About Me</h2>
         <p>{{profiledata?.aboutMe}}</p>
@@ -91,7 +98,7 @@
             <p>{{course?.weeklySessions}} classes / weekly</p>
           </div>
           <div class="mode">
-            <p> {{course?.mode}} | {{ course?.English}}</p>
+            <p> {{course?.mode}} | {{ course?.language}}</p>
           </div>
           <div class="cost">
             <p>{{ course?.currency}} {{course?.costPerSessions}} Per Session</p>

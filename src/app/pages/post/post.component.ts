@@ -9,7 +9,9 @@ import { ApiPost } from '../../core/models/api.model';
 import { PostsService } from '../../core/services/posts.service';
 import { UserService } from '../../core/services/user.service';
 
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
+
+
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID } from '@angular/core';
 
@@ -29,6 +31,7 @@ export class PostComponent implements OnInit, OnDestroy {
   likeRequest$ = new Subject<string>();
   private readonly onDestroy$ = new Subject<void>();
   safeHtmlContent: SafeHtml | undefined;
+  safeImageUrl : SafeUrl | undefined;
 
   constructor(
     private postsService: PostsService, private userService: UserService, private sanitizer: DomSanitizer,
@@ -51,6 +54,7 @@ export class PostComponent implements OnInit, OnDestroy {
       }
       // Convert post body to safe HTML
       this.safeHtmlContent = this.sanitizer.bypassSecurityTrustHtml(this.post?.body);
+      this.safeImageUrl = this.sanitizer.bypassSecurityTrustUrl(this.post?.featuredImage); 
       // Update the signal with the post data
       this.postSig.set(this.post);
     }

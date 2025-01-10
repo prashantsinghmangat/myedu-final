@@ -1,16 +1,76 @@
 :host {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; // Center vertically
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh; // Full height of the viewport
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-.til-markdown {
-  @apply prose-custom;
+.section {
+  width: 100%;
+  max-width: 860px;
+  padding: 40px;
+  background-color: var(--section-background);
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  line-height: 1.8; // Slightly increased line height for better readability
+  text-align: center;
+}
 
-  .language-js {
-    span {
-      font-family: monospace;
-    }
+h1 {
+  font-size: 20px; // Increased from 2.8rem
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 20px; // Increased from 2.4rem
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+h3 {
+  font-size: 2.2rem; // New size for h3 for better hierarchy
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+p, ul, ol {
+  font-size: 20px ; // Increased from 1.2rem
+  margin-bottom: 15px;
+  text-align: left; // Maintain left alignment for easier reading
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
   }
+}
+
+blockquote {
+  text-align: left;
+  padding: 20px;
+  background-color: var(--blockquote-bg);
+  border-left: 5px solid var(--blockquote-border);
+  margin: 20px 0;
+  font-style: italic;
+  font-size: 1.9rem; // Slightly larger font for emphasis
+}
+
+ul, ol {
+  padding-left: 40px; // Indentation for lists
+  text-align: left;
+}
+
+.divider {
+  border-top: 2px solid #ccc;
+  margin: 40px 0;
 }

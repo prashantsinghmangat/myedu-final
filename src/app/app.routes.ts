@@ -23,6 +23,15 @@ export const routes: Routes = [
     path: 'feed',
     loadComponent: () => import('./pages/feed/feed.component').then((m) => m.FeedComponent), title: 'Feed',
   },
+
+  {
+    path: 'course_full_page',
+    loadComponent: () => import('./pages/course_full_page/course_full_page.component').then((m) => m.CourseFullPageComponent), title: 'course_full_page',
+  },
+  
+ 
+
+
   {
     path: 'post/:id', loadComponent: () => import('./pages/post/post.component').then((m) => m.PostComponent),
   },
@@ -34,6 +43,7 @@ export const routes: Routes = [
      loadComponent: () => import('./teacher/tutorprofile-edit/tutorprofile-edit.component').then((m) => m.TutorProfileEditComponent), 
      title: 'TutorProfileedit',
   },
+
   {
     path: 'create-course',
      loadComponent: () => import('./teacher/create-course/create-course.component').then((m) => m.CreateCourseComponent), 
@@ -45,6 +55,15 @@ export const routes: Routes = [
      loadComponent: () => import('./teacher/add-education/add-education.component').then((m) => m.AddEducationComponent), 
      title: 'add-education',
   },
+
+  
+  {
+    path: 'enquiry',
+     loadComponent: () => import('./teacher/enquiry/enquiry.component').then((m) => m.enquiryComponent), 
+     title: 'enquiry',
+  },
+
+ 
 
 
 

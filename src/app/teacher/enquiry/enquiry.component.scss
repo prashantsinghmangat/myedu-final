@@ -1,0 +1,115 @@
+.enquiry-form-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 15px;
+  background: linear-gradient(145deg, #fff7e6, #f3f4f6);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  font-family: 'Poppins', sans-serif;
+}
+
+header h2 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: linear-gradient(to right, #ffdd55, #ff6e7f, #c2e59c);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 15px 12px 40px; /* Space for icons */
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #fdfdfd;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #87cefa;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(135, 206, 250, 0.5);
+}
+
+.form-group i {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #aaa;
+  transition: color 0.3s;
+}
+
+input:focus + i,
+select:focus + i {
+  color: #87cefa;
+}
+
+.phone-input {
+  display: flex;
+  gap: 10px;
+}
+
+.country-code,
+.phone-number {
+  flex: 1;
+}
+
+.error-message {
+  font-size: 14px;
+  color: #ff5252;
+  margin-top: 5px;
+}
+
+button.submit-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(to right, #ffdd55, #ff6e7f, #c2e59c);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+button.submit-btn:disabled {
+  background: #e0e0e0;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .enquiry-form-container {
+    padding: 20px;
+  }
+
+  header h2 {
+    font-size: 24px;
+  }
+}
