@@ -15,7 +15,7 @@
         </select>
 
         <select id="class" (change)="onClassChange($event)">
-          <option value="" disabled>Select Class</option>
+          <option value="Select class" disabled>Select Class</option>
           <option *ngFor="let cls of classes" [value]="cls">{{ cls }}</option>
         </select>
 

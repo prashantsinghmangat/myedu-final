@@ -7,7 +7,9 @@
       <div class="flex flex-col gap-4">
         <h1 class="text-4xl font-extrabold">{{ post?.title }}</h1>
         <img [src]="safeImageUrl" alt="Featured Image" class="featured-image"> <!-- Updated line -->
-        <p class="text-2xl" [innerHTML]="safeHtmlContent"></p>
+      
+        <!-- <div class="blog-content pt-30" [innerHTML]="post?.body" ></div> -->
+        <p class="blog-content text-2xl" [innerHTML]="safeHtmlContent"></p>
         <p class="author">Author: {{ post?.author }}</p>
       </div>
     </ng-container>

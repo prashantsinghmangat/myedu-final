@@ -40,7 +40,7 @@ export class FeedComponent implements OnInit {
   private readonly limit = 10;
 
 
-  
+
 
   data: Record<Board, DataStructure> = {
     SelectBoard: this.createDataStructure(),
@@ -56,14 +56,14 @@ export class FeedComponent implements OnInit {
   selectedBoard: Board | null = null;
   selectedClass: number | null = null;
   selectedSubject: string | null = null;
-  
+
   // Property to track the expanded note ID
   expandedNoteId: string | null = null;
 
   constructor(
-    private readonly postsService: PostsService, 
+    private readonly postsService: PostsService,
     private router: Router,
-    private readonly userService: UserService, 
+    private readonly userService: UserService,
     private cdr: ChangeDetectorRef,
     private sanitizer: DomSanitizer // Inject the DomSanitizer service
   ) { }
@@ -87,7 +87,7 @@ export class FeedComponent implements OnInit {
     if (!this.hasMore) return;
     this.loadingPostsSig.set(true);
 
-    this.postsService.getPosts(this.limit).pipe(
+    this.postsService.getAllNotes('CBSE', 'Class 10', 'Hindi').pipe(
       tap((posts: any) => {
         const postsResponse = posts.data as ApiPreviewPosts;
         this.postList = postsResponse;
@@ -121,14 +121,17 @@ export class FeedComponent implements OnInit {
   }
 
   openNoteDetails(note: any): void {
+    console.log("notes ID: ", note);
     if (this.expandedNoteId === note._id) {
-        // If the clicked note is already expanded, collapse it
-        this.expandedNoteId = null;
+      // If the clicked note is already expanded, collapse it
+      this.expandedNoteId = null;
     } else {
-        // Expand the clicked note
-        this.expandedNoteId = note._id;
+      // Expand the clicked note
+      this.expandedNoteId = note._id;
     }
     // Navigate to the note detail page
+    const data = JSON.stringify(note)
+    sessionStorage.setItem('postData', data);
     this.router.navigate(['/post', note._id]);
   }
 

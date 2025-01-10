@@ -13,7 +13,7 @@ import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
 
 
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, PLATFORM_ID } from '@angular/core';
+import { Inject, PLATFORM_ID, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'til-post',
@@ -21,6 +21,7 @@ import { Inject, PLATFORM_ID } from '@angular/core';
   imports: [CommonModule, MarkdownComponent, FormsModule, ReactiveFormsModule],
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostComponent implements OnInit, OnDestroy {
@@ -31,7 +32,7 @@ export class PostComponent implements OnInit, OnDestroy {
   likeRequest$ = new Subject<string>();
   private readonly onDestroy$ = new Subject<void>();
   safeHtmlContent: SafeHtml | undefined;
-  safeImageUrl : SafeUrl | undefined;
+  safeImageUrl: SafeUrl | undefined;
 
   constructor(
     private postsService: PostsService, private userService: UserService, private sanitizer: DomSanitizer,
@@ -43,6 +44,7 @@ export class PostComponent implements OnInit, OnDestroy {
     // Check if we're running in the browser before accessing sessionStorage
     if (isPlatformBrowser(this.platformId)) {
       const savedPost = sessionStorage.getItem('postData');
+
       if (savedPost) {
         // If post data exists in sessionStorage, use it
         this.post = JSON.parse(savedPost);
@@ -53,13 +55,24 @@ export class PostComponent implements OnInit, OnDestroy {
         sessionStorage.setItem('postData', JSON.stringify(this.post));
       }
       // Convert post body to safe HTML
+      console.log("blog content: ", this.post?.body)
       this.safeHtmlContent = this.sanitizer.bypassSecurityTrustHtml(this.post?.body);
-      this.safeImageUrl = this.sanitizer.bypassSecurityTrustUrl(this.post?.featuredImage); 
+      console.log("safeHtmlContent content: ", this.safeHtmlContent)
+      this.safeImageUrl = this.sanitizer.bypassSecurityTrustUrl(this.post?.featuredImage);
       // Update the signal with the post data
       this.postSig.set(this.post);
     }
     // Set loading to false after data is loaded
     this.loadingSig.set(false);
+  }
+
+  ngAfterViewInit() {
+    const contentDiv = document.querySelector('.blog-content') as HTMLElement;
+    if (contentDiv) {
+      contentDiv.querySelectorAll('p').forEach((p) => {
+        p.style.marginBottom = '16px'; // Example of dynamic styling
+      });
+    }
   }
 
   ngOnDestroy() {

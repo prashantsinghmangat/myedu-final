@@ -94,7 +94,7 @@ export class PostsService {
   getPosts(limit: number) {
     return this.http
       .get<ApiPreviewPosts>(
-        `${environment.myEduBaseUrl}/getNotesLists??page=0&limit=${limit}&&board=CBSE&class=class_11&subject=mathematics`,
+        `${environment.myEduBaseUrl}/getNotesLists?page=0&limit=${limit}&&board=CBSE&class=class_11&subject=mathematics`,
       )
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
   }
