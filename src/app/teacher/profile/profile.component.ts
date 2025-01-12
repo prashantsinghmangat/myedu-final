@@ -136,7 +136,7 @@ export class ProfileComponent implements OnInit {
   }
 
   goToAddWork() {
-    this.router.navigateByUrl('/enquiry');
+    this.router.navigateByUrl('/course_full_page');
   }
 }
 

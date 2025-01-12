@@ -189,7 +189,7 @@ body {
     .teacher-image {
       position: relative;
       width: 100%;
-      height: 300px; /* Square shape for image */
+      height: 270px; /* Square shape for image */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -222,7 +222,7 @@ body {
 
       /* Teacher Name */
       .teacher-name {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: bold;
         margin-bottom: 5px;
       }
@@ -270,11 +270,20 @@ body {
         margin-top: 5px;
         font-size: 14px;
         color: #333;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+
+
+
       }
 
       /* Price Section */
       .price {
-        font-size: 14px;
+        font-size: 18px;
         color: #de8383;
         font-weight: bold;
         margin-top: 10px;

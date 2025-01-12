@@ -87,7 +87,7 @@ export class FeedComponent implements OnInit {
     if (!this.hasMore) return;
     this.loadingPostsSig.set(true);
 
-    this.postsService.getAllNotes('CBSE', 'Class 10', 'Hindi').pipe(
+    this.postsService.getAllNotes('CBSE', 'Class 10', 'Chemistry').pipe(
       tap((posts: any) => {
         const postsResponse = posts.data as ApiPreviewPosts;
         this.postList = postsResponse;
@@ -165,7 +165,7 @@ export class FeedComponent implements OnInit {
       subjects: {
         8: ['Hindi', 'English', 'Mathematics', 'Science'],
         9: ['Hindi', 'English', 'Mathematics', 'Science'],
-        10: ['Hindi', 'English', 'Mathematics', 'Science'],
+        10: ['Hindi', 'English', 'Mathematics', 'Science','Chemistry'],
         11: ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'Science'],
         12: ['Physics', 'Chemistry', 'Mathematics', 'Biology', 'Computer Science'],
       },

@@ -3,8 +3,6 @@
   gap: 30px;
   margin: 40px auto;
   max-width: 1200px;
-
-  /* Background */
   background: linear-gradient(to right, #f0f4f8, #ffffff);
   border-radius: 20px;
   padding: 20px;
@@ -19,62 +17,36 @@
   text-align: center;
 
   .profile-picture {
-    background: #e6f7ff;
-    border: 4px solid #b3e5fc;
     border-radius: 50%;
+    overflow: hidden;
     width: 120px;
     height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto 15px;
-    font-size: 0.9rem;
-    color: #0099ff;
+    margin: 0 auto 20px;
+    background: #e6f7ff;
+    border: 4px solid #b3e5fc;
   }
 
   h3 {
     font-size: 1.8rem;
-    margin: 10px 0;
     color: #333;
+    margin-bottom: 5px;
   }
 
-  .tutor-title {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #777;
-  }
-
-  .tutor-location {
-    font-size: 0.9rem;
-    color: #aaa;
+  .tutor-title, .tutor-location {
+    font-size: 1.1rem;
+    color: #666;
   }
 
   h4 {
-    font-size: 1.3rem;
-    margin-top: 20px;
+    font-size: 1.5rem;
     color: #444;
+    margin-top: 20px;
   }
 
   .about-tutor {
     font-size: 0.95rem;
     color: #555;
-    margin-top: 10px;
-  }
-
-  .contact-tutor {
-    background: linear-gradient(135deg, #4e91f9, #7d4dfb);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 25px;
-    margin-top: 20px;
-    transition: transform 0.2s;
-
-    &:hover {
-      transform: scale(1.1);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
+    line-height: 1.6;
   }
 }
 
@@ -91,7 +63,7 @@
     align-items: center;
 
     h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       color: #222;
     }
 
@@ -99,53 +71,55 @@
       background: linear-gradient(135deg, #4e91f9, #7d4dfb);
       color: white;
       border: none;
-      padding: 10px 20px;
-      font-size: 1rem;
+      padding: 12px 24px;
+      font-size: 1.1rem;
       font-weight: bold;
       border-radius: 25px;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: all 0.3s ease-in-out;
 
       &:hover {
-        transform: scale(1.1);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
       }
     }
   }
 
-  ul {
-    list-style: none;
-    padding: 0;
+  .course-table {
+    width: 100%;
+    border-collapse: collapse;
     margin: 20px 0;
 
-    li {
-      font-size: 1rem;
-      margin: 10px 0;
-      display: flex;
-      align-items: center;
-      color: #555;
+    tr {
+      border-bottom: 1px solid #eee;
+    }
 
+    td {
+      padding: 10px 0;
+      color: #555;
+      font-size: 1.1rem;
+      
       i {
         color: #4e91f9;
         margin-right: 10px;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
 
       strong {
-        font-weight: 600;
-        margin-right: 5px;
+        font-weight: bold;
+        color: #333;
       }
     }
   }
 
   h3 {
-    font-size: 1.5rem;
-    margin-top: 20px;
+    font-size: 1.6rem;
     color: #444;
+    margin-top: 20px;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 1.05rem;
     line-height: 1.8;
     color: #666;
   }

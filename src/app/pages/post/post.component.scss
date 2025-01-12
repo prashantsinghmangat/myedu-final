@@ -2,75 +2,148 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; // Center vertically
+  justify-content: center;
   width: 100%;
+  min-height: 100vh;
+  background-color: #f9f9f9; // Light grey background for the whole host component
+  color: #333; // Default text color
+  font-family: 'Arial', sans-serif; // Default font for the content
+}
+
+.post-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
   padding: 20px;
-  min-height: 100vh; // Full height of the viewport
-  background-color: var(--background-color);
-  color: var(--text-color);
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #fff; // White background for the post section
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15); // Soft shadow for depth
 }
 
-.section {
-  width: 100%;
-  max-width: 860px;
-  padding: 40px;
-  background-color: var(--section-background);
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin: auto;
-  line-height: 1.8; // Slightly increased line height for better readability
-  text-align: center;
+.post-container {
+  display: flex;
+  flex-direction: column;
 }
 
-h1 {
-  font-size: 20px; // Increased from 2.8rem
-  margin-top: 0;
+.post-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #275E94; // Blue color for the title
+}
+
+.post-metadata {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #666; // Lighter grey for metadata
   margin-bottom: 20px;
 }
 
-h2 {
-  font-size: 20px; // Increased from 2.4rem
-  margin-top: 20px;
-  margin-bottom: 15px;
+.author-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid #ccc; // Border to highlight the author image
 }
 
-h3 {
-  font-size: 2.2rem; // New size for h3 for better hierarchy
-  margin-top: 15px;
-  margin-bottom: 10px;
+.featured-image {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  object-position: center; /* Default is center, but can be top, bottom, 50% 20%, etc. */
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
-p, ul, ol {
-  font-size: 20px ; // Increased from 1.2rem
-  margin-bottom: 15px;
-  text-align: left; // Maintain left alignment for easier reading
-}
 
-a {
-  color: var(--link-color);
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
+
+.post-body {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #444; // Slightly darker grey for body text
+  text-align: left;
+
+  p, ul, ol, li {
+    margin-bottom: 10px;
+    font-size: 18px; // Readable text size
   }
+
+  ul, ol {
+    padding-left: 20px; // Proper indentation for lists
+  }
+
+  li {
+    list-style-type: disc; // Ensures visible bullet points
+  }
+
+  b, strong {
+    font-weight: bold; // Ensures bold texts are appropriately bold
+  }
+
+  a {
+    color: #1a0dab; // Link color similar to default web blue
+    text-decoration: none; // No underline by default
+
+    &:hover {
+      text-decoration: underline; // Underline on hover for links
+    }
+  }
+
+  img {
+    max-width: 100%; // Ensures images do not overflow the content width
+    height: auto; // Keeps image aspect ratio
+    margin-top: 10px; // Space above images within text
+    margin-bottom: 10px; // Space below images within text
+  }
+
+  
 }
 
-blockquote {
-  text-align: left;
-  padding: 20px;
-  background-color: var(--blockquote-bg);
-  border-left: 5px solid var(--blockquote-border);
-  margin: 20px 0;
-  font-style: italic;
-  font-size: 1.9rem; // Slightly larger font for emphasis
+.post-body table {
+  width: 100%; // Ensures the table stretches to the width of the post body
+  border-collapse: collapse; // Collapses border to avoid double borders
+  margin-top: 20px; // Adds margin on top of the table for spacing
+  margin-bottom: 20px; // Adds margin below the table for spacing
 }
 
-ul, ol {
-  padding-left: 40px; // Indentation for lists
-  text-align: left;
+.post-body th, .post-body td {
+  border: 1px solid #ccc; // Adds borders to cells
+  padding: 8px; // Adds padding inside cells for better readability
+  text-align: left; // Aligns text to the left; adjust as needed
 }
 
-.divider {
-  border-top: 2px solid #ccc;
-  margin: 40px 0;
+.post-body th {
+  background-color: #f2f2f2; // Gives a background color to header cells
+  font-weight: bold; // Makes text bold in header cells
+}
+
+
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 5px solid #ccc;
+  border-top-color: #333;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }

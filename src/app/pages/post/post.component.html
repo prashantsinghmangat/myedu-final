@@ -1,22 +1,31 @@
 <ng-container
-  *ngTemplateOutlet="post;context: {post: postSig(), loading: loadingSig(), isLoggedIn: isLoggedIn$ | async, user: user$ | async}" />
+  *ngTemplateOutlet="post;context: {post: postSig(), loading: loadingSig(), isLoggedIn: isLoggedIn$ | async, user: user$ | async}">
+</ng-container>
 
 <ng-template #post let-post="post" let-loading="loading" let-isLoggedIn="isLoggedIn" let-user="user">
-  <section class="flex w-full flex-col gap-8 px-4 py-20">
+  <section class="post-section">
     <ng-container *ngIf="!loading && post">
-      <div class="flex flex-col gap-4">
-        <h1 class="text-4xl font-extrabold">{{ post?.title }}</h1>
-        <img [src]="safeImageUrl" alt="Featured Image" class="featured-image"> <!-- Updated line -->
-      
-        <!-- <div class="blog-content pt-30" [innerHTML]="post?.body" ></div> -->
-        <p class="blog-content text-2xl" [innerHTML]="safeHtmlContent"></p>
-        <p class="author">Author: {{ post?.author }}</p>
-      </div>
+      <article class="post-container">
+        <div class="post-header">
+          <h1 class="post-title">{{ post?.title }}</h1>
+          <div class="post-metadata">
+            <img src="../../../../../assets/tutorPhotos/Aman (2).jpeg" alt="{{ post?.author }}" class="author-image">
+            <div>
+              <span class="post-author">By {{ post?.author }}</span>
+              <p class="post-date">{{ post?.createdAt | date:'longDate' }}</p>
+            </div>
+          </div>
+        </div>
+        <img [src]="safeImageUrl" alt="Featured Image" class="featured-image">
+        <div class="post-body" [innerHTML]="safeHtmlContent"></div>
+
+
+      </article>
     </ng-container>
     <ng-container *ngIf="loading">
-      <div class="mt-4 flex flex-col items-center justify-center gap-2">
-        <span class="loading loading-spinner loading-lg bg-typography-primary"></span>
-        <p class="text-sm font-semibold">Loading</p>
+      <div class="loading-container">
+        <span class="loading-spinner"></span>
+        <p>Loading...</p>
       </div>
     </ng-container>
   </section>
