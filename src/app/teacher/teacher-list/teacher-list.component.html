@@ -1,75 +1,76 @@
+<!-- Header -->
+<header class="header">
+  <div class="container">
+    <div class="logo">
+      <a href="#">Perfect Teacher</a>
+    </div>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="container">
-      <div class="logo">
-        <a href="#">Perfect Teacher</a>
+    <!-- Search Section with Dropdowns for Subject, Board, and Grade -->
+    <div class="search-container">
+      <div class="search-bar">
+        <select class="search-dropdown" id="subject-dropdown" aria-label="Subject">
+          <option value="" disabled selected>Choose Subject</option>
+          <option value="maths">Maths</option>
+          <option value="english">English</option>
+          <option value="physics">Physics</option>
+          <option value="chemistry">Chemistry</option>
+        </select>
+
+        <select class="search-dropdown" id="board-dropdown" aria-label="Board">
+          <option value="" disabled selected>Choose Board</option>
+          <option value="cbse">CBSE</option>
+          <option value="icse">ICSE</option>
+          <option value="state-board">State Board</option>
+        </select>
+
+        <select class="search-dropdown" id="grade-dropdown" aria-label="Grade">
+          <option value="" disabled selected>Choose Grade</option>
+          <option value="grade-10">Grade 10</option>
+          <option value="grade-11">Grade 11</option>
+          <option value="grade-12">Grade 12</option>
+        </select>
+
+        <button (click)="searchTutors()">Search</button>
       </div>
+    </div>
 
-      <!-- Search Section with Dropdowns for Subject, Board, and Grade -->
-      <div class="search-container">
-        <div class="search-bar">
-          <select class="search-dropdown" id="subject-dropdown" aria-label="Subject">
-            <option value="" disabled selected>Choose Subject</option>
-            <option value="maths">Maths</option>
-            <option value="english">English</option>
-            <option value="physics">Physics</option>
-            <option value="chemistry">Chemistry</option>
-          </select>
-
-          <select class="search-dropdown" id="board-dropdown" aria-label="Board">
-            <option value="" disabled selected>Choose Board</option>
-            <option value="cbse">CBSE</option>
-            <option value="icse">ICSE</option>
-            <option value="state-board">State Board</option>
-          </select>
-
-          <select class="search-dropdown" id="grade-dropdown" aria-label="Grade">
-            <option value="" disabled selected>Choose Grade</option>
-            <option value="grade-10">Grade 10</option>
-            <option value="grade-11">Grade 11</option>
-            <option value="grade-12">Grade 12</option>
-          </select>
-
-          <button (click)="searchTutors()">Search</button>
-        </div>
-      </div>
-
-      <!-- Category Menu with Scrollable Icons and Arrows at the Corners -->
-      <div class="scrollable-category-container">
-        <div class="category-buttons-wrapper">
-          <div class="category-buttons">
-            <button><i class="fas fa-book" aria-hidden="true"></i> <span class="sr-only">English</span> English</button>
-            <button><i class="fas fa-square-root-alt" aria-hidden="true"></i> <span class="sr-only">Maths</span>
-              Maths</button>
-            <button><i class="fas fa-dna" aria-hidden="true"></i> <span class="sr-only">Biology</span> Biology</button>
-            <button><i class="fas fa-flask" aria-hidden="true"></i> <span class="sr-only">Chemistry</span>
-              Chemistry</button>
-            <button><i class="fas fa-atom" aria-hidden="true"></i> <span class="sr-only">Physics</span> Physics</button>
-            <button><i class="fas fa-globe" aria-hidden="true"></i> <span class="sr-only">Social Science</span> Social
-              Science</button>
-            <button><i class="fas fa-chart-line" aria-hidden="true"></i> <span class="sr-only">Economy</span>
-              Economy</button>
-            <button><i class="fas fa-landmark" aria-hidden="true"></i> <span class="sr-only">History</span>
-              History</button>
-            <button><i class="fas fa-map" aria-hidden="true"></i> <span class="sr-only">Geography</span>
-              Geography</button>
-            <button><i class="fas fa-gavel" aria-hidden="true"></i> <span class="sr-only">Polity</span> Polity</button>
-          </div>
+    <!-- Category Menu with Scrollable Icons and Arrows at the Corners -->
+    <div class="scrollable-category-container">
+      <div class="category-buttons-wrapper">
+        <div class="category-buttons">
+          <button><i class="fas fa-book" aria-hidden="true"></i> <span class="sr-only">English</span> English</button>
+          <button><i class="fas fa-square-root-alt" aria-hidden="true"></i> <span class="sr-only">Maths</span>
+            Maths</button>
+          <button><i class="fas fa-dna" aria-hidden="true"></i> <span class="sr-only">Biology</span> Biology</button>
+          <button><i class="fas fa-flask" aria-hidden="true"></i> <span class="sr-only">Chemistry</span>
+            Chemistry</button>
+          <button><i class="fas fa-atom" aria-hidden="true"></i> <span class="sr-only">Physics</span> Physics</button>
+          <button><i class="fas fa-globe" aria-hidden="true"></i> <span class="sr-only">Social Science</span> Social
+            Science</button>
+          <button><i class="fas fa-chart-line" aria-hidden="true"></i> <span class="sr-only">Economy</span>
+            Economy</button>
+          <button><i class="fas fa-landmark" aria-hidden="true"></i> <span class="sr-only">History</span>
+            History</button>
+          <button><i class="fas fa-map" aria-hidden="true"></i> <span class="sr-only">Geography</span>
+            Geography</button>
+          <button><i class="fas fa-gavel" aria-hidden="true"></i> <span class="sr-only">Polity</span> Polity</button>
         </div>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <section class="teachers-container">
-    <div class="section-header">
-      <h2>Our Star Teachers</h2>
-    </div>
-  
-    <ng-container *ngIf="courseslist && courseslist.length > 0; else noTutors">
-      <div class="teachers-card-container">
-        <!-- Teacher Card 1 -->
-        <div class="teacher-card" *ngFor="let coursesd of courseslist">
+<section class="teachers-container">
+  <div class="section-header">
+    <h2>Our Star Teachers</h2>
+  </div>
+
+  <ng-container *ngIf="courseslist && courseslist.length > 0; else noTutors">
+    <div class="teachers-card-container">
+      <!-- Teacher Card 1 -->
+      <div class="teacher-card" *ngFor="let coursesd of courseslist">
+        <div (click)="goToCoursePage(coursesd)">
+
           <div class="teacher-image">
             <img [src]="getSafeImageUrl(coursesd?.courseThumbnail)" alt="Featured Image">
           </div>
@@ -87,12 +88,14 @@
             <p class="price">{{ coursesd?.currency }} {{ coursesd?.costPerSessions }} · 1st free class</p>
           </div>
         </div>
+
       </div>
-    </ng-container>
-  
-    <ng-template #noTutors>
-      <div>
-        <p>No tutors available at the moment.</p>
-      </div>
-    </ng-template>
-  </section>
+    </div>
+  </ng-container>
+
+  <ng-template #noTutors>
+    <div>
+      <p>No tutors available at the moment.</p>
+    </div>
+  </ng-template>
+</section>

@@ -5,6 +5,7 @@ import { PostsService } from '../../core/services/posts.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { catchError, of, tap } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'about-us',
@@ -17,19 +18,19 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class TeacherListComponent implements OnInit {
   courseslist: any[] = [];
 
-  constructor(private cdr: ChangeDetectorRef, 
+  constructor(private cdr: ChangeDetectorRef,
     private readonly postsService: PostsService,
-    private sanitizer: DomSanitizer 
+    private sanitizer: DomSanitizer, private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.getCourses();
   }
 
-  
   getSafeImageUrl(url: string): SafeUrl {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
+
   getCourses(): void {
     this.postsService.getAllCourseList().pipe(
       tap((response: any) => {
@@ -47,5 +48,13 @@ export class TeacherListComponent implements OnInit {
   searchTutors(): void {
     // Placeholder function to handle tutor search
     console.log("Search button clicked - implement search functionality here");
+  }
+
+  goToCoursePage(cousedata: any) {
+    console.log(cousedata);
+    // sessionStorage.setItem('courseTeacherId', cousedata?.teacherId);
+    this.router.navigate(['/course_full_page', cousedata.teacherId]);
+
+    // this.router.navigateByUrl('/course_full_page' + cousedata?.teacherId);
   }
 }

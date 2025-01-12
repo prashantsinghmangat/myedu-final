@@ -24,25 +24,25 @@ export class CreateCourseComponent {
     courseThumbnail: string;
     language: string;
     mode: string;
-   // teacherImage: File | null; // Define teacherImage as File or null
+    // teacherImage: File | null; // Define teacherImage as File or null
   } = {
-    subject: '',
-    board: '',
-    class: '',
-    weeklySession: null,
-    costPerSession: null,
-    currency: '',
-    aboutThisCourse: '',
-    courseThumbnail: '',
-    language: '',
-    mode: 'Online', // Default value set to 'Online'
-  //  teacherImage: null, // Default value for teacherImage
-  };
+      subject: '',
+      board: '',
+      class: '',
+      weeklySession: null,
+      costPerSession: null,
+      currency: '',
+      aboutThisCourse: '',
+      courseThumbnail: '',
+      language: '',
+      mode: 'Online', // Default value set to 'Online'
+      //  teacherImage: null, // Default value for teacherImage
+    };
 
   classOptions: number[] = [5, 6, 7, 8, 9, 10, 11, 12];
- // teacherImagePreview: string | null = null; // To store the preview URL
+  // teacherImagePreview: string | null = null; // To store the preview URL
 
-  constructor(private readonly postsService: PostsService, private router: Router) {}
+  constructor(private readonly postsService: PostsService, private router: Router) { }
 
   // Method to handle form submission
   onSubmit() {
@@ -63,12 +63,12 @@ export class CreateCourseComponent {
       formData.append('language', this.course.language);
       formData.append('mode', this.course.mode);
 
+      console.log("data from request: ", formData);
 
 
-      
-    /*  if (this.course.teacherImage) {
-        formData.append('teacherImage', this.course.teacherImage); // Append image file
-      } */
+      /*  if (this.course.teacherImage) {
+          formData.append('teacherImage', this.course.teacherImage); // Append image file
+        } */
 
       this.postsService.createCourse(formData).subscribe((res: any) => {
         if (res.isSuccess === true) {
@@ -112,93 +112,93 @@ export class CreateCourseComponent {
       courseThumbnail: '',
       language: '',
       mode: 'Online', // Reset to default value
-    //  teacherImage: null, // Reset teacherImage
+      //  teacherImage: null, // Reset teacherImage
     };
-   // this.teacherImagePreview = null; // Reset image preview
+    // this.teacherImagePreview = null; // Reset image preview
   }
 
   // Method to handle teacher image upload and preview
- /* onTeacherImageUpload(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
+  /* onTeacherImageUpload(event: Event): void {
+     const input = event.target as HTMLInputElement;
+     if (input.files && input.files.length > 0) {
+       const file = input.files[0];
+ 
+       // Validation for file type (optional)
+       if (!file.type.startsWith('image/')) {
+         alert('Selected file is not an image.');
+         return;
+       }
+ 
+       // Validation for file size (optional, e.g., 2 MB limit)
+       if (file.size > 2 * 1024 * 1024) {
+         alert('File size exceeds 2 MB.');
+         return;
+       }
+ 
+       // Generate a preview URL
+       const reader = new FileReader();
+       reader.onload = () => {
+         this.teacherImagePreview = reader.result as string; // Update preview
+       };
+       reader.readAsDataURL(file);
+ 
+       // Save the image file to the course object
+       this.course.teacherImage = file;
+     }
+   } */
 
-      // Validation for file type (optional)
-      if (!file.type.startsWith('image/')) {
-        alert('Selected file is not an image.');
-        return;
-      }
+  // list of subjects
 
-      // Validation for file size (optional, e.g., 2 MB limit)
-      if (file.size > 2 * 1024 * 1024) {
-        alert('File size exceeds 2 MB.');
-        return;
-      }
+  subjects: string[] = [
+    'Mathematics',
+    'English',
+    'Science',
+    'History',
+    'Geography',
+    'Physics',
+    'Chemistry',
+    'Biology',
+    'Computer Science',
+    'Economics',
+    'Hindi',
+    'Accounting'
+  ];
 
-      // Generate a preview URL
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.teacherImagePreview = reader.result as string; // Update preview
-      };
-      reader.readAsDataURL(file);
-
-      // Save the image file to the course object
-      this.course.teacherImage = file;
-    }
-  } */
-
-// list of subjects
-
-subjects: string[] = [
-  'Mathematics',
-  'English',
-  'Science',
-  'History',
-  'Geography',
-  'Physics',
-  'Chemistry',
-  'Biology',
-  'Computer Science',
-  'Economics',
-  'Hindi',
-  'Accounting'
-];
-
-// School boards
-schoolBoardsShortform: string[] = [
-  "IB",
-  "IGCSE",
-  "Edexcel",
-  "OxfordAQA",
-  "US Common Core",
-  "College Board",
-  "TDSB",
-  "VSB",
-  "CBE",
-  "EPS",
-  "AQA",
-  "OCR",
-  "WJEC",
-  "CCEA",
-  "BAC",
-  "Abitur",
-  "Maturità",
-  "CITO",
-  "Skolverket",
-  "CBSE",
-  "ICSE",
-  "State Boards",
-  "NIOS",
-  "Gaokao",
-  "MEXT",
-  "GCE O-Level",
-  "GCE A-Level",
-  "NSC",
-  "NESA",
-  "VCAA",
-  "ACARA",
-  "NZQA"
-];
+  // School boards
+  schoolBoardsShortform: string[] = [
+    "IB",
+    "IGCSE",
+    "Edexcel",
+    "OxfordAQA",
+    "US Common Core",
+    "College Board",
+    "TDSB",
+    "VSB",
+    "CBE",
+    "EPS",
+    "AQA",
+    "OCR",
+    "WJEC",
+    "CCEA",
+    "BAC",
+    "Abitur",
+    "Maturità",
+    "CITO",
+    "Skolverket",
+    "CBSE",
+    "ICSE",
+    "State Boards",
+    "NIOS",
+    "Gaokao",
+    "MEXT",
+    "GCE O-Level",
+    "GCE A-Level",
+    "NSC",
+    "NESA",
+    "VCAA",
+    "ACARA",
+    "NZQA"
+  ];
 
 
 }
