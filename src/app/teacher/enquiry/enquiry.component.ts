@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 
 import { PostsService } from '../../core/services/posts.service';
 import { Router } from '@angular/router';
+import { catchError, of, tap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -17,7 +18,7 @@ export class enquiryComponent {
   enquiryForm: FormGroup;
   classOptions: string[] = ['6th Grade', '7th Grade', '8th Grade', '9th Grade', '10th Grade'];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private readonly postsService: PostsService,) {
     this.enquiryForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       class: ['', [Validators.required]],
@@ -31,8 +32,21 @@ export class enquiryComponent {
     try {
       if (this.enquiryForm.valid) {
         console.log('Form Submitted', this.enquiryForm.value);
-        alert('Thank you for your enquiry!');
-        this.enquiryForm.reset({ countryCode: '+91' });
+
+        this.postsService.studentQuery(this.enquiryForm.value).pipe(
+          tap((response: any) => {
+            console.log("Fetched Courses:", response);
+            alert('Thank you for your enquiry!');
+            this.enquiryForm.reset({ countryCode: '+91' });
+            // this.coursesDetails = response?.data || [];
+          }),
+          catchError((error: any) => {
+            console.error("Error fetching courses:", error);
+            return of([]);
+          })
+        ).subscribe();
+
+       
       } else {
         alert('Please fill out the form correctly before submitting.');
       }
