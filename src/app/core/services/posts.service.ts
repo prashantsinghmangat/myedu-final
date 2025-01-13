@@ -70,6 +70,17 @@ export class PostsService {
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
   }
 
+  getCourseDetails(teacherid: any) {
+    return this.http.get<any>(`${environment.myEduBaseUrl}/courseDetails/${teacherid}`)
+      .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
+  }
+
+  studentQuery(studentdetails: any) {
+    return this.http.post('http://api.myedusync.com/studentQuery', studentdetails);
+    // return this.http.post<any>(`${environment.myEduBaseUrl}/studentQuery`, studentdetails)
+    //   .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
+  }
+
   allTutorEducationList() {
     return this.http
       .get<any>(`${environment.myEduBaseUrl}/allTutorEducationList`)

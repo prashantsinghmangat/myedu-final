@@ -25,7 +25,7 @@ export const routes: Routes = [
   },
 
   {
-    path: 'course_full_page',
+    path: 'course_full_page/:id',
     loadComponent: () => import('./pages/course_full_page/course_full_page.component').then((m) => m.CourseFullPageComponent), title: 'course_full_page',
   },
 
@@ -59,11 +59,6 @@ export const routes: Routes = [
     loadComponent: () => import('./teacher/enquiry/enquiry.component').then((m) => m.enquiryComponent),
     title: 'enquiry',
   },
-
-
-
-
-
 
   {
     path: 'add-experience',

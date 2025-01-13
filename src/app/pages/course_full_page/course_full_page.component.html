@@ -24,38 +24,34 @@
     <table class="course-table">
       <tr>
         <td><i class="fas fa-book"></i> <strong>Subject:</strong></td>
-        <td>Physics</td>
+        <td>{{coursesDetails?.subject}}</td>
       </tr>
       <tr>
         <td><i class="fas fa-school"></i> <strong>Board:</strong></td>
-        <td>CBSE</td>
+        <td>{{coursesDetails?.board}}</td>
       </tr>
       <tr>
         <td><i class="fas fa-chalkboard-teacher"></i> <strong>Class:</strong></td>
-        <td>12</td>
+        <td>{{coursesDetails?.className}}</td>
       </tr>
       <tr>
         <td><i class="fas fa-calendar-week"></i> <strong>Weekly Sessions:</strong></td>
-        <td>3</td>
+        <td>{{coursesDetails?.weeklySessions}}</td>
       </tr>
       <tr>
         <td><i class="fas fa-dollar-sign"></i> <strong>Cost Per Session:</strong></td>
-        <td>$50</td>
+        <td>{{courseDetails?.currency}} {{coursesDetails?.costPerSessions  }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-language"></i> <strong>Language:</strong></td>
-        <td>English</td>
+        <td>{{coursesDetails?.language}}</td>
       </tr>
       <tr>
         <td><i class="fas fa-laptop"></i> <strong>Mode:</strong></td>
-        <td>Online</td>
+        <td>{{coursesDetails?.mode}}</td>
       </tr>
     </table>
     <h3>About This Course</h3>
-    <p>
-      This course offers an engaging and practical approach to mastering Physics for Class 12, ensuring 
-      conceptual clarity and exam readiness. The course includes comprehensive materials and guidance 
-      to help you excel in academics.
-    </p>
+    <p>{{coursesDetails?.aboutThisCourse}}</p>
   </div>
 </div>
