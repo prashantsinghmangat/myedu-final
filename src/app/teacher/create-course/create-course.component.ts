@@ -48,40 +48,40 @@ export class CreateCourseComponent {
   onSubmit() {
     if (this.isFormValid()) {
       console.log('Course created successfully:', this.course);
-
-      // Create FormData for file upload
-      const formData = new FormData();
-      formData.append('subject', this.course.subject);
-      formData.append('board', this.course.board);
-      formData.append('className', this.course.class);
-      formData.append('weeklySessions', String(this.course.weeklySession));
-      formData.append('costPerSessions', String(this.course.costPerSession));
-      formData.append('currency', this.course.currency);
-      formData.append('aboutThisCourse', this.course.aboutThisCourse);
-      formData.append('courseThumbnail', this.course.courseThumbnail);
-
-      formData.append('language', this.course.language);
-      formData.append('mode', this.course.mode);
-
-
-
-      
-    /*  if (this.course.teacherImage) {
-        formData.append('teacherImage', this.course.teacherImage); // Append image file
-      } */
-
-      this.postsService.createCourse(formData).subscribe((res: any) => {
-        if (res.isSuccess === true) {
-          console.log('res:', res?.data);
-          alert('Course created successfully!');
-          this.router.navigate(['/profile']);
-          this.clearForm(); // Clear the form after submission
+  
+      // Construct JSON payload directly from the course object
+      const payload = {
+        subject: this.course.subject,
+        board: this.course.board,
+        className: this.course.class,
+        weeklySessions: this.course.weeklySession, // Assume the type conversion to string is not needed
+        costPerSessions: this.course.costPerSession, // Assume the type conversion to string is not needed
+        currency: this.course.currency,
+        aboutThisCourse: this.course.aboutThisCourse,
+        courseThumbnail: this.course.courseThumbnail,
+        language: this.course.language,
+        mode: this.course.mode
+      };
+  
+      this.postsService.createCourse(payload).subscribe({
+        next: (res: any) => {
+          if (res.isSuccess) {
+            console.log('Response:', res.data);
+            alert('Course created successfully!');
+            this.router.navigate(['/profile']); // Navigate after successful creation
+            this.clearForm(); // Clear the form to reset the state
+          }
+        },
+        error: (error) => {
+          console.error('Failed to create course:', error);
+          alert('Failed to create the course. Please check the details and try again.');
         }
       });
     } else {
       alert('Please fill out all fields correctly.');
     }
   }
+  
 
   // Validation logic to ensure required fields are filled out
   isFormValid() {

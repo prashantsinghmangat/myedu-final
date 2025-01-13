@@ -7,7 +7,7 @@
   min-height: 100vh;
   background-color: #f9f9f9; // Light grey background for the whole host component
   color: #333; // Default text color
-  font-family: 'Arial', sans-serif; // Default font for the content
+  font-family: 'Roboto', 'Arial', sans-serif; // Roboto as primary, Arial as fallback
 }
 
 .post-section {
@@ -54,77 +54,78 @@
 }
 
 .featured-image {
-  width: 100%;
-  max-height: 350px;
-  object-fit: cover;
-  object-position: center; /* Default is center, but can be top, bottom, 50% 20%, etc. */
-  border-radius: 8px;
-  margin-bottom: 20px;
+  width: 100%; /* Full width of the container */
+  max-height: 350px; /* Maximum height allowed */
+  object-fit: cover; /* Adjusts the size of the image to fit the container while showing the whole image */
+  object-position: center; /* Centers the image within the container */
+  border-radius: 8px; /* Rounded corners */
+  margin-bottom: 20px; /* Space below the image */
+  border: 2px solid #275E94; /* Blue border, 1px thick */
 }
 
 
 
 .post-body {
+
+
+
   font-size: 18px;
   line-height: 1.8;
   color: #444; // Slightly darker grey for body text
   text-align: left;
+  
 
   p, ul, ol, li {
     margin-bottom: 10px;
-    font-size: 18px; // Readable text size
+    font-size: 18px;
   }
 
   ul, ol {
-    padding-left: 20px; // Proper indentation for lists
+    padding-left: 20px;
   }
 
   li {
-    list-style-type: disc; // Ensures visible bullet points
+    list-style-type: disc;
   }
 
   b, strong {
-    font-weight: bold; // Ensures bold texts are appropriately bold
+    font-weight: bold;
   }
 
   a {
-    color: #1a0dab; // Link color similar to default web blue
-    text-decoration: none; // No underline by default
+    color: #1a0dab; // Link color
+    text-decoration: none;
 
     &:hover {
-      text-decoration: underline; // Underline on hover for links
+      text-decoration: underline;
     }
   }
 
   img {
-    max-width: 100%; // Ensures images do not overflow the content width
-    height: auto; // Keeps image aspect ratio
-    margin-top: 10px; // Space above images within text
-    margin-bottom: 10px; // Space below images within text
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
-  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
 }
-
-.post-body table {
-  width: 100%; // Ensures the table stretches to the width of the post body
-  border-collapse: collapse; // Collapses border to avoid double borders
-  margin-top: 20px; // Adds margin on top of the table for spacing
-  margin-bottom: 20px; // Adds margin below the table for spacing
-}
-
-.post-body th, .post-body td {
-  border: 1px solid #ccc; // Adds borders to cells
-  padding: 8px; // Adds padding inside cells for better readability
-  text-align: left; // Aligns text to the left; adjust as needed
-}
-
-.post-body th {
-  background-color: #f2f2f2; // Gives a background color to header cells
-  font-weight: bold; // Makes text bold in header cells
-}
-
-
 
 .loading-container {
   display: flex;

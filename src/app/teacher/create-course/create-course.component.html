@@ -93,13 +93,12 @@
         <div class="form-group">
             <label for="courseThumbnail">Course Image Link</label>
             <input type="text" id="courseThumbnail" class="input-field" [(ngModel)]="course.courseThumbnail"
-                name="courseThumbnail" placeholder="Paste the image link here" required minlength="3"
+                name="courseThumbnail" placeholder="Enter the teacher profile" required minlength="3"
                 #courseThumbnail="ngModel">
             <div *ngIf="courseThumbnail.invalid && courseThumbnail.touched" class="error-msg">
-                Upload the image to your drive and share the link here. The link must be at least 3 characters long.
+                Upload the image to your drive and share the link here
             </div>
         </div>
-        
         
      
         
