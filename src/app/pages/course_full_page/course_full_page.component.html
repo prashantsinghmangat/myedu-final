@@ -21,37 +21,38 @@
       <button class="enroll-button" (click)="navigateToEnquiry()">Join this Course</button>
     </div>
     
+    <!-- Using the async pipe within each binding ensures the table layout remains visible -->
     <table class="course-table">
       <tr>
         <td><i class="fas fa-book"></i> <strong>Subject:</strong></td>
-        <td>{{coursesDetails?.subject}}</td>
+        <td>{{ (courseDetails$ | async)?.subject }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-school"></i> <strong>Board:</strong></td>
-        <td>{{coursesDetails?.board}}</td>
+        <td>{{ (courseDetails$ | async)?.board }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-chalkboard-teacher"></i> <strong>Class:</strong></td>
-        <td>{{coursesDetails?.className}}</td>
+        <td>{{ (courseDetails$ | async)?.className }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-calendar-week"></i> <strong>Weekly Sessions:</strong></td>
-        <td>{{coursesDetails?.weeklySessions}}</td>
+        <td>{{ (courseDetails$ | async)?.weeklySessions }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-dollar-sign"></i> <strong>Cost Per Session:</strong></td>
-        <td>{{courseDetails?.currency}} {{coursesDetails?.costPerSessions  }}</td>
+        <td>{{ (courseDetails$ | async)?.currency }} {{ (courseDetails$ | async)?.costPerSessions }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-language"></i> <strong>Language:</strong></td>
-        <td>{{coursesDetails?.language}}</td>
+        <td>{{ (courseDetails$ | async)?.language }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-laptop"></i> <strong>Mode:</strong></td>
-        <td>{{coursesDetails?.mode}}</td>
+        <td>{{ (courseDetails$ | async)?.mode }}</td>
       </tr>
     </table>
     <h3>About This Course</h3>
-    <p>{{coursesDetails?.aboutThisCourse}}</p>
+    <p>{{ (courseDetails$ | async)?.aboutThisCourse }}</p>
   </div>
 </div>
