@@ -4,14 +4,11 @@
     <div class="profile-picture">
       <p>Tutor Profile Picture</p>
     </div>
-    <h3>John Doe</h3>
-    <p class="tutor-title">Senior Physics Tutor</p>
-    <p class="tutor-location">New York, USA</p>
+    <h3>{{ (courseDetails$ | async)?.data.name }}</h3>
+    <p class="tutor-title">{{ (courseDetails$ | async)?.data.currentDesignation }}</p>
+    <p class="tutor-location">{{ (courseDetails$ | async)?.data.location }}</p>
     <h4>About Tutor</h4>
-    <p class="about-tutor">
-      John Doe is an experienced Physics tutor with over 10 years of teaching experience. 
-      He specializes in simplifying complex concepts and has helped many students achieve academic success.
-    </p>
+    <p class="about-tutor">{{ (courseDetails$ | async)?.data.aboutMe }}</p>
   </div>
 
   <!-- Course Info -->
@@ -25,34 +22,34 @@
     <table class="course-table">
       <tr>
         <td><i class="fas fa-book"></i> <strong>Subject:</strong></td>
-        <td>{{ (courseDetails$ | async)?.subject }}</td>
+        <td>{{ (courseDetails$ | async)?.data.subject }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-school"></i> <strong>Board:</strong></td>
-        <td>{{ (courseDetails$ | async)?.board }}</td>
+        <td>{{ (courseDetails$ | async)?.data.board }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-chalkboard-teacher"></i> <strong>Class:</strong></td>
-        <td>{{ (courseDetails$ | async)?.className }}</td>
+        <td>{{ (courseDetails$ | async)?.data.className }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-calendar-week"></i> <strong>Weekly Sessions:</strong></td>
-        <td>{{ (courseDetails$ | async)?.weeklySessions }}</td>
+        <td>{{ (courseDetails$ | async)?.data.weeklySessions }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-dollar-sign"></i> <strong>Cost Per Session:</strong></td>
-        <td>{{ (courseDetails$ | async)?.currency }} {{ (courseDetails$ | async)?.costPerSessions }}</td>
+        <td>{{ (courseDetails$ | async)?.data.currency }} {{ (courseDetails$ | async)?.data.costPerSessions }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-language"></i> <strong>Language:</strong></td>
-        <td>{{ (courseDetails$ | async)?.language }}</td>
+        <td>{{ (courseDetails$ | async)?.data.language }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-laptop"></i> <strong>Mode:</strong></td>
-        <td>{{ (courseDetails$ | async)?.mode }}</td>
+        <td>{{ (courseDetails$ | async)?.data.mode }}</td>
       </tr>
     </table>
     <h3>About This Course</h3>
-    <p>{{ (courseDetails$ | async)?.aboutThisCourse }}</p>
+    <p>{{ (courseDetails$ | async)?.data.aboutThisCourse }}</p>
   </div>
 </div>
