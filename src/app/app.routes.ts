@@ -30,6 +30,12 @@ export const routes: Routes = [
   },
 
   {
+    path: 'enquiry/:courseId/:teacherId',
+    loadComponent: () => import('./teacher/enquiry/enquiry.component').then((m) => m.enquiryComponent),
+    title: 'enquiry',
+  },
+
+  {
     path: 'post/:id', loadComponent: () => import('./pages/post/post.component').then((m) => m.PostComponent),
   },
   {
@@ -51,13 +57,6 @@ export const routes: Routes = [
     path: 'add-education',
     loadComponent: () => import('./teacher/add-education/add-education.component').then((m) => m.AddEducationComponent),
     title: 'add-education',
-  },
-
-
-  {
-    path: 'enquiry',
-    loadComponent: () => import('./teacher/enquiry/enquiry.component').then((m) => m.enquiryComponent),
-    title: 'enquiry',
   },
 
   {

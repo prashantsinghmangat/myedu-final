@@ -1,14 +1,14 @@
-<div class="container">
+<div class="container"  *ngIf="courseDetails$ | async as courseDetails">
   <!-- Tutor Card -->
   <div class="tutor-card">
     <div class="profile-picture">
       <p>Tutor Profile Picture</p>
     </div>
-    <h3>{{ (courseDetails$ | async)?.data.name }}</h3>
-    <p class="tutor-title">{{ (courseDetails$ | async)?.data.currentDesignation }}</p>
-    <p class="tutor-location">{{ (courseDetails$ | async)?.data.location }}</p>
+    <h3>{{ courseDetails?.data.name }}</h3>
+    <p class="tutor-title">{{ courseDetails?.data.currentDesignation }}</p>
+    <p class="tutor-location">{{ courseDetails?.data.location }}</p>
     <h4>About Tutor</h4>
-    <p class="about-tutor">{{ (courseDetails$ | async)?.data.aboutMe }}</p>
+    <p class="about-tutor">{{ courseDetails?.data.aboutMe }}</p>
   </div>
 
   <!-- Course Info -->
@@ -22,34 +22,34 @@
     <table class="course-table">
       <tr>
         <td><i class="fas fa-book"></i> <strong>Subject:</strong></td>
-        <td>{{ (courseDetails$ | async)?.data.subject }}</td>
+        <td>{{ courseDetails?.data.subject }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-school"></i> <strong>Board:</strong></td>
-        <td>{{ (courseDetails$ | async)?.data.board }}</td>
+        <td>{{ courseDetails?.data.board }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-chalkboard-teacher"></i> <strong>Class:</strong></td>
-        <td>{{ (courseDetails$ | async)?.data.className }}</td>
+        <td>{{ courseDetails?.data.className }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-calendar-week"></i> <strong>Weekly Sessions:</strong></td>
-        <td>{{ (courseDetails$ | async)?.data.weeklySessions }}</td>
+        <td>{{ courseDetails?.data.weeklySessions }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-dollar-sign"></i> <strong>Cost Per Session:</strong></td>
-        <td>{{ (courseDetails$ | async)?.data.currency }} {{ (courseDetails$ | async)?.data.costPerSessions }}</td>
+        <td>{{ courseDetails?.data.currency }} {{ courseDetails?.data.costPerSessions }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-language"></i> <strong>Language:</strong></td>
-        <td>{{ (courseDetails$ | async)?.data.language }}</td>
+        <td>{{ courseDetails?.data.language }}</td>
       </tr>
       <tr>
         <td><i class="fas fa-laptop"></i> <strong>Mode:</strong></td>
-        <td>{{ (courseDetails$ | async)?.data.mode }}</td>
+        <td>{{ courseDetails?.data.mode }}</td>
       </tr>
     </table>
     <h3>About This Course</h3>
-    <p>{{ (courseDetails$ | async)?.data.aboutThisCourse }}</p>
+    <p>{{ courseDetails?.data.aboutThisCourse }}</p>
   </div>
 </div>

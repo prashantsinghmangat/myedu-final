@@ -17,9 +17,9 @@ export class CourseFullPageComponent implements OnInit {
   courseDetails$!: Observable<any>; // Using non-null assertion
 
   constructor(private postsService: PostsService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute,
-              private http: HttpClient) { }
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private http: HttpClient) { }
 
   ngOnInit(): void {
     const courseId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -41,6 +41,14 @@ export class CourseFullPageComponent implements OnInit {
   }
 
   navigateToEnquiry(): void {
-    this.router.navigate(['/enquiry']);
+    this.courseDetails$.subscribe(courseDetails => {
+      console.log("course data: ", courseDetails.data)
+      if (courseDetails && courseDetails.data._id && courseDetails.data.teacherId) {
+        this.router.navigate(['/enquiry', courseDetails.data._id, courseDetails.data.teacherId]);
+      } else {
+        console.error("Course details or required properties (_id or teacherId) are missing.");
+      }
+    });
   }
+
 }
