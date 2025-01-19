@@ -26,10 +26,10 @@ export class AboutComponent {
   teacherList: any[] = [];
   getCourcesList(): void {
     console.log("api called")
-    this.postsService.allCourseList().pipe(
-      tap((coursedata: any) => {
-        console.log("coursedata profile : ", coursedata);
-        this.coursedata = coursedata?.data;
+    this.postsService.getTopTutorProfileWithLatestCourse().pipe(
+      tap((teacherdata: any) => {
+        console.log("teacherdata profile : ", teacherdata);
+        this.teacherList = teacherdata?.data;
         this.cdr.detectChanges();
       }),
       catchError((error: any) => {

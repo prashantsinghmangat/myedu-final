@@ -5,23 +5,23 @@
 <section class="teachers-container">
   <div class="teachers-card-container">
     <!-- Teacher Card 1 -->
-    <div class="teacher-card">
+    <div class="teacher-card" *ngFor="let teacher of teacherList">
       <div class="teacher-image">
         <img src="../../../../../assets/tutorPhotos/kamlesh.jpeg" alt="Dinesh">
         <div class="favorite-icon">♥</div> <!-- Moved the heart icon only -->
       </div>
       <div class="teacher-info">
-        <h3 class="teacher-name">kamlesh Verma</h3> 
-        <p class="teacher-location">Pune (face to face & online)</p> 
+        <h3 class="teacher-name">{{teacher?.name}}</h3>
+        <p class="teacher-location">{{teacher?.location}} (face to face & online)</p>
         <div class="top-info">
-          <p class="subject">Physics</p>
+          <p class="subject">{{teacher?.subject}}</p>
           <div class="rating-and-reviews">
             <span class="rating">★★★★★</span>
             <span class="reviews">(169 reviews)</span>
           </div>
         </div>
-        <p class="details">Masters in theoretical physics, certified teacher...</p>
-        <p class="price">₹850/hr · 1st free class</p>
+        <p class="details">{{teacher?.aboutMe}}</p>
+        <p class="price">{{teacher?.currency}} {{teacher?.costPerSessions}}/hr · 1st free class</p>
       </div>
     </div>
 
@@ -87,4 +87,3 @@
     </div>
 
   </div>
-
