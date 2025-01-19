@@ -7,16 +7,21 @@ import { catchError, of, tap } from 'rxjs';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'about-us',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, FormsModule],
   templateUrl: './teacher-list.component.html',
   styleUrls: ['./teacher-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeacherListComponent implements OnInit {
   courseslist: any[] = [];
+  selectedSubject: any = '';
+  selectedBoard: any = '';
+  selectedGrade: any = '';
 
   constructor(private cdr: ChangeDetectorRef,
     private readonly postsService: PostsService,
@@ -45,9 +50,42 @@ export class TeacherListComponent implements OnInit {
     ).subscribe();
   }
 
-  searchTutors(): void {
-    // Placeholder function to handle tutor search
-    console.log("Search button clicked - implement search functionality here");
+  searchTutors() {
+
+    if (!this.selectedSubject || !this.selectedBoard || !this.selectedGrade) {
+      alert('Please select all fields');
+      return;
+    }
+
+    const searchCriteria = {
+      subject: this.selectedSubject,
+      board: this.selectedBoard,
+      grade: this.selectedGrade
+    };
+
+    console.log('Search Criteria:', searchCriteria);
+
+    this.postsService.getSeachCourseList(searchCriteria).pipe(
+      tap((response: any) => {
+        console.log("Fetched Courses:", response);
+        this.courseslist = response?.data || [];
+        this.cdr.markForCheck(); // Only check once for updated data
+      }),
+      catchError((error: any) => {
+        console.error("Error fetching courses:", error);
+        this.courseslist = [];
+        this.cdr.markForCheck();
+        return of([]);
+      })
+    ).subscribe();
+  }
+
+  resetFilters() {
+    // Reset all dropdowns to default
+    this.selectedSubject = '';
+    this.selectedBoard = '';
+    this.selectedGrade = '';
+    this.getCourses();
   }
 
   goToCoursePage(cousedata: any) {

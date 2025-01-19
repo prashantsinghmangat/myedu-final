@@ -8,29 +8,32 @@
     <!-- Search Section with Dropdowns for Subject, Board, and Grade -->
     <div class="search-container">
       <div class="search-bar">
-        <select class="search-dropdown" id="subject-dropdown" aria-label="Subject">
+        <select class="search-dropdown" id="subject-dropdown" aria-label="Subject" [(ngModel)]="selectedSubject">
           <option value="" disabled selected>Choose Subject</option>
           <option value="maths">Maths</option>
           <option value="english">English</option>
           <option value="physics">Physics</option>
           <option value="chemistry">Chemistry</option>
+          <option value="Science">Science</option>
         </select>
 
-        <select class="search-dropdown" id="board-dropdown" aria-label="Board">
+        <select class="search-dropdown" id="board-dropdown" aria-label="Board" [(ngModel)]="selectedBoard">
           <option value="" disabled selected>Choose Board</option>
           <option value="cbse">CBSE</option>
           <option value="icse">ICSE</option>
+          <option value="IGCSE">IGCSE</option>
           <option value="state-board">State Board</option>
         </select>
 
-        <select class="search-dropdown" id="grade-dropdown" aria-label="Grade">
+        <select class="search-dropdown" id="grade-dropdown" aria-label="Grade" [(ngModel)]="selectedGrade">
           <option value="" disabled selected>Choose Grade</option>
-          <option value="grade-10">Grade 10</option>
-          <option value="grade-11">Grade 11</option>
-          <option value="grade-12">Grade 12</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+          <option value="12">12</option>
         </select>
 
         <button (click)="searchTutors()">Search</button>
+        <button (click)="resetFilters()">Reset Filters</button>
       </div>
     </div>
 
@@ -62,7 +65,7 @@
 
 <section class="teachers-container">
   <div class="section-header">
-    
+
   </div>
 
   <ng-container *ngIf="courseslist && courseslist.length > 0; else noTutors">

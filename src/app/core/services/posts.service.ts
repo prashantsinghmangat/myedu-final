@@ -75,6 +75,11 @@ export class PostsService {
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
   }
 
+  getSeachCourseList(searchValue: any) {
+    return this.http.get<any>(`${environment.myEduBaseUrl}/courses?page=0&limit=10&board=${searchValue.board}&class=${searchValue.grade}&subject=${searchValue.subject}`)
+      .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
+  }
+
   getCourseDetails(teacherid: any) {
     return this.http.get<any>(`${environment.myEduBaseUrl}/courseDetails/${teacherid}`)
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
@@ -128,7 +133,7 @@ export class PostsService {
   getLatestNotes() {
     return this.http.get<ApiPreviewPosts>(`${environment.myEduBaseUrl}/getNotesLists?page=0&limit=10`)
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
-}
+  }
 
 
   // getPosts(limit: number, offset: number) {
