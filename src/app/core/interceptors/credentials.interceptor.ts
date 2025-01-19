@@ -59,7 +59,7 @@ export function credentialsInterceptor(
 
         // Use router to navigate and then reload
         router.navigate(['/']).then(() => {
-          window.location.reload();
+          // window.location.reload();
         });
       }
       // Re-throw the error so it can be handled by other interceptors or components

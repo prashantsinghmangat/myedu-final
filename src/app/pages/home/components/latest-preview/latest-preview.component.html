@@ -1,102 +1,92 @@
- <!--lateest Post -->
- <div class="section-header">
+<!--lateest Post -->
+<div class="section-header">
   <h2>Fresh Notes for Learning</h2>
-  <p>Our newest educational notes are here to provide clarity, enhance learning, and support your exam preparation with relevant content.</p>
+  <p>Our newest educational notes are here to provide clarity, enhance learning, and support your exam preparation with
+    relevant content.</p>
 </div>
 
- <div class="card-container">
-  <div class="card">
-    <div class="category">Computer Science</div>
-    <h3 class="title">What Are Agile and Scrum? A Simple Guide for Beginners</h3>
-    <div class="image-container">
-      <img src="https://knowness.com/wp-content/uploads/2024/10/lala-azizli-tfNyTfJpKvc-unsplash-1536x1024.webp" alt="Agile and Scrum" />
+<div *ngIf="notesListArray.length" class="card-container">
+  <div *ngFor="let notedata of notesListArray" class="card">
+    <div (click)="openNoteDetails(notedata)">
+      <div class="category">{{notedata?.notesSubject}}</div>
+      <h3 class="title">{{notedata?.title}}</h3>
+      <div class="image-container">
+        <img [src]="getSafeImageUrl(notedata.featuredImage)" alt="Featured Image">
+        <!-- <img src="https://knowness.com/wp-content/uploads/2024/10/lala-azizli-tfNyTfJpKvc-unsplash-1536x1024.webp" alt="Agile and Scrum" /> -->
+      </div>
+      <p class="description">
+        {{ getPlainText(notedata.body) }}
+      </p>
+      <div class="date">{{ notedata.createdAt | date:'mediumDate' }}</div>
     </div>
-    <p class="description">
-      You’ve probably seen the terms Agile and Scrum in almost every tech job description out there. But what do they actually mean? If you're...
-    </p>
-    <div class="date">October 6, 2024</div>
   </div>
 
-  <div class="card">
-    <div class="category">Computer Science</div>
-    <h3 class="title">The Power of Rubber Ducky Debugging and the Cardboard Developer</h3>
-    <div class="image-container">
-      <img src="rubber-duck-debugging.jpg" alt="Rubber Ducky Debugging" />
-    </div>
-    <p class="description">
-      Debugging is one of the most challenging tasks in software development. Often, developers encounter unforeseen problems that leave them stumped...
-    </p>
-    <div class="date">September 27, 2024</div>
-  </div>
-
-  <div class="card">
-    <div class="category">Announcement</div>
-    <h3 class="title">Knowness Raises £100,000 Pre-Seed Investment to Revolutionise Education</h3>
-    <div class="image-container">
-      <img src="team-photo.jpg" alt="Knowness Team" />
-    </div>
-    <p class="description">
-      We are thrilled to announce that Knowness has successfully raised a £100,000 pre-seed investment, valuing our company at approximately £2.5 million...
-    </p>
-    <div class="date">September 25, 2024</div>
-  </div>
 </div>
 
 
-    <!--Review section -->
-    <div class="testimonial-section">
-      <h1>What Our Lovely Clients Say</h1>
-      <div class="testimonial-wrapper"> 
-      <div class="testimonial-container">
-          <!-- Review 1 -->
-          <div class="testimonial-card">
-              <div class="testimonial-image">
-                  <img src="https://static.vecteezy.com/system/resources/thumbnails/037/807/889/small_2x/ai-generated-confident-businesswoman-with-crossed-arm-isolated-in-yellow-background-free-photo.jpg" alt="Elena Gilbert">
-              </div>
-              <div class="testimonial-content">
-                  <h3>Elena Gilbert</h3>
-                  <p class="role">Parent in California</p>
-                  <div class="rating">★★★★★</div>
-                  <p>Since joining MyEduSync, my daughter's confidence in math has skyrocketed! The personalized attention she receives is truly transforming her approach to learning.</p>
-              </div>
-          </div>
-          <!-- Review 2 -->
-          <div class="testimonial-card">
-              <div class="testimonial-image">
-                  <img src="https://t4.ftcdn.net/jpg/03/03/11/97/360_F_303119721_EabYowCVsPMkCo7UMSGWx4Z2AvNkR7bV.jpg" alt="Rajesh Singh">
-              </div>
-              <div class="testimonial-content">
-                  <h3>Rajesh Singh</h3>
-                  <p class="role">Student in New York</p>
-                  <div class="rating">★★★★☆</div>
-                  <p>MyEduSync's interactive lessons make learning complex science topics engaging and accessible. I'm genuinely looking forward to my future lessons!</p>
-              </div>
-          </div>
-          <!-- Review 3 -->
-          <div class="testimonial-card">
-              <div class="testimonial-image">
-                  <img src="https://media.istockphoto.com/id/1444184996/photo/young-asian-ethnicity-businesswoman-having-a-video-conference-at-her-office.jpg?s=612x612&w=0&k=20&c=pPtjXuomUAsrhb6M0tRomoHKywxkdimp51TSNUkUDHo=" alt="Laura Johnson">
-              </div>
-              <div class="testimonial-content">
-                  <h3>Laura Johnson</h3>
-                  <p class="role">Educator in London</p>
-                  <div class="rating">★★★★★</div>
-                  <p>Partnering with MyEduSync has allowed me to reach students across the globe, enhancing both their and my own educational experiences. This platform is a game-changer!</p>
-              </div>
-          </div>
-          <!-- Review 4 -->
-          <div class="testimonial-card">
-              <div class="testimonial-image">
-                  <img src="https://img.freepik.com/free-photo/portrait-man-visiting-luxurious-city-dubai_23-2151328612.jpg" alt="Mohammad Al Fayed">
-              </div>
-              <div class="testimonial-content">
-                  <h3>Mohammad Al Fayed</h3>
-                  <p class="role">Parent in Dubai</p>
-                  <div class="rating">★★★★★</div>
-                  <p>The tutors at MyEduSync have not only improved my son's grades but also his enthusiasm for learning. It's comforting to see such positive changes.</p>
-              </div>
-          </div>
+<!--Review section -->
+<div class="testimonial-section">
+  <h1>What Our Lovely Clients Say</h1>
+  <div class="testimonial-wrapper">
+    <div class="testimonial-container">
+      <!-- Review 1 -->
+      <div class="testimonial-card">
+        <div class="testimonial-image">
+          <img
+            src="https://static.vecteezy.com/system/resources/thumbnails/037/807/889/small_2x/ai-generated-confident-businesswoman-with-crossed-arm-isolated-in-yellow-background-free-photo.jpg"
+            alt="Elena Gilbert">
+        </div>
+        <div class="testimonial-content">
+          <h3>Elena Gilbert</h3>
+          <p class="role">Parent in California</p>
+          <div class="rating">★★★★★</div>
+          <p>Since joining MyEduSync, my daughter's confidence in math has skyrocketed! The personalized attention she
+            receives is truly transforming her approach to learning.</p>
+        </div>
       </div>
+      <!-- Review 2 -->
+      <div class="testimonial-card">
+        <div class="testimonial-image">
+          <img src="https://t4.ftcdn.net/jpg/03/03/11/97/360_F_303119721_EabYowCVsPMkCo7UMSGWx4Z2AvNkR7bV.jpg"
+            alt="Rajesh Singh">
+        </div>
+        <div class="testimonial-content">
+          <h3>Rajesh Singh</h3>
+          <p class="role">Student in New York</p>
+          <div class="rating">★★★★☆</div>
+          <p>MyEduSync's interactive lessons make learning complex science topics engaging and accessible. I'm genuinely
+            looking forward to my future lessons!</p>
+        </div>
       </div>
+      <!-- Review 3 -->
+      <div class="testimonial-card">
+        <div class="testimonial-image">
+          <img
+            src="https://media.istockphoto.com/id/1444184996/photo/young-asian-ethnicity-businesswoman-having-a-video-conference-at-her-office.jpg?s=612x612&w=0&k=20&c=pPtjXuomUAsrhb6M0tRomoHKywxkdimp51TSNUkUDHo="
+            alt="Laura Johnson">
+        </div>
+        <div class="testimonial-content">
+          <h3>Laura Johnson</h3>
+          <p class="role">Educator in London</p>
+          <div class="rating">★★★★★</div>
+          <p>Partnering with MyEduSync has allowed me to reach students across the globe, enhancing both their and my
+            own educational experiences. This platform is a game-changer!</p>
+        </div>
+      </div>
+      <!-- Review 4 -->
+      <div class="testimonial-card">
+        <div class="testimonial-image">
+          <img src="https://img.freepik.com/free-photo/portrait-man-visiting-luxurious-city-dubai_23-2151328612.jpg"
+            alt="Mohammad Al Fayed">
+        </div>
+        <div class="testimonial-content">
+          <h3>Mohammad Al Fayed</h3>
+          <p class="role">Parent in Dubai</p>
+          <div class="rating">★★★★★</div>
+          <p>The tutors at MyEduSync have not only improved my son's grades but also his enthusiasm for learning. It's
+            comforting to see such positive changes.</p>
+        </div>
+      </div>
+    </div>
   </div>
-  
+</div>
