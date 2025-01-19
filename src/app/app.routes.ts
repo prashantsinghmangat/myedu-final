@@ -14,11 +14,7 @@ export const routes: Routes = [
     path: 'profile', loadComponent: () => import('./teacher/profile/profile.component').then((m) => m.ProfileComponent,), canActivate: [authGuard],
     title: 'Profile',
   },
-  {
-    path: 'new-post',
-    loadComponent: () => import('./pages/new-post/new-post.component').then((m) => m.NewPostComponent,), canActivate: [authGuard],
-    title: 'Write a post',
-  },
+ 
   {
     path: 'feed',
     loadComponent: () => import('./pages/feed/feed.component').then((m) => m.FeedComponent), title: 'Feed',
@@ -50,6 +46,12 @@ export const routes: Routes = [
   {
     path: 'create-course',
     loadComponent: () => import('./teacher/create-course/create-course.component').then((m) => m.CreateCourseComponent),
+    title: 'create-course',
+  },
+
+  {
+    path: 'tutor-page',
+    loadComponent: () => import('./teacher/tutor-page/tutor-page.component').then((m) => m.TutorPageComponent),
     title: 'create-course',
   },
 

@@ -21,7 +21,8 @@ body {
   background-color: #ffffff;
   padding: 20px 0;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-top: 20px;
+  //box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   
   .logo {
     font-family: 'Playfair Display', serif;
@@ -35,11 +36,12 @@ body {
   // Search Container with Glassmorphism
   .search-container {
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 50px;
-    padding: 20px;
+    border-radius: 16px;
+    padding: 1rem 2rem;
     backdrop-filter: blur(10px);
     display: inline-block;
-    margin-bottom: 30px;
+    margin-bottom: 1px;
+    margin-top: 30px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     
     .search-bar {
@@ -51,7 +53,7 @@ body {
         border: none;
         background: rgba(255, 255, 255, 0.9);
         padding: 12px 18px;
-        border-radius: 50px;
+        border-radius: 16px;
         width: 220px;
         outline: none;
         font-size: 1rem;
@@ -64,78 +66,79 @@ body {
       }
 
       button {
-        background: linear-gradient(90deg, #3498db, #1abc9c);
-        border: none;
-        border-radius: 50px;
-        padding: 12px 30px;
-        color: #ffffff;
-        font-weight: 500;
-        cursor: pointer;
-        transition: background 0.3s ease, transform 0.3s ease;
+        padding: 1rem 2rem;
+        background-color: #fa99d8; // Bright color for visibility
+        color: white;
+        border-radius: 16px;
+        text-decoration: none;
+        font-size: 1.0rem; // Larger font for button
+        font-weight: bold; // Bold for impact
+        transition: all 0.3s ease;
 
         &:hover {
-          background: linear-gradient(90deg, #1abc9c, #3498db);
-          transform: translateY(-2px);
+            background-color: darken(#fa99d8, 10%);
+            transform: translateY(-3px); // Increased lift effect
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
       }
     }
   }
 
   // Scrollable Category Menu
-  .scrollable-category-container {
-    background: rgba(255, 247, 230, 0.9);
-    border-radius: 50px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    margin-bottom: 40px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  // .scrollable-category-container {
+  //   background: rgb(255, 247, 230);
+  //   border-radius: 16px;
+  //   padding: 10px;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-between;
+  //   position: relative;
+  //   margin-bottom: 5px;
+  //   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 
-    .category-buttons-wrapper {
-      overflow: hidden;
-      flex-grow: 1;
-      display: flex;
+  //   .category-buttons-wrapper {
+  //     overflow: hidden;
+  //     flex-grow: 1;
+  //     display: flex;
 
-      .category-buttons {
-        display: flex;
-        gap: 15px;
-        overflow-x: scroll;
-        padding: 10px 0;
-        scroll-behavior: smooth;
+  //     .category-buttons {
+  //       padding: 1rem 2rem;
+  //       background-color: #fa99d8; // Bright color for visibility
+  //       color: white;
+  //       border-radius: 16px;
+  //       text-decoration: none;
+  //       font-size: 1.0rem; // Larger font for button
+  //       font-weight: bold; // Bold for impact
+  //       transition: all 0.3s ease;
 
-        /* Hide scrollbar for WebKit browsers */
-        &::-webkit-scrollbar {
-          display: none;
-        }
+  //       &:hover {
+  //           background-color: darken(#fa99d8, 10%);
+  //           transform: translateY(-3px); // Increased lift effect
+  //           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  //       }
 
-        /* Hide scrollbar for Firefox */
-        scrollbar-width: none;
+  //       /* Hide scrollbar for Firefox */
+  //       scrollbar-width: none;
 
-        button {
-          background-color: #ffffff;
-          border-radius: 50px;
-          padding: 10px 20px;
-          color: #333;
-          cursor: pointer;
-          font-weight: 500;
-          white-space: nowrap;
-          transition: background 0.3s ease, transform 0.3s ease;
-
-          i {
-            margin-right: 10px;
-          }
-
-          &:hover {
-            background-color: #ffc107;
-            color: #fff;
-            transform: translateY(-2px);
-          }
-        }
-      }
-    }
-  }
+  //       button {
+  //         padding: 1rem 2rem;
+  //         background-color: #fa99d8; // Bright color for visibility
+  //         color: white;
+  //         border-radius: 16px;
+  //         text-decoration: none;
+  //         font-size: 1.0rem; // Larger font for button
+  //         font-weight: bold; // Bold for impact
+  //         transition: all 0.3s ease;
+  
+  //         &:hover {
+  //             background-color: darken(#fa99d8, 10%);
+  //             transform: translateY(-3px); // Increased lift effect
+  //             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 // Tutor List Styling
@@ -145,7 +148,7 @@ body {
   align-items: center;
   width: 100%;
   padding: 10px;
-  margin-top: 5px;
+  background-color: #fff;
 
   /* Horizontal Scrollable Container for Cards */
   .teachers-card-container {
@@ -171,7 +174,7 @@ body {
   .teacher-card {
     flex: 0 0 auto;
     margin: 0 10px;
-    width: 350px; /* Set width of the card */
+    width: 330px; /* Set width of the card */
     border-radius: 16px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     overflow: hidden;
@@ -189,7 +192,7 @@ body {
     .teacher-image {
       position: relative;
       width: 100%;
-      height: 270px; /* Square shape for image */
+      height: 200px; /* Square shape for image */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -222,14 +225,14 @@ body {
 
       /* Teacher Name */
       .teacher-name {
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: bold;
         margin-bottom: 5px;
       }
 
       /* Teacher Location */
       .teacher-location {
-        font-size: 0.9rem;
+        font-size: 0.80rem;
         color: #666;
         margin-bottom: 10px;
       }
@@ -242,7 +245,7 @@ body {
         width: 100%;
 
         .subject {
-          font-size: 16px;
+          font-size: 0.80rem;
           color: #090909;
           font-weight: bold;
           margin-right: 10px;
@@ -268,7 +271,7 @@ body {
       /* Additional Details */
       .details {
         margin-top: 5px;
-        font-size: 14px;
+        font-size: 12px;
         color: #333;
         display: -webkit-box;
         -webkit-line-clamp: 3;

@@ -87,7 +87,7 @@ export class FeedComponent implements OnInit {
     if (!this.hasMore) return;
     this.loadingPostsSig.set(true);
 
-    this.postsService.getAllNotes('CBSE', 'Class 10', 'Chemistry').pipe(
+    this.postsService.getAllNotes('CBSE', '10', 'Science').pipe(
       tap((posts: any) => {
         const postsResponse = posts.data as ApiPreviewPosts;
         this.postList = postsResponse;

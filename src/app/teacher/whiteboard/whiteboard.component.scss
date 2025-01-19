@@ -15,16 +15,17 @@
   align-items: center;
   padding: 5px 20px; // Reduced vertical padding
   background-color: #fff;
-  border-radius: 20px;
+  border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 60px;
   left: 50%;
+  margin-top: 20px;
   transform: translateX(-50%);
   width: auto;
-  max-width: 800px; // Adjust width as necessary
+  max-width: 1000px; // Adjust width as necessary
   z-index: 150;
-  border: 2px solid #c2ba4e;
+  border: 2px solid #BFDBFE;
 }
 
 /* Frame Navigation within Top Bar */
@@ -49,7 +50,7 @@
 
 /* Hover Effects */
 button:hover {
-  background-color: #e0e0e0;
+  background-color: darken(#fa99d8, 10%);
   transform: translateY(-2px);
 }
 
@@ -73,12 +74,12 @@ button:hover {
   transform: translateY(-50%);
   background-color: #fff;
   padding: 10px;
-  border-radius: 22px;
+  border-radius: 16px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   width: 60px; /* Fixed width for the toolbar */
   height: 300px; /* Adjust height to accommodate all items comfortably */
   z-index: 95;
-  border: 2px solid #c2ba4e; // Stylish border to match the top bar
+  border: 2px solid #C6F6D5; // Stylish border to match the top bar
 }
 
 /* Button Styling */
@@ -97,7 +98,7 @@ button:hover {
 }
 
 .tool-button:hover, .tool-button.active, .color-picker:hover {
-  background-color: #eeeeee;
+  background-color: darken(#fa99d8, 10%);
   transform: scale(1.1);
 }
 
@@ -116,5 +117,5 @@ button:hover {
 canvas {
   max-width: 100%;
   height: auto;
-  border: 2px solid #c2ba4e;
+  border: 2px solid #BFDBFE;
 }

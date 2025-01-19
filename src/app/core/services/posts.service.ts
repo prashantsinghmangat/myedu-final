@@ -115,6 +115,17 @@ export class PostsService {
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
   }
 
+  getlatestNotes(board: any, classdata: any, subject: any) {
+    return this.http.get<ApiPreviewPosts>(`${environment.myEduBaseUrl}/getNotesLists?page=0&limit=10`,)
+      .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
+  }
+
+  getLatestNotes() {
+    return this.http.get<ApiPreviewPosts>(`${environment.myEduBaseUrl}/getNotesLists?page=0&limit=10`)
+      .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
+}
+
+
   // getPosts(limit: number, offset: number) {
   //   return this.http
   //     .get<ApiPreviewPosts>(

@@ -1,0 +1,269 @@
+/* General styles and resets for better visual consistency */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; // Clean, readable font
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  color: #274e13; // Subtle green, good for educational themes
+}
+
+p {
+  color: #4a4a4a; // Softer black for readability
+}
+
+/* Hero section adjustments for better alignment and spacing */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background: #ffffff; // Light background to make content pop
+
+  @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: stretch;
+  }
+
+  .hero-content, .hero-image {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+  }
+
+  .hero-content {
+      max-width: 500px;
+
+      h1 {
+          font-size: 2.0rem; // Increased size for emphasis
+          margin-bottom: 1rem;
+      }
+
+      p {
+          font-size: 1.5rem; // Larger for better readability
+          margin-bottom: 2rem;
+      }
+
+      .cta-button {
+          padding: 1rem 2rem;
+          background-color: #fa99d8; // Bright color for visibility
+          color: white;
+          border-radius: 16px;
+          text-decoration: none;
+          font-size: 1.2rem; // Larger font for button
+          font-weight: bold; // Bold for impact
+          transition: all 0.3s ease;
+
+          &:hover {
+              background-color: darken(#fa99d8, 10%);
+              transform: translateY(-3px); // Increased lift effect
+              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+          }
+      }
+  }
+
+ .hero-image img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 16px;
+    display: block;  // Ensures the image takes up the full container width
+    margin: 0 auto;  // Centers the image horizontally
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  // Smooth transition for transform and box-shadow
+    
+    // Initial box-shadow for elevation
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        transform: scale(1.05);  // Slightly enlarges the image
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);  // Enhances shadow to give a deeper elevation effect
+    }
+}
+
+}
+
+/* Process section refined for clarity and aesthetics */
+.process-section {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: #ffffff; // Very light grey background
+  border-radius: 16px;
+
+  h2 {
+      font-size: 2.0rem; // Slightly larger for heading impact
+      margin-bottom: 2rem; // More space before the steps
+  }
+
+  .process-steps {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    width: 100%;
+
+    .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center; // This ensures everything in the step div is centered
+        text-align: center;
+        width: 22%; // Adjust based on your layout preferences
+
+        .icon-number {
+            width: 100%; // Ensure the icon spans the full width of its container
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                margin-bottom: 10px; // Space between the icon and the text
+                width: 50px; // Control the size of the icons
+                height: auto;
+            }
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 5px 0; // Space around the title for clarity
+        }
+
+        p {
+            font-size: 1rem;
+            color: #666;
+            width: 90%; // Control the text width for readability
+        }
+    }
+}
+
+}
+
+/* Join-tutor section with more defined and appealing visuals */
+/* Join-tutor section with more defined and appealing visuals */
+.join-tutor {
+  background: #ffffff;
+  padding: 4rem 2rem;
+  text-align: center;
+
+  h2 {
+      font-size: 2.0rem; // Uniform size with other headings
+      color: #274e13;
+      margin-bottom: 2rem;
+  }
+
+  p {
+      font-size: 1.2rem; // Uniform paragraph size
+      margin: 0 auto;
+      width: 60%; // Controlled width for better text alignment
+      padding-bottom: 2rem;
+  }
+
+  .benefits {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+
+      .benefit {
+          background: #ffffff;
+          padding: 2rem;
+          border-radius: 16px;
+          width: 250px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+          display: flex; // This ensures flex properties are applied
+          flex-direction: column; // Stacks children vertically
+          align-items: center; // Centers children horizontally
+
+          img {
+              width: 80px;
+              height: auto;
+              margin-bottom: 1rem;
+          }
+
+          h3 {
+              font-size: 1.2rem;
+              color: #274e13;
+              margin-bottom: 0.5rem;
+          }
+
+          p {
+              font-size: 0.9rem;
+              color: #4a4a4a;
+              margin-bottom: 1rem;
+          }
+      }
+  }
+
+  @media (max-width: 768px) {
+      .benefits {
+          flex-direction: column;
+          align-items: center;
+      }
+  }
+
+  @media (max-width: 768px) {
+    body {
+        padding: 10px; // Slightly less padding on smaller screens
+    }
+
+    h1 {
+        font-size: 1.5rem; // Smaller font size for headings on mobile
+    }
+
+    p {
+        font-size: 0.9rem; // Smaller font size for text on mobile
+    }
+}
+
+
+@media (max-width: 480px) {
+  h1 {
+      font-size: 1.2rem; // Even smaller font size for very small devices
+  }
+
+  p {
+      font-size: 0.8rem; // Reduce paragraph text size on very small screens
+  }
+}
+
+.hero-section {
+  padding: 2rem 1rem; // Reduce padding for mobile layout
+
+  @media (min-width: 768px) {
+      flex-direction: row;
+      padding: 3rem 2rem; // Default padding for larger screens
+  }
+}
+
+.hero-content, .hero-image {
+  text-align: center; // Center content for mobile devices
+
+  @media (min-width: 768px) {
+      text-align: left; // Align text to the left on larger screens
+  }
+}
+
+.process-section {
+  @media (max-width: 768px) {
+      .process-steps {
+        flex-direction: column;
+        align-items: center;
+      }
+  }
+}
+
+/* Join-tutor section responsive adjustments */
+
+
+}

@@ -4,56 +4,57 @@
   margin: 40px auto;
   max-width: 1200px;
   background: linear-gradient(to right, #f0f4f8, #ffffff);
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 20px;
 }
 
 .tutor-card {
   flex: 1;
   background: white;
-  border-radius: 15px;
+  border-radius: 16px;
   padding: 20px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
 
   .profile-picture {
-    border-radius: 50%;
+    border-radius: 16px;
     overflow: hidden;
-    width: 120px;
-    height: 120px;
+    width: 270px;
+    height: 170px;
     margin: 0 auto 20px;
     background: #e6f7ff;
-    border: 4px solid #b3e5fc;
+    border: 1px solid #b3e5fc;
   }
 
   h3 {
-    font-size: 1.8rem;
+    font-size: 1.0rem;
     color: #333;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
   }
 
   .tutor-title, .tutor-location {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     color: #666;
   }
 
   h4 {
-    font-size: 1.5rem;
-    color: #444;
+    font-size: 0.9rem;
+    color: #fea46c;
     margin-top: 20px;
   }
 
   .about-tutor {
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     color: #555;
     line-height: 1.6;
+    text-align: left;
   }
 }
 
 .course-info {
   flex: 2;
   background: white;
-  border-radius: 15px;
+  border-radius: 16px;
   padding: 30px;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 
@@ -63,25 +64,25 @@
     align-items: center;
 
     h2 {
-      font-size: 2.2rem;
+      font-size: 1.2rem;
       color: #222;
     }
 
     .enroll-button {
-      background: linear-gradient(135deg, #4e91f9, #7d4dfb);
-      color: white;
-      border: none;
-      padding: 12px 24px;
-      font-size: 1.1rem;
-      font-weight: bold;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
+      padding: 1rem 2rem;
+        background-color: #fa99d8; // Bright color for visibility
+        color: white;
+        border-radius: 16px;
+        text-decoration: none;
+        font-size: 1.0rem; // Larger font for button
+        font-weight: bold; // Bold for impact
+        transition: all 0.3s ease;
 
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      }
+        &:hover {
+            background-color: darken(#fa99d8, 10%);
+            transform: translateY(-3px); // Increased lift effect
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
     }
   }
 
@@ -97,12 +98,12 @@
     td {
       padding: 10px 0;
       color: #555;
-      font-size: 1.1rem;
+      font-size: 1.0rem;
       
       i {
         color: #4e91f9;
         margin-right: 10px;
-        font-size: 1.3rem;
+        font-size: 1.0rem;
       }
 
       strong {
@@ -113,14 +114,34 @@
   }
 
   h3 {
-    font-size: 1.6rem;
-    color: #444;
+    font-size: 1.0rem;
+    color: #000000;
     margin-top: 20px;
   }
 
   p {
-    font-size: 1.05rem;
+    font-size: 1.0rem;
     line-height: 1.8;
     color: #666;
+  }
+}
+
+// Media Query for small screens
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .tutor-card, .course-info {
+    // These blocks take full width on smaller screens
+    flex: unset;
+    max-width: unset;
+  }
+
+  .tutor-card .profile-picture {
+    width: 100%;  // Adjusts width to be more responsive
+    height: auto; // Adjusts height to maintain aspect ratio
   }
 }

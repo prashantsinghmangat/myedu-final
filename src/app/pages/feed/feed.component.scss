@@ -8,7 +8,7 @@ body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f7f8fa;
+  background-color: #fff;
   color: #333;
 }
 
@@ -19,11 +19,11 @@ body {
 }
 
 .header {
-  margin-top: 50px;
+  margin-top: 20px;
   background-color: #ffffff;
   padding: 20px 0;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  
 
   .logo {
     font-size: 2rem;
@@ -36,7 +36,7 @@ body {
   .search-container {
     margin-top: 20px;
     background-color: #f0f4ff;
-    border-radius: 50px;
+    border-radius: 16px;
     padding: 20px;
     display: inline-block;
     margin-bottom: 20px;
@@ -49,8 +49,8 @@ body {
       input, select {
         border: none;
         background: #ffffff;
-        padding: 15px 20px; // Increased padding
-        border-radius: 50px;
+        padding: 1rem 2rem;
+        border-radius: 16px;
         outline: none;
         flex-grow: 1;
         min-width: 120px; // Ensure minimum width for aesthetics
@@ -68,16 +68,19 @@ body {
       }
   
       button {
-        background-color: #ffc107;
-        border: none;
-        border-radius: 50px;
-        padding: 10px 30px;
-        color: #333;
-        font-weight: 500;
-        cursor: pointer;
-  
+        padding: 1rem 2rem;
+        background-color: #fa99d8; // Bright color for visibility
+        color: white;
+        border-radius: 16px;
+        text-decoration: none;
+        font-size: 1.0rem; // Larger font for button
+        font-weight: bold; // Bold for impact
+        transition: all 0.3s ease;
+
         &:hover {
-          background-color: #ffcd38;
+            background-color: darken(#fa99d8, 10%);
+            transform: translateY(-3px); // Increased lift effect
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
       }
     }
@@ -86,7 +89,7 @@ body {
 
   .scrollable-category-container {
     background-color: #fff7e6;
-    border-radius: 50px;
+    border-radius: 16px;
     padding: 20px;
     display: flex;
     align-items: center;
@@ -115,7 +118,7 @@ body {
 
         button {
           background-color: #ffffff;
-          border-radius: 50px;
+          border-radius: 16px;
           padding: 10px 20px;
           color: #333;
           cursor: pointer;
@@ -166,7 +169,7 @@ body {
 
 .section-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 1px;
   margin-top: 10px; // Space between the header and the cards
 
   h2 {
@@ -219,7 +222,7 @@ body {
 .card {
   background-color: white;
   border: 1px solid #e0e0e0;
-  border-radius: 10px;
+  border-radius: 16px;
   padding: 15px;
   width: 35%;
   min-width: 250px; // Minimum width to keep cards readable on smaller screens
@@ -240,7 +243,7 @@ body {
   }
 
   .title {
-    font-size: 20px;
+    font-size: 1.0rem;
     font-weight: bold;
     margin-bottom: 15px;
     color: #333;
@@ -249,19 +252,19 @@ body {
   .image-container {
     margin-bottom: 15px;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 16px;
     border: 1px solid #e0e0e0;
 
     img {
       width: 100%;
       height: 180px;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 16px;
     }
   }
 
   .description {
-    font-size: 16px;
+    font-size: 12px;
     color: #555;
     margin-bottom: 15px;
     display: -webkit-box;

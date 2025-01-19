@@ -8,7 +8,7 @@
     <nav class="navbar h-16 max-w-[1280px] border border-b-1 border-divider">
       <div class="flex-1">
         <div style="width: 40%;">
-          <img src="../../../../../assets/myedusync-logo.png" alt="Divya Darshi" />
+          <img src="../../../../../assets/logo.png" alt="Divya Darshi" />
         </div>
       
 
@@ -61,10 +61,10 @@
             <!-- <li>
               <a class="font-semibold" routerLink="/tutorprofile-edit">Edit</a>
             </li> -->
-            <li>
+            <!-- <li>
               <a class="font-semibold" routerLink="/new-post" (click)="closeMenu()">
                 Write a post</a>
-            </li>
+            </li> -->
             <div class="divider my-1"></div>
             <li>
               <button class="font-semibold" (click)="logout()">Logout</button>
@@ -76,6 +76,10 @@
             <li>
               <a class="font-semibold" routerLink="/feed" (click)="closeMenu()">Notes</a>
             </li>
+            <li>
+              <a class="font-semibold" routerLink="/teacher-list" (click)="closeMenu()">Courses</a>
+            </li>
+
 
             <!-- <li>
               <a class="font-semibold" routerLink="/tutorprofile-edit">Edit</a>
@@ -100,17 +104,20 @@
         </div>
         <a class="hidden cursor-pointer font-semibold md:block" routerLink="/">Home</a>
         <a class="hidden cursor-pointer font-semibold md:block" routerLink="/feed">Notes</a>
+        <a class="hidden cursor-pointer font-semibold md:block" routerLink="/teacher-list">Courses</a>
+        <a class="hidden cursor-pointer font-semibold md:block" routerLink="/tutor-page">Become a tutor</a>
+
         <a class="hidden cursor-pointer font-semibold md:block" *ngIf="user?.role === 'Teacher'"
           routerLink="/whiteboard">Whiteboard</a>
 
         <!-- <a class="hidden cursor-pointer font-semibold md:block" routerLink="/tutorprofile-edit">Edit</a> -->
 
         <a class="hidden cursor-pointer font-semibold md:block" routerLink="/about-us">About Us</a>
-        <a class="hidden cursor-pointer font-semibold md:block" routerLink="/teacher-list">Tutor List</a>
+        
 
 
         @if (user) {
-        <a class="hidden cursor-pointer font-semibold md:block" routerLink="/new-post">Write a post</a>
+        <!-- <a class="hidden cursor-pointer font-semibold md:block" routerLink="/new-post">Write a post</a> -->
         <div class="dropdown dropdown-end hidden md:block">
           <div class="btn btn-circle btn-ghost" tabindex="0" role="button">
             <div class="avatar">
@@ -142,13 +149,12 @@
           </ul>
         </div>
         } @else {
-        <button class="hidden cursor-pointer font-semibold md:block" (click)="toggleAuthModal()">
-          Login
-        </button>
-        <button class="btn hidden bg-blue-200 font-bold text-sky-800 hover:bg-blue-100 md:block"
-          (click)="toggleSignUpModal()">
-          Sign up
-        </button>
+          <button class="btn btn-login" (click)="toggleAuthModal()">
+            Login
+          </button>
+          <button class="btn btn-sign-up" (click)="toggleSignUpModal()">
+            Sign Up
+          </button>
         }
       </div>
     </nav>

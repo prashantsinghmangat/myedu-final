@@ -14,3 +14,4 @@ export class LatestPreviewComponent {
 
   gridTemp = Array(10).fill(0);
 }
+

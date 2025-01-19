@@ -2,7 +2,7 @@
   max-width: 600px;
   margin: 20px auto;
   padding: 30px;
-  border-radius: 15px;
+  border-radius: 16px;
   background: white; // White background as per theme
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); // Shadow for depth
   font-family: 'Poppins', sans-serif;
@@ -11,13 +11,13 @@
 header {
   h2 {
     text-align: center;
-    font-size: 30px;
+    font-size: 22px;
     margin-bottom: 20px;
     padding: 15px;
-    background: linear-gradient(to right, orange, green); // Orange to green gradient for headers
+    border:solid 1px #fa99d8;
     color: black; // Black color for text
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
   p {
     color: #333; // Dark grey text for readability
@@ -40,10 +40,10 @@ header {
   input,
   select {
     width: 100%;
-    padding: 12px 15px 12px 40px; // Space for icons
+    padding: 12px 15px 12px 30px; // Space for icons
     border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 16px;
+    font-size: 12px;
     background: #fdfdfd;
     color: #333;
     transition: all 0.3s ease;
@@ -56,7 +56,7 @@ header {
   }
 
   .error-message {
-    font-size: 14px;
+    font-size: 10px;
     color: #ff5252; // Bright red for error messages
     margin-top: 5px;
   }
@@ -76,11 +76,11 @@ header {
   button.submit-btn {
     width: 100%;
     padding: 14px;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     border: none;
-    border-radius: 8px;
-    background: linear-gradient(to right, orange, green); // Gradient button
+    border-radius: 16px;
+   background-color: #fa99d8;
     color: white;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -91,7 +91,7 @@ header {
     }
 
     &:disabled {
-      background: #e0e0e0;
+      background: #a8a2a6;
       cursor: not-allowed;
     }
   }

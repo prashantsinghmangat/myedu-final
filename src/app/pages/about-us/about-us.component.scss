@@ -105,7 +105,7 @@ p {
 
 .team-card {
   background: #ffffff;
-  border-radius: 15px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -125,8 +125,8 @@ p {
     width: 100%;
     height: 200px;
     object-fit: cover;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
 
     @media (max-width: 768px) {
       height: 180px; /* Adjust height slightly for mobile */
@@ -198,7 +198,7 @@ p {
       flex: 1;
       background-color: #ffffff;
       padding: 2rem;
-      border-radius: 12px;
+      border-radius: 16px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border-left: 5px solid #007bff;
@@ -260,7 +260,7 @@ p {
     color: white;
     padding: 0.75rem 2rem;
     font-size: 1rem;
-    border-radius: 8px;
+    border-radius: 16px;
     text-decoration: none;
 
     &:hover {

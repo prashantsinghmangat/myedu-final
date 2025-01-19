@@ -1,0 +1,110 @@
+// Importing a more refined font
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+// Basic resets for margin and padding
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Main navbar container
+.fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+  background: #ffffff; // Clean white background
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Soft shadow for depth
+  border-bottom: 1px solid #ffffff;
+
+  nav.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    max-width: 1280px;
+    margin: auto;
+    padding: 0 20px;
+
+    // Logo styling
+    .flex-1 {
+      display: flex;
+      align-items: center;
+
+      img {
+        height: 60px;
+        margin-right: 20px;
+      }
+    }
+
+    // Link styles
+    a {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+      font-size: 18px;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 8px 16px;
+      transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease;
+
+      &:hover {
+        color: #0056b3;
+        background-color: #f8f9fa;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Button styles for login and sign up
+.btn {
+  font-family: 'Roboto', sans-serif;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 16px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  cursor: pointer;
+  display: inline-block;
+  border: 1px solid transparent;
+
+  &:hover {
+    opacity: 0.8;
+    border-color: #e2e2e2;
+  }
+}
+
+// Specific styles for login and sign up buttons
+.btn-login {
+  background-color: #FED7E2; // A softer blue
+  color: rgb(0, 0, 0);
+  &:hover {
+    background-color: darken(#FED7E2, 10%);
+  }
+}
+
+.btn-sign-up {
+  background-color: #C6F6D5; // A softer green
+  color: rgb(0, 0, 0);
+  &:hover {
+    background-color: darken(#C6F6D5, 15%);
+  }
+}
+
+// Responsive styling for smaller screens
+@media (max-width: 768px) {
+  nav.navbar {
+    flex-direction: column;
+    padding: 10px 15px;
+
+    .flex-1, .dropdown {
+      width: 100%;
+      text-align: center;
+    }
+
+    a {
+      padding: 8px 10px;
+    }
+  }
+}
