@@ -66,7 +66,7 @@ export class PostsService {
   }
 
   getTopTutorProfileWithLatestCourse() {
-    return this.http.get<any>(`${environment.myEduBaseUrl}/allTutorsCoursesList`)
+    return this.http.get<any>(`${environment.myEduBaseUrl}/getTopTutorProfileWithLatestCourse`)
       .pipe(catchError((e) => this.errorHandlingService.handleError(e)));
   }
 
