@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { PostsService } from '../../core/services/posts.service';
 import { ChangeDetectorRef } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { catchError, of, tap } from 'rxjs';
 
@@ -29,8 +30,14 @@ export class ProfileComponent implements OnInit {
   constructor(
     private readonly userService: UserService,
     private router: Router, private cdr: ChangeDetectorRef, private readonly postsService: PostsService,
-    private http: HttpClient // Inject HttpClient for making HTTP requests
-  ) {
+    private http: HttpClient ,// Inject HttpClient for making HTTP requests
+    private sanitizer: DomSanitizer // Inject the DomSanitizer service
+  ) 
+  
+  
+  
+  
+  {
     this.usernameControl = new FormControl('', {
       validators: [Validators.minLength(3), Validators.maxLength(30)],
     });
@@ -39,6 +46,10 @@ export class ProfileComponent implements OnInit {
     this.user$.subscribe(user => {
       console.log("User details from profile:", user);
     });
+  }
+
+  getSafeImageUrl(url: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
   ngOnInit(): void {
@@ -137,6 +148,30 @@ export class ProfileComponent implements OnInit {
 
   goToAddWork() {
     this.router.navigateByUrl('/add-experience');
+  }
+
+  UpdateDP() {
+    this.showPopup = true;
+  }
+  showPopup: boolean = false; // Controls the popup visibility
+  imageUrl: string = ''; // Stores the image URL entered by the user
+
+  closePopup() {
+    this.showPopup = false;
+    this.imageUrl = ''; // Clear input field
+  }
+
+  // Function to handle submission of image URL
+  submitImageUrl() {
+    if (this.imageUrl) {
+      // Logic to update the profile image
+      alert(`Image URL Updated: ${this.imageUrl}`);
+      // Optionally update the profile image dynamically
+      // this.profiledata.imageUrl = this.imageUrl;
+      this.closePopup();
+    } else {
+      alert('Please enter a valid image URL.');
+    }
   }
 }
 

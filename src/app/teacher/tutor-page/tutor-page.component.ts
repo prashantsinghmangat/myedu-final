@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
   standalone: true,
   // changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TutorPageComponent {}
+export class TutorPageComponent {
+
+  
+}

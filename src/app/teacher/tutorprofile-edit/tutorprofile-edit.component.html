@@ -2,17 +2,6 @@
   <h2>Profile Information</h2>
 
   <!-- Profile Picture Upload Field -->
-  <div class="form-group">
-    <label for="profilePic">Profile Picture</label>
-    <div class="upload-container">
-      <input type="file" id="profilePic" name="profilePic" (change)="onFileChange($event)" class="file-input"
-        accept="image/*" ngModel />
-      <div *ngIf="profileImage" class="image-preview">
-        <img [src]="profileImage" alt="Profile Preview" />
-      </div>
-      <div class="upload-text">Upload your profile picture</div>
-    </div>
-  </div>
 
   <!-- WhatsApp Number Field -->
   <div class="form-group">

@@ -62,12 +62,22 @@
 }
 
 .profile-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 16px;
-  margin-bottom: 15px;
+  width: 100%;               /* Ensures the container takes full width of its parent */
+  height: 200px;             /* Sets the fixed height for the container */
+  border-radius: 16px;       /* Applies rounded corners */
+  overflow: hidden;          /* Ensures the image does not overflow the rounded corners */
+  margin-bottom: 15px;       /* Adds spacing below the container */
+  display: flex;             /* Aligns the image correctly inside the container */
+  justify-content: center;   /* Centers the image horizontally */
+  align-items: center;       /* Centers the image vertically */
 }
+
+.profile-image img {
+  width: 100%;               /* Makes the image fill the width of the container */
+  height: 100%;              /* Makes the image fill the height of the container */
+  object-fit: cover;         /* Ensures the image maintains aspect ratio and fills the container */
+}
+
 
 .profile-info {
   padding: 0 15px;
@@ -83,6 +93,137 @@ p {
   font-size: 14px;
   margin-bottom: 20px;
 }
+/* Popup overlay styling */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Darker overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out; /* Add fade-in animation */
+}
+
+/* Popup box styling */
+.popup {
+  background: linear-gradient(145deg, #ffffff, #f2f2f2); /* Gradient background */
+  padding: 30px 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transform: scale(0.9);
+  animation: popupZoomIn 0.3s ease-in-out forwards; /* Zoom-in animation */
+}
+
+/* Input field styling */
+.input-field {
+  width: 90%;
+  padding: 12px 15px;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #4caf50; /* Green focus border */
+  outline: none;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.5); /* Glow effect */
+}
+
+/* Button container */
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* Primary button styling */
+.popup-buttons .btn {
+  padding: 12px 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 16px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.popup-buttons .btn:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Secondary button */
+.popup-buttons .btn.secondary {
+  background-color: #c5463d; /* Red color */
+  color: white;
+}
+
+.popup-buttons .btn.secondary:hover {
+  background-color: #c5463d; /* Darker red */
+}
+
+/* Primary button */
+.popup-buttons .btn {
+  background-color: #fa99d8; /* Green color */
+  color: white;
+}
+
+.popup-buttons .btn:hover {
+  background-color: darken(#fa99d8, 10%);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popupZoomIn {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+
+.profile-card .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Adjust the spacing between buttons */
+  margin-top: 20px; /* Optional: add margin for better layout */
+}
+
+.profile-card .btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.profile-card .btn.book {
+  background-color: #007BFF;
+  color: white;
+}
+
+.profile-card .btn.secondary {
+  background-color: #2196F3;
+  color: white;
+}
+
 
 .buttons {
   display: flex;

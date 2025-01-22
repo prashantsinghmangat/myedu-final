@@ -77,10 +77,18 @@
 
 // Specific styles for login and sign up buttons
 .btn-login {
-  background-color: #FED7E2; // A softer blue
-  color: rgb(0, 0, 0);
+  padding: 1rem 2rem;
+        background-color: #fa99d8; // Bright color for visibility
+        color: white;
+        border-radius: 16px;
+        text-decoration: none;
+        font-size: 1.0rem; // Larger font for button
+        font-weight: bold; // Bold for impact
+        transition: all 0.3s ease;
   &:hover {
-    background-color: darken(#FED7E2, 10%);
+    background-color: darken(#fa99d8, 10%);
+    transform: translateY(-3px); // Increased lift effect
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
 }
 

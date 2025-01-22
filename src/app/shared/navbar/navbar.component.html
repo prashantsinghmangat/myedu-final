@@ -7,8 +7,8 @@
   <div class="fixed z-50 flex w-full justify-center bg-base-100">
     <nav class="navbar h-16 max-w-[1280px] border border-b-1 border-divider">
       <div class="flex-1">
-        <div style="width: 40%;">
-          <img src="../../../../../assets/logo.png" alt="Divya Darshi" routerLink="/" />
+        <div style="width: 100%;">
+          <img src="../../../../../assets/finallogo.png" alt="Divya Darshi" routerLink="/" />
         </div>
     
         <a class="btn btn-ghost px-0 text-lg font-extrabold text-typography-primary hover:bg-transparent"
@@ -104,7 +104,7 @@
         <a class="hidden cursor-pointer font-semibold md:block" routerLink="/">Home</a>
         <a class="hidden cursor-pointer font-semibold md:block" routerLink="/feed">Notes</a>
         <a class="hidden cursor-pointer font-semibold md:block" routerLink="/teacher-list">Courses</a>
-        <a class="hidden cursor-pointer font-semibold md:block" routerLink="/tutor-page">Become a tutor</a>
+        <!-- <a class="hidden cursor-pointer font-semibold md:block" routerLink="/tutor-page">Become a tutor</a> -->
 
         <a class="hidden cursor-pointer font-semibold md:block" *ngIf="user?.role === 'Teacher'"
           routerLink="/whiteboard">Whiteboard</a>
@@ -152,7 +152,7 @@
             Login
           </button>
           <button class="btn btn-sign-up" (click)="toggleSignUpModal()">
-            Sign Up
+            Became a Tutor
           </button>
         }
       </div>

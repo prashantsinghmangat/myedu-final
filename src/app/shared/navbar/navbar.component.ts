@@ -56,10 +56,14 @@ export class NavbarComponent {
     this.showAuthModalSig.update((value) => !value);
   }
 
-  toggleSignUpModal(): void {
-    this.showSignUpSig.update((value) => !value);
-  }
+  // toggleSignUpModal(): void {
+  //   this.showSignUpSig.update((value) => !value);
+  // }
 
+  toggleSignUpModal() {
+    this.router.navigate(['/tutor-page']);
+  }
+  
   closeMenu() {
     (document.activeElement as any)?.blur();
   }

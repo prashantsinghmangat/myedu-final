@@ -2,17 +2,38 @@
   <div class="left-section">
 
     <div class="profile-card">
-      <img
-        src="https://img.freepik.com/free-vector/user-circles-set_78370-4704.jpg?t=st=1730996476~exp=1731000076~hmac=7127915ae14d127ccb1c6d363001e8391c0e51e41752926e93f8efd1be911e92&w=740"
-        alt="Theresa Flores" class="profile-image">
+      <div class="profile-image">
+        <img [src]="getSafeImageUrl(profiledata?.profilePic)" alt="Featured Image">
+      </div>
       <div class="profile-info">
         <h1>{{profiledata?.name }}</h1>
         <p>{{profiledata?.currentDesignation}}</p>
         <div class="buttons">
           <button class="btn book" (click)="goToEditProfile()">Edit Profile</button>
+          <button class="btn secondary" (click)="UpdateDP()">Update Image</button>
         </div>
       </div>
     </div>
+    
+    
+    <!-- Popup for Updating Image -->
+    <div class="popup-overlay" *ngIf="showPopup">
+      <div class="popup">
+        <h2>Update Profile Image</h2>
+        <input
+          type="text"
+          placeholder="Enter Image URL"
+          [(ngModel)]="imageUrl"
+          class="input-field"
+        />
+        <div class="popup-buttons">
+          <button class="btn" (click)="submitImageUrl()">Submit</button>
+          <button class="btn secondary" (click)="closePopup()">Cancel</button>
+        </div>
+      </div>
+    </div>
+    
+
 
     <div class="bio-card">
 

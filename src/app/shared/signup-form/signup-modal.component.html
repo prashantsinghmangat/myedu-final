@@ -10,7 +10,7 @@
         <select [(ngModel)]="role" name="role" required class="select select-bordered w-full" #roleCtrl="ngModel">
           <option value="" disabled selected>Select Role</option>
           <option value="Teacher">Teacher</option>
-          <option value="Student">Student</option>
+          <!-- <option value="Student">Student</option> -->
         </select>
         <div *ngIf="roleCtrl.invalid && roleCtrl.touched" class="text-red-500 text-sm">Role is required.</div>
 

@@ -40,4 +40,13 @@ export class AboutComponent {
     this.cdr.detectChanges(); // Trigger change detection manually
   }
 
+  goToCoursePage(cousedata: any) {
+    console.log(cousedata);
+    // sessionStorage.setItem('courseTeacherId', cousedata?.teacherId);
+    this.router.navigate(['/course_full_page', cousedata._id]);
+
+    // this.router.navigateByUrl('/course_full_page' + cousedata?.teacherId);
+  }
+
+
 }
