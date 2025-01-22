@@ -1,20 +1,18 @@
 <div class="container">
   <div class="left-section">
-
     <div class="profile-card">
       <div class="profile-image">
-        <img [src]="getSafeImageUrl(profiledata?.profilePic)" alt="Featured Image">
+        <img [src]="getSafeImageUrl(profiledata?.profilePic)" alt="Profile Picture">
       </div>
       <div class="profile-info">
-        <h1>{{profiledata?.name }}</h1>
-        <p>{{profiledata?.currentDesignation}}</p>
+        <h1>{{ profiledata?.name }}</h1>
+        <p>{{ profiledata?.currentDesignation }}</p>
         <div class="buttons">
           <button class="btn book" (click)="goToEditProfile()">Edit Profile</button>
           <button class="btn secondary" (click)="UpdateDP()">Update Image</button>
         </div>
       </div>
     </div>
-    
     
     <!-- Popup for Updating Image -->
     <div class="popup-overlay" *ngIf="showPopup">
@@ -25,45 +23,32 @@
           placeholder="Enter Image URL"
           [(ngModel)]="imageUrl"
           class="input-field"
-        />
+        >
         <div class="popup-buttons">
           <button class="btn" (click)="submitImageUrl()">Submit</button>
           <button class="btn secondary" (click)="closePopup()">Cancel</button>
         </div>
       </div>
     </div>
-    
-
 
     <div class="bio-card">
-
       <div class="short_bio">
         <h2>Short Bio</h2>
-        <p>{{profiledata?.shortBio}}</p>
-
-
+        <p>{{ profiledata?.shortBio }}</p>
       </div>
 
       <div class="bio-details">
         <h2>About Me</h2>
-        <p>{{profiledata?.aboutMe}}</p>
-
-
+        <p>{{ profiledata?.aboutMe }}</p>
       </div>
+
       <div class="skills">
-        <span class="skill">{{profiledata?.skills}}</span>
-        <!-- <span class="skill">Online education</span>
-        <span class="skill">Pre-school education</span>
-        <span class="skill">Foreign languages</span> -->
+        <span class="skill">{{ profiledata?.skills }}</span>
       </div>
     </div>
-
-
-
-
   </div>
-  <div class="right-section">
 
+  <div class="right-section">
     <div class="work-card">
       <div class="work-header">
         <h2>Work Experience</h2>
@@ -72,16 +57,15 @@
       <div *ngFor="let expdata of experiencedata" class="work-entry">
         <div class="work-info">
           <div>
-            <h3>{{expdata?.designation}}</h3>
-            <p>{{expdata?.organisationName}}</p>
-            <p>{{expdata?.startTime}} - {{expdata?.endTime}}</p>
+            <h3>{{ expdata?.designation }}</h3>
+            <p>{{ expdata?.organisationName }}</p>
+            <p>{{ expdata?.startTime }} - {{ expdata?.endTime }}</p>
           </div>
         </div>
-        <a href={{expdata?.credentialUrl}} class="credential-link">Show credential</a>
+        <a [href]="expdata?.credentialUrl" class="credential-link">Show credential</a>
       </div>
     </div>
 
-    <!-----education card ------>
     <div class="education-card">
       <div class="education-header">
         <h2>Educational Background</h2>
@@ -90,39 +74,35 @@
       <div *ngFor="let edudata of educationdata" class="education-entry">
         <div class="university-info">
           <div>
-            <h3>{{edudata?.instituteName}}</h3>
-            <p>{{edudata?.courseName}} - {{edudata?.fieldOfStudy}}</p>
-            <p><b>{{edudata?.startTime}}</b> - {{edudata?.endTime}}</p>
-            <p><b>Grade</b> - {{edudata?.grade}} </p>
+            <h3>{{ edudata?.instituteName }}</h3>
+            <p>{{ edudata?.courseName }} - {{ edudata?.fieldOfStudy }}</p>
+            <p><b>{{ edudata?.startTime }}</b> - {{ edudata?.endTime }}</p>
+            <p><b>Grade</b> - {{ edudata?.grade }}</p>
           </div>
         </div>
-        <a href={{edudata?.credentialUrl}} class="credential-link">Show credential</a>
+        <a [href]="edudata?.credentialUrl" class="credential-link">Show credential</a>
       </div>
     </div>
 
-
-    <!-----Course card ------>
     <div class="course-section">
       <div class="course-header">
         <h2>Courses</h2>
         <button class="create-course-btn" (click)="goToCreateCourse()">Create Course</button>
-
       </div>
-      <!-- Example of a single course card -->
       <div *ngFor="let course of coursedata" class="course-card">
         <div class="course-details">
           <div class="subject">
-            <h3>{{course?.subject}}</h3>
-            <p>{{course?.board}}</p>
+            <h3>{{ course?.subject }}</h3>
+            <p>{{ course?.board }}</p>
           </div>
           <div class="frequency">
-            <p>{{course?.weeklySessions}} classes / weekly</p>
+            <p>{{ course?.weeklySessions }} classes / weekly</p>
           </div>
           <div class="mode">
-            <p> {{course?.mode}} | {{ course?.language}}</p>
+            <p>{{ course?.mode }} | {{ course?.language }}</p>
           </div>
           <div class="cost">
-            <p>{{ course?.currency}} {{course?.costPerSessions}} Per Session</p>
+            <p>{{ course?.currency }} {{ course?.costPerSessions }} Per Session</p>
           </div>
         </div>
         <button class="join-btn">Join</button>

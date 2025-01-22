@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
 import {
   FormControl,
   FormsModule,
@@ -12,8 +12,7 @@ import { HttpClient } from '@angular/common/http';
 import { PostsService } from '../../core/services/posts.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-
-import { catchError, of, tap } from 'rxjs';
+import { catchError, of, tap, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'til-profile',
@@ -23,109 +22,97 @@ import { catchError, of, tap } from 'rxjs';
   styleUrls: ['./profile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   readonly usernameControl: FormControl;
   readonly user$ = this.userService.user$;
 
+  coursedata: any;
+  educationdata: any;
+  experiencedata: any;
+  profiledata: any;
+  showPopup = false;
+  imageUrl = '';
+
+  private destroy$ = new Subject<void>();
+
   constructor(
     private readonly userService: UserService,
-    private router: Router, private cdr: ChangeDetectorRef, private readonly postsService: PostsService,
-    private http: HttpClient ,// Inject HttpClient for making HTTP requests
-    private sanitizer: DomSanitizer // Inject the DomSanitizer service
-  ) 
-  
-  
-  
-  
-  {
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private readonly postsService: PostsService,
+    private http: HttpClient,
+    private sanitizer: DomSanitizer
+  ) {
     this.usernameControl = new FormControl('', {
-      validators: [Validators.minLength(3), Validators.maxLength(30)],
+      validators: [Validators.required, Validators.minLength(3), Validators.maxLength(30)],
     });
 
-    // Subscribe to user$ to log user details
-    this.user$.subscribe(user => {
+    this.user$.pipe(takeUntil(this.destroy$)).subscribe(user => {
       console.log("User details from profile:", user);
     });
+  }
+
+  ngOnInit(): void {
+    this.getEducationDetails();
+    this.getTutorProfile();
+    this.getExperienceDetails();
+    this.getCoursesList();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   getSafeImageUrl(url: string): SafeUrl {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
-  ngOnInit(): void {
-    this.getEductaionDetails();
-    this.getTutorProfile(); // Call the API when the component initializes
-    this.getExperianceDetails();
-    this.getCourcesList();
-  }
-
-  coursedata: any
-  getCourcesList(): void {
-    console.log("api called")
+  getCoursesList(): void {
     this.postsService.allCourseList().pipe(
       tap((coursedata: any) => {
-        console.log("coursedata profile : ", coursedata);
         this.coursedata = coursedata?.data;
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
       }),
-      catchError((error: any) => {
-        console.error("Error fetching posts: ", error.data);
-        return of(error);
-      }),
+      catchError(this.handleError),
+      takeUntil(this.destroy$)
     ).subscribe();
-    this.cdr.detectChanges(); // Trigger change detection manually
   }
 
-  educationdata: any
-  getEductaionDetails(): void {
+  getEducationDetails(): void {
     this.postsService.allTutorEducationList().pipe(
       tap((educationdata: any) => {
-        console.log("educationdata profile : ", educationdata);
         this.educationdata = educationdata?.data;
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
       }),
-      catchError((error: any) => {
-        console.error("Error fetching posts: ", error.data);
-        return of(error);
-      }),
+      catchError(this.handleError),
+      takeUntil(this.destroy$)
     ).subscribe();
-    this.cdr.detectChanges(); // Trigger change detection manually
   }
 
-  experiencedata: any
-  getExperianceDetails(): void {
+  getExperienceDetails(): void {
     this.postsService.allTutorExperienceList().pipe(
       tap((experiencedata: any) => {
-        console.log("experiencedata profile : ", experiencedata);
         this.experiencedata = experiencedata?.data;
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
       }),
-      catchError((error: any) => {
-        console.error("Error fetching posts: ", error.data);
-        return of(error);
-      }),
+      catchError(this.handleError),
+      takeUntil(this.destroy$)
     ).subscribe();
-    this.cdr.detectChanges(); // Trigger change detection manually
   }
 
-  profiledata: any;
   getTutorProfile(): void {
     this.postsService.getProfileTutor().pipe(
       tap((profiledata: any) => {
-        console.log("data profile : ", profiledata);
         this.profiledata = profiledata?.data;
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
       }),
-      catchError((error: any) => {
-        console.error("Error fetching posts: ", error.data);
-        return of(error);
-      }),
+      catchError(this.handleError),
+      takeUntil(this.destroy$)
     ).subscribe();
-    this.cdr.detectChanges(); // Trigger change detection manually
   }
 
-  // Change username function with form validation
-  changeUsername() {
+  changeUsername(): void {
     if (this.usernameControl.valid) {
       const newUsername = this.usernameControl.value;
       console.log('Changing username to:', newUsername);
@@ -133,105 +120,57 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  // Navigation methods
-  goToEditProfile() {
+  goToEditProfile(): void {
     this.router.navigateByUrl('/tutorprofile-edit');
   }
 
-  goToCreateCourse() {
+  goToCreateCourse(): void {
     this.router.navigateByUrl('/create-course');
   }
 
-  goToAddEducation() {
+  goToAddEducation(): void {
     this.router.navigateByUrl('/add-education');
   }
 
-  goToAddWork() {
+  goToAddWork(): void {
     this.router.navigateByUrl('/add-experience');
   }
 
-  UpdateDP() {
+  UpdateDP(): void {
     this.showPopup = true;
   }
-  showPopup: boolean = false; // Controls the popup visibility
-  imageUrl: string = ''; // Stores the image URL entered by the user
 
-  closePopup() {
+  closePopup(): void {
     this.showPopup = false;
-    this.imageUrl = ''; // Clear input field
+    this.imageUrl = '';
   }
 
-  // Function to handle submission of image URL
-  submitImageUrl() {
+  submitImageUrl(): void {
     if (this.imageUrl) {
-      // Logic to update the profile image
-      alert(`Image URL Updated: ${this.imageUrl}`);
-      // Optionally update the profile image dynamically
-      // this.profiledata.imageUrl = this.imageUrl;
-      this.closePopup();
+      const payload = { profilePic: this.imageUrl };
+
+      this.http.post('http://api.myedusync.com/uploadTutorProfilePic', payload)
+        .pipe(
+          tap((response: any) => {
+            if (response.success) {
+              this.showPopup = false;
+              console.log('Success message:', response.message);
+              this.closePopup()
+            } else {
+              console.error('Error:', response.error);
+            }
+          }),
+          catchError(this.handleError),
+          takeUntil(this.destroy$)
+        )
+        .subscribe();
     } else {
       alert('Please enter a valid image URL.');
     }
   }
+
+  private handleError = (error: any) => {
+    console.error("Error:", error);
+    return of(null);
+  }
 }
-
-// import { CommonModule } from '@angular/common';
-// import { ChangeDetectionStrategy, Component } from '@angular/core';
-// import {
-//   FormControl,
-//   FormsModule,
-//   ReactiveFormsModule,
-//   Validators,
-// } from '@angular/forms';
-// import { UserService } from '../../core/services/user.service';
-// import { Router } from '@angular/router';
-
-// @Component({
-//   selector: 'til-profile',
-//   standalone: true,
-//   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-//   templateUrl: './profile.component.html',
-//   styleUrls: ['./profile.component.scss'],
-//   changeDetection: ChangeDetectionStrategy.OnPush,
-// })
-// export class ProfileComponent {
-//   readonly usernameControl: FormControl;
-//   readonly user$ = this.userService.user$;
-
-//   constructor(private readonly userService: UserService, private router: Router) {
-//     this.usernameControl = new FormControl('', {
-//       validators: [Validators.minLength(3), Validators.maxLength(30)],
-//     });
-
-//     // Subscribe to user$ to log user details
-//     this.user$.subscribe(user => {
-//       console.log("User details from profile:", user);
-//     });
-//   }
-
-//   // Change username function with form validation
-//   changeUsername() {
-//     if (this.usernameControl.valid) {
-//       const newUsername = this.usernameControl.value;
-//       console.log('Changing username to:', newUsername);
-//       // Additional logic to update the username
-//     }
-//   }
-
-//   // Navigation methods
-//   goToEditProfile() {
-//     this.router.navigateByUrl('/tutorprofile-edit');
-//   }
-
-//   goToCreateCourse() {
-//     this.router.navigateByUrl('/create-course');
-//   }
-
-//   goToAddEducation() {
-//     this.router.navigateByUrl('/add-education');
-//   }
-
-//   goToAddWork() {
-//     this.router.navigateByUrl('/add-experience');
-//   }
-// }

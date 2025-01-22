@@ -4,26 +4,30 @@
 
 <section class="teachers-container">
   <div class="teachers-card-container">
-    <!-- Teacher Card 1 -->
     <div class="teacher-card" *ngFor="let teacher of teacherList">
-      <div class="teacher-image">
-        <img src="../../../../../assets/tutorPhotos/kamlesh.jpeg" alt="Dinesh">
-        <div class="favorite-icon">♥</div> <!-- Moved the heart icon only -->
-      </div>
-      <div class="teacher-info">
-        <h3 class="teacher-name">{{teacher?.name}}</h3>
-        <p class="teacher-location">{{teacher?.location}} (Online)</p>
-        <div class="top-info">
-          <p class="subject">{{teacher?.subject}}</p>
-          <div class="rating-and-reviews">
-            <span class="rating">★★★★★</span>
-            <span class="reviews">(169 reviews)</span>
-          </div>
+      <div (click)="goToCoursePage(teacher.teacherId)">
+        <div class="teacher-image">
+          <img [src]="teacher.profilePic" [alt]="teacher.name">
+          <div class="favorite-icon">♥</div>
         </div>
-        <p class="details">{{teacher?.aboutMe}}</p>
-        <p class="price">{{teacher?.currency}} {{teacher?.costPerSessions}}/hr · 1st free class</p>
+        
+  
+        <div class="teacher-info">
+          <h3 class="teacher-name">{{ teacher.name }}</h3>
+          <p class="teacher-location">{{ teacher.location }} (Online)</p>
+          <div class="top-info">
+            <p class="subject">{{ teacher.subject }}</p>
+            <div class="rating-and-reviews">
+              <span class="rating">★★★★★</span>
+              <span class="reviews">(169 reviews)</span>
+            </div>
+          </div>
+          <p class="details">{{ teacher.aboutMe | slice:0:100 }}...</p>
+          <p class="price">{{ teacher.currency }} {{ teacher.costPerSessions }}/hr · 1st free class</p>
+          <button class="join-btn">View Course</button>
+        </div>
       </div>
-    </div>
 
-    
+    </div>
   </div>
+</section>
