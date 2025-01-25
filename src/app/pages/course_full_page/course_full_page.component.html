@@ -2,7 +2,9 @@
   <!-- Tutor Card -->
   <div class="tutor-card">
     <div class="profile-picture">
-      <img src="https://www.pmt.education/wp-content/uploads/2024/04/male-tutor-online-headphones-1720x1147.jpg" alt="Tutor Profile Picture">
+      <!-- <img src="https://www.pmt.education/wp-content/uploads/2024/04/male-tutor-online-headphones-1720x1147.jpg" alt="Tutor Profile Picture"> -->
+      <img [src]="courseDetails?.data.profilePic">
+
     </div>
     
     <h3>{{ courseDetails?.data.name }}</h3>

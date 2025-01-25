@@ -54,7 +54,19 @@ export class AboutComponent implements OnInit {
     });
   }
 
-  goToCoursePage(teacherId: string): void {
-    this.router.navigate(['/course_full_page', teacherId]);
+  // goToCoursePage(_id: string): void {
+  //   // console.log(_id);
+  //      this.router.navigate(['/course_full_page',_id]);
+  //      this.router.navigate(['/course_full_page',_id]);
+
+  // }
+
+  goToCoursePage(_id: any) {
+    console.log(_id);
+    // sessionStorage.setItem('courseTeacherId', cousedata?.teacherId);
+    this.router.navigate(['/course_full_page',_id]);
+
+    // this.router.navigateByUrl('/course_full_page' + cousedata?.teacherId);
   }
+
 }

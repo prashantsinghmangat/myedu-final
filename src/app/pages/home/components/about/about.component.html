@@ -5,7 +5,7 @@
 <section class="teachers-container">
   <div class="teachers-card-container">
     <div class="teacher-card" *ngFor="let teacher of teacherList">
-      <div (click)="goToCoursePage(teacher.teacherId)">
+      <div (click)="goToCoursePage(teacher._id)">
         <div class="teacher-image">
           <img [src]="teacher.profilePic" [alt]="teacher.name">
           <div class="favorite-icon">♥</div>
